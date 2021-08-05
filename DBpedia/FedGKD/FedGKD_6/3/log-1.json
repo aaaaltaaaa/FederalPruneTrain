@@ -1,0 +1,194 @@
+[
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.00021314620971679688,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.08009171485900879,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.1567673683166504,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 1.5974044799804688e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.02236318588256836,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.07565116882324219,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.1526477336883545,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.005211591720581055,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.08646321296691895,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.09090909090909091,
+  "value": 1.7881393432617188e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.13636363636363635,
+  "value": 0.0003540515899658203,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.1590909090909091,
+  "value": 0.0002734661102294922,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.4318181818181818,
+  "value": 1.621246337890625e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.4772727272727273,
+  "value": 2.0265579223632812e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5227272727272727,
+  "value": 0.07671809196472168,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5681818181818182,
+  "value": 0.00028443336486816406,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.0,
+  "value": 0.17539739608764648,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.18181818181818182,
+  "value": 0.0002789497375488281,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3409090909090909,
+  "value": 0.15804219245910645,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.4318181818181818,
+  "value": 0.1559293270111084,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.8409090909090909,
+  "value": 0.14893198013305664,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.0003063678741455078,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5681818181818182,
+  "value": 0.00031375885009765625,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.7727272727272727,
+  "value": 0.00019669532775878906,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.13636363636363635,
+  "value": 0.19727540016174316,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.29545454545454547,
+  "value": 0.14935874938964844,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5454545454545454,
+  "value": 0.15962576866149902,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5681818181818182,
+  "value": 1.9311904907226562e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5909090909090909,
+  "value": 0.15816354751586914,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.1483161449432373,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.7272727272727273,
+  "value": 0.16666150093078613,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.1524338722229004,
+  "event": "forward_pass"
+ }
+]

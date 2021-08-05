@@ -1,0 +1,6 @@
+============= Round 1 Result =============
+2021-07-13 19:31:42	The validation performance = {'loss': 1.1606987911224365, 'top1': 72.38, 'top5': 98.12, 'loss2': 0.0}.
+2021-07-13 19:31:42	Best performance of loss             (best comm_round 65.000, current comm_round 100.000): 0.8793608966827393.
+2021-07-13 19:31:42	Best performance of top1             (best comm_round 92.000, current comm_round 100.000): 75.96.
+2021-07-13 19:31:42	Best performance of top5             (best comm_round 78.000, current comm_round 100.000): 98.5.
+2021-07-13 19:31:42	Best performance of loss2             (best comm_round 1.000, current comm_round 100.000): 0.0.

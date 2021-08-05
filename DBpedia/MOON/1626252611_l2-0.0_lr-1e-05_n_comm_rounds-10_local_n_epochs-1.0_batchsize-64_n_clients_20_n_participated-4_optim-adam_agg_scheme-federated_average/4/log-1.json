@@ -1,0 +1,116 @@
+[
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.0011203289031982422,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.15640878677368164,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.33911967277526855,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 1.2636184692382812e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.0022878646850585938,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.13636363636363635,
+  "value": 1.3113021850585938e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.13636363636363635,
+  "value": 0.3084530830383301,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.1590909090909091,
+  "value": 1.2636184692382812e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.20454545454545456,
+  "value": 0.15465950965881348,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3181818181818182,
+  "value": 0.15282201766967773,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5909090909090909,
+  "value": 0.00013136863708496094,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.7045454545454546,
+  "value": 0.07640767097473145,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.9090909090909091,
+  "value": 0.07561230659484863,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6590909090909091,
+  "value": 1.811981201171875e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.9772727272727273,
+  "value": 0.1700453758239746,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.1590909090909091,
+  "value": 0.21975326538085938,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5909090909090909,
+  "value": 1.5974044799804688e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.20454545454545456,
+  "value": 1.71661376953125e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.75,
+  "value": 0.00015234947204589844,
+  "event": "load_data"
+ }
+]

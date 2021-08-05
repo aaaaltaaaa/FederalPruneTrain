@@ -1,0 +1,194 @@
+[
+ {
+  "measurement": "timer",
+  "epoch": 0.02127659574468085,
+  "value": 0.00016069412231445312,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.02127659574468085,
+  "value": 0.07733273506164551,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.02127659574468085,
+  "value": 0.15479230880737305,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.0425531914893617,
+  "value": 1.7642974853515625e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.0851063829787234,
+  "value": 1.2874603271484375e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.0851063829787234,
+  "value": 0.0001399517059326172,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.0851063829787234,
+  "value": 0.15057110786437988,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.10638297872340426,
+  "value": 0.00023508071899414062,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.10638297872340426,
+  "value": 0.07522821426391602,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.1276595744680851,
+  "value": 1.2636184692382812e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.14893617021276595,
+  "value": 0.07523894309997559,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.1702127659574468,
+  "value": 0.0751042366027832,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.23404255319148937,
+  "value": 0.00017786026000976562,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2553191489361702,
+  "value": 1.7881393432617188e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2765957446808511,
+  "value": 0.07492756843566895,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3191489361702128,
+  "value": 1.71661376953125e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3191489361702128,
+  "value": 0.0002143383026123047,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3404255319148936,
+  "value": 0.1600208282470703,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.3617021276595745,
+  "value": 0.0001964569091796875,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.48936170212765956,
+  "value": 1.7642974853515625e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6382978723404256,
+  "value": 0.0002257823944091797,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6595744680851063,
+  "value": 0.15518760681152344,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.723404255319149,
+  "value": 1.6450881958007812e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.8085106382978723,
+  "value": 1.5020370483398438e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.851063829787234,
+  "value": 0.0001475811004638672,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2127659574468085,
+  "value": 0.15877771377563477,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2978723404255319,
+  "value": 0.19925260543823242,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.8297872340425532,
+  "value": 0.14724969863891602,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6382978723404256,
+  "value": 1.7642974853515625e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.46808510638297873,
+  "value": 1.2874603271484375e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2127659574468085,
+  "value": 0.1547234058380127,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6170212765957447,
+  "value": 1.239776611328125e-05,
+  "event": "compress_model"
+ }
+]

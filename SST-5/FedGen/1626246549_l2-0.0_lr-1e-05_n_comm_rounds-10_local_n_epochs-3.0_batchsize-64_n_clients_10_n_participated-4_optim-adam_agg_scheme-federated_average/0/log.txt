@@ -1,0 +1,3 @@
+2021-07-14 15:09:15		=> Master created model 'distilbert. Total params: 66.957317M
+2021-07-14 15:09:15	The client will use archs={'distilbert'}.
+2021-07-14 15:09:15	Master created model templates for client models.

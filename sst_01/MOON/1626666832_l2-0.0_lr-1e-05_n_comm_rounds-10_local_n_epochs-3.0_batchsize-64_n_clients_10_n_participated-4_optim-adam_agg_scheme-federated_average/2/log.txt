@@ -1,0 +1,98 @@
+2021-07-19 11:53:55	Worker-2 use the device cuda:2
+2021-07-19 11:54:23	Data stat for original dataset: we have 8544 samples for train, 1101 samples for val, 2210 samples for test.
+2021-07-19 11:54:25	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-07-19 11:54:25		Data stat for train: # of samples=854 for client_id=1. # of batches=14. The batch size=64
+2021-07-19 11:54:25	Worker-2 initialized the local training data with Master.
+2021-07-19 11:54:25	Worker-2 initialized dataset/criterion.
+
+2021-07-19 11:54:30		=> Worker-2 (client-2) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:54:41	Worker-2 (client-2) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:54:42	Data partition for train (client_id=2): partitioned data and use subdata.
+2021-07-19 11:54:42		Data stat for train: # of samples=854 for client_id=2. # of batches=14. The batch size=64
+2021-07-19 11:54:42	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:54:42	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:54:42	Worker-2 (client-2) enters the local training phase (current communication rounds=1).
+2021-07-19 11:55:17	Worker-2 (client-2) finished one round of federated learning: (comm_round=1).
+2021-07-19 11:55:18	Worker-2 (client-2) sending the model (distilbert) back to Master.
+2021-07-19 11:55:36		=> Worker-2 (client-3) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:55:41	Worker-2 (client-3) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:55:41	Data partition for train (client_id=3): partitioned data and use subdata.
+2021-07-19 11:55:41		Data stat for train: # of samples=854 for client_id=3. # of batches=14. The batch size=64
+2021-07-19 11:55:41	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:55:41	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:55:41	Worker-2 (client-3) enters the local training phase (current communication rounds=2).
+2021-07-19 11:55:59	Worker-2 (client-3) finished one round of federated learning: (comm_round=2).
+2021-07-19 11:56:00	Worker-2 (client-3) sending the model (distilbert) back to Master.
+2021-07-19 11:56:12		=> Worker-2 (client-4) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:56:20	Worker-2 (client-4) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:56:20	Data partition for train (client_id=4): partitioned data and use subdata.
+2021-07-19 11:56:20		Data stat for train: # of samples=854 for client_id=4. # of batches=14. The batch size=64
+2021-07-19 11:56:20	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:56:20	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:56:20	Worker-2 (client-4) enters the local training phase (current communication rounds=3).
+2021-07-19 11:56:40	Worker-2 (client-4) finished one round of federated learning: (comm_round=3).
+2021-07-19 11:56:40	Worker-2 (client-4) sending the model (distilbert) back to Master.
+2021-07-19 11:56:55		=> Worker-2 (client-2) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:56:56	Worker-2 (client-2) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:56:56	Data partition for train (client_id=2): partitioned data and use subdata.
+2021-07-19 11:56:56		Data stat for train: # of samples=854 for client_id=2. # of batches=14. The batch size=64
+2021-07-19 11:56:56	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:56:56	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:56:56	Worker-2 (client-2) enters the local training phase (current communication rounds=4).
+2021-07-19 11:57:15	Worker-2 (client-2) finished one round of federated learning: (comm_round=4).
+2021-07-19 11:57:15	Worker-2 (client-2) sending the model (distilbert) back to Master.
+2021-07-19 11:57:40		=> Worker-2 (client-2) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:58:05	Worker-2 (client-2) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:58:06	Data partition for train (client_id=2): partitioned data and use subdata.
+2021-07-19 11:58:06		Data stat for train: # of samples=854 for client_id=2. # of batches=14. The batch size=64
+2021-07-19 11:58:06	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:58:06	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:58:06	Worker-2 (client-2) enters the local training phase (current communication rounds=5).
+2021-07-19 11:58:25	Worker-2 (client-2) finished one round of federated learning: (comm_round=5).
+2021-07-19 11:58:25	Worker-2 (client-2) sending the model (distilbert) back to Master.
+2021-07-19 11:58:46		=> Worker-2 (client-3) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:59:00	Worker-2 (client-3) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:59:00	Data partition for train (client_id=3): partitioned data and use subdata.
+2021-07-19 11:59:00		Data stat for train: # of samples=854 for client_id=3. # of batches=14. The batch size=64
+2021-07-19 11:59:00	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:59:00	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:59:00	Worker-2 (client-3) enters the local training phase (current communication rounds=6).
+2021-07-19 11:59:19	Worker-2 (client-3) finished one round of federated learning: (comm_round=6).
+2021-07-19 11:59:20	Worker-2 (client-3) sending the model (distilbert) back to Master.
+2021-07-19 11:59:32		=> Worker-2 (client-4) created model 'distilbert. Total params: 67.151621M
+2021-07-19 11:59:40	Worker-2 (client-4) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 11:59:42	Data partition for train (client_id=4): partitioned data and use subdata.
+2021-07-19 11:59:42		Data stat for train: # of samples=854 for client_id=4. # of batches=14. The batch size=64
+2021-07-19 11:59:42	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 11:59:42	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 11:59:42	Worker-2 (client-4) enters the local training phase (current communication rounds=7).
+2021-07-19 12:00:01	Worker-2 (client-4) finished one round of federated learning: (comm_round=7).
+2021-07-19 12:00:02	Worker-2 (client-4) sending the model (distilbert) back to Master.
+2021-07-19 12:00:18		=> Worker-2 (client-7) created model 'distilbert. Total params: 67.151621M
+2021-07-19 12:00:33	Worker-2 (client-7) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 12:00:35	Data partition for train (client_id=7): partitioned data and use subdata.
+2021-07-19 12:00:35		Data stat for train: # of samples=854 for client_id=7. # of batches=14. The batch size=64
+2021-07-19 12:00:35	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 12:00:35	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 12:00:35	Worker-2 (client-7) enters the local training phase (current communication rounds=8).
+2021-07-19 12:00:54	Worker-2 (client-7) finished one round of federated learning: (comm_round=8).
+2021-07-19 12:00:54	Worker-2 (client-7) sending the model (distilbert) back to Master.
+2021-07-19 12:01:09		=> Worker-2 (client-4) created model 'distilbert. Total params: 67.151621M
+2021-07-19 12:01:20	Worker-2 (client-4) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 12:01:23	Data partition for train (client_id=4): partitioned data and use subdata.
+2021-07-19 12:01:23		Data stat for train: # of samples=854 for client_id=4. # of batches=14. The batch size=64
+2021-07-19 12:01:23	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 12:01:23	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 12:01:23	Worker-2 (client-4) enters the local training phase (current communication rounds=9).
+2021-07-19 12:01:43	Worker-2 (client-4) finished one round of federated learning: (comm_round=9).
+2021-07-19 12:01:43	Worker-2 (client-4) sending the model (distilbert) back to Master.
+2021-07-19 12:01:58		=> Worker-2 (client-6) created model 'distilbert. Total params: 67.151621M
+2021-07-19 12:02:14	Worker-2 (client-6) received the model (distilbert) from Master. The model status is updated.
+2021-07-19 12:02:14	Data partition for train (client_id=6): partitioned data and use subdata.
+2021-07-19 12:02:14		Data stat for train: # of samples=854 for client_id=6. # of batches=14. The batch size=64
+2021-07-19 12:02:14	LR initialization (lr=1e-05 for mini-batch size=64 and scaled to 1e-05 for local mini-batch size=64): lr scaleup=False, lr warmup=False, learning_rate=1e-05.
+2021-07-19 12:02:14	LR scheduler in a nutshell: first set lr=1e-05, then use MultiStepLR scheduler: milestones=[4.0], decay_factor=0.1.
+2021-07-19 12:02:14	Worker-2 (client-6) enters the local training phase (current communication rounds=10).
+2021-07-19 12:02:34	Worker-2 (client-6) finished one round of federated learning: (comm_round=10).
+2021-07-19 12:02:35	Worker-2 (client-6) sending the model (distilbert) back to Master.
+2021-07-19 12:02:43	Worker-2 finished the federated learning: (total comm_rounds=10).

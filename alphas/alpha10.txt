@@ -1,0 +1,28 @@
+2021-06-30 23:08:09		=> Master created model 'resnet8. Total params: 0.078042M
+2021-06-30 23:08:09	The client will use archs={'resnet8'}.
+2021-06-30 23:08:09	Master created model templates for client models.
+2021-06-30 23:08:09		=> Master created model 'resnet8. Total params: 0.078042M
+2021-06-30 23:08:09	Master initialize the clientid2arch mapping relations: {1: 'resnet8', 2: 'resnet8', 3: 'resnet8', 4: 'resnet8', 5: 'resnet8', 6: 'resnet8', 7: 'resnet8', 8: 'resnet8', 9: 'resnet8', 10: 'resnet8', 11: 'resnet8', 12: 'resnet8', 13: 'resnet8', 14: 'resnet8', 15: 'resnet8', 16: 'resnet8', 17: 'resnet8', 18: 'resnet8', 19: 'resnet8', 20: 'resnet8'}.
+2021-06-30 23:08:11	the histogram of the targets in the partitions: dict_items([(0, [(0, 4507), (1, 4512), (2, 4521), (3, 4481), (4, 4525), (5, 4471), (6, 4512), (7, 4515), (8, 4468), (9, 4488)]), (1, []), (2, [(0, 493), (1, 488), (2, 479), (3, 519), (4, 475), (5, 529), (6, 488), (7, 485), (8, 532), (9, 512)])])
+2021-06-30 23:08:11	Data stat for original dataset: we have 45000 samples for train, 5000 samples for val, 10000 samples for test.
+2021-06-30 23:08:13	the histogram of the targets in the partitions: dict_items([(0, [(0, 253), (1, 262), (2, 253), (3, 207), (4, 186), (5, 299), (6, 212), (7, 175), (8, 183), (9, 220)]), (1, [(0, 176), (1, 239), (2, 164), (3, 344), (4, 288), (5, 253), (6, 261), (7, 183), (8, 235), (9, 107)]), (2, [(0, 128), (1, 214), (2, 194), (3, 304), (4, 238), (5, 366), (6, 191), (7, 240), (8, 128), (9, 247)]), (3, [(0, 392), (1, 232), (2, 276), (3, 268), (4, 242), (5, 275), (6, 180), (7, 47), (8, 26), (9, 312)]), (4, [(0, 205), (1, 224), (2, 255), (3, 206), (4, 168), (5, 125), (6, 232), (7, 582), (8, 253)]), (5, [(0, 160), (1, 243), (2, 208), (3, 239), (4, 256), (5, 290), (6, 356), (7, 51), (8, 240), (9, 207)]), (6, [(0, 268), (1, 180), (2, 178), (3, 173), (4, 207), (5, 84), (6, 182), (7, 208), (8, 433), (9, 337)]), (7, [(0, 289), (1, 211), (2, 220), (3, 178), (4, 285), (5, 240), (6, 210), (7, 299), (8, 225), (9, 93)]), (8, [(0, 138), (1, 215), (2, 302), (3, 212), (4, 144), (5, 195), (6, 307), (7, 219), (8, 192), (9, 326)]), (9, [(0, 287), (1, 193), (2, 238), (3, 88), (4, 244), (5, 189), (6, 154), (7, 233), (8, 277), (9, 347)]), (10, [(0, 362), (1, 183), (2, 163), (3, 294), (4, 149), (5, 209), (6, 138), (7, 184), (8, 350), (9, 218)]), (11, [(0, 205), (1, 264), (2, 213), (3, 247), (4, 240), (5, 153), (6, 231), (7, 169), (8, 323), (9, 205)]), (12, [(0, 126), (1, 303), (2, 232), (3, 223), (4, 231), (5, 288), (6, 140), (7, 294), (8, 187), (9, 226)]), (13, [(0, 137), (1, 199), (2, 200), (3, 291), (4, 122), (5, 209), (6, 291), (7, 278), (8, 239), (9, 284)]), (14, [(0, 385), (1, 277), (2, 213), (3, 240), (4, 137), (5, 128), (6, 142), (7, 319), (8, 197), (9, 212)]), (15, [(0, 354), (1, 89), (2, 241), (3, 164), (4, 312), (5, 191), (6, 189), (7, 151), (8, 257), (9, 302)]), (16, [(0, 188), (1, 377), (2, 153), (3, 205), (4, 441), (5, 350), (6, 293), (7, 243)]), (17, [(0, 130), (1, 76), (2, 283), (3, 236), (4, 261), (5, 97), (6, 266), (7, 305), (8, 268), (9, 328)]), (18, [(0, 193), (1, 213), (2, 228), (3, 172), (4, 153), (5, 281), (6, 336), (7, 121), (8, 257), (9, 296)]), (19, [(0, 131), (1, 318), (2, 307), (3, 190), (4, 221), (5, 249), (6, 201), (7, 214), (8, 198), (9, 221)])])
+2021-06-30 23:08:13	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-06-30 23:08:13		Data stat for train: # of samples=2250 for client_id=1. # of batches=36. The batch size=64
+2021-06-30 23:08:13	Master initialized the local training data with workers.
+2021-06-30 23:08:13	Data partition for validation/test.
+2021-06-30 23:08:13		Data stat for validation/test: # of samples=5000 for Master. # of batches=79. The batch size=64
+2021-06-30 23:08:13	Master initialized val data.
+2021-06-30 23:08:13	Data partition for validation/test.
+2021-06-30 23:08:13		Data stat for validation/test: # of samples=10000 for Master. # of batches=157. The batch size=64
+2021-06-30 23:08:13	Master initialized model/dataset/criterion/metrics.
+2021-06-30 23:08:13	Master initialized the aggregator/coordinator.
+
+2021-06-30 23:08:13	Master starting one round of federated learning: (comm_round=1).
+2021-06-30 23:08:13	Master selected 4 from 20 clients: [5, 9, 10, 13].
+2021-06-30 23:08:13	Master activated the selected clients.
+2021-06-30 23:08:13	Master send the models to workers.
+2021-06-30 23:08:13		Master send the current model=resnet8 to process_id=1.
+2021-06-30 23:08:13		Master send the current model=resnet8 to process_id=2.
+2021-06-30 23:08:13		Master send the current model=resnet8 to process_id=3.
+2021-06-30 23:08:13		Master send the current model=resnet8 to process_id=4.
+2021-06-30 23:08:15	Master waits to receive the local models.

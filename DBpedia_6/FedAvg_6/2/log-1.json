@@ -1,0 +1,164 @@
+[
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.00021719932556152344,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.07690310478210449,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.16124653816223145,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 2.1219253540039062e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.0003733634948730469,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.07599616050720215,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.045454545454545456,
+  "value": 0.1532909870147705,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.07565116882324219,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.06818181818181818,
+  "value": 0.15352368354797363,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.09090909090909091,
+  "value": 2.2411346435546875e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.09090909090909091,
+  "value": 0.00021505355834960938,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.11363636363636363,
+  "value": 1.8358230590820312e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.18181818181818182,
+  "value": 0.08296942710876465,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.22727272727272727,
+  "value": 0.00035262107849121094,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.29545454545454547,
+  "value": 1.2874603271484375e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.38636363636363635,
+  "value": 1.6927719116210938e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.4090909090909091,
+  "value": 0.15347886085510254,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.6818181818181818,
+  "value": 0.00028204917907714844,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.45454545454545453,
+  "value": 0.07587051391601562,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5227272727272727,
+  "value": 1.3113021850585938e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.75,
+  "value": 0.00017309188842773438,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.8636363636363636,
+  "value": 0.09228181838989258,
+  "event": "forward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.18181818181818182,
+  "value": 0.15802240371704102,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.5909090909090909,
+  "value": 2.193450927734375e-05,
+  "event": "compress_model"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.11363636363636363,
+  "value": 0.16096162796020508,
+  "event": "backward_pass"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.022727272727272728,
+  "value": 0.00032520294189453125,
+  "event": "load_data"
+ },
+ {
+  "measurement": "timer",
+  "epoch": 0.2727272727272727,
+  "value": 0.0758676528930664,
+  "event": "forward_pass"
+ }
+]

@@ -1,0 +1,18 @@
+============= Round 1 Result =============
+2021-07-10 22:47:07	The validation performance = {'loss': 2.7306224254608154, 'top1': 41.11, 'top5': 72.92, 'loss2': 0.0}.
+2021-07-10 22:47:07	Best performance of loss             (best comm_round 54.000, current comm_round 100.000): 2.5658088970184325.
+2021-07-10 22:47:07	Best performance of top1             (best comm_round 99.000, current comm_round 100.000): 41.76.
+2021-07-10 22:47:07	Best performance of top5             (best comm_round 99.000, current comm_round 100.000): 73.19.
+2021-07-10 22:47:07	Best performance of loss2             (best comm_round 1.000, current comm_round 100.000): 0.0.
+============= Round 2 Result =============
+2021-07-10 23:56:44	The validation performance = {'loss': 2.7431772880554197, 'top1': 41.56, 'top5': 72.26, 'loss2': 0.0}.
+2021-07-10 23:56:44	Best performance of loss             (best comm_round 54.000, current comm_round 100.000): 2.6016759048461915.
+2021-07-10 23:56:44	Best performance of top1             (best comm_round 99.000, current comm_round 100.000): 41.7.
+2021-07-10 23:56:44	Best performance of top5             (best comm_round 99.000, current comm_round 100.000): 72.99.
+2021-07-10 23:56:44	Best performance of loss2             (best comm_round 1.000, current comm_round 100.000): 0.0.
+============= Round 3 Result =============
+2021-07-11 01:01:42	The validation performance = {'loss': 2.8006106716156007, 'top1': 41.01, 'top5': 72.68, 'loss2': 0.0}.
+2021-07-11 01:01:42	Best performance of loss             (best comm_round 54.000, current comm_round 100.000): 2.6177399173736573.
+2021-07-11 01:01:42	Best performance of top1             (best comm_round 97.000, current comm_round 100.000): 41.82.
+2021-07-11 01:01:42	Best performance of top5             (best comm_round 99.000, current comm_round 100.000): 73.23.
+2021-07-11 01:01:42	Best performance of loss2             (best comm_round 1.000, current comm_round 100.000): 0.0.

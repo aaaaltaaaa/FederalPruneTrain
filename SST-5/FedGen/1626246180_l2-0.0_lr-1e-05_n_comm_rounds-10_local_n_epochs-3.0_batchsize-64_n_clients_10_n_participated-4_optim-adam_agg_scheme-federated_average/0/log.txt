@@ -1,0 +1,19 @@
+2021-07-14 15:03:06		=> Master created model 'distilbert. Total params: 66.957317M
+2021-07-14 15:03:06	The client will use archs={'distilbert'}.
+2021-07-14 15:03:06	Master created model templates for client models.
+2021-07-14 15:03:09		=> Master created model 'distilbert. Total params: 66.957317M
+2021-07-14 15:03:09	Master initialize the clientid2arch mapping relations: {1: 'distilbert', 2: 'distilbert', 3: 'distilbert', 4: 'distilbert', 5: 'distilbert', 6: 'distilbert', 7: 'distilbert', 8: 'distilbert', 9: 'distilbert', 10: 'distilbert'}.
+2021-07-14 15:03:27	the histogram of the targets in the partitions: dict_items([(0, [(0, 1092), (1, 2218), (2, 1624), (3, 2322), (4, 1288)]), (1, []), (2, [])])
+2021-07-14 15:03:35	Data stat for original dataset: we have 8544 samples for train, 1101 samples for val, 2210 samples for test.
+2021-07-14 15:03:45	the histogram of the targets in the partitions: dict_items([(0, [(0, 171), (1, 15), (2, 598), (3, 68), (4, 2)]), (1, [(0, 7), (1, 643), (3, 203), (4, 1)]), (2, [(1, 854)]), (3, [(0, 132), (1, 130), (2, 75), (3, 13), (4, 504)]), (4, [(0, 270), (2, 137), (3, 22), (4, 425)]), (5, [(0, 421), (1, 28), (2, 195), (3, 205), (4, 5)]), (6, [(0, 9), (1, 32), (2, 9), (3, 638), (4, 166)]), (7, [(1, 502), (2, 148), (3, 19), (4, 185)]), (8, [(0, 82), (1, 14), (2, 172), (3, 586)]), (9, [(2, 290), (3, 564)])])
+2021-07-14 15:03:45	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-07-14 15:03:45		Data stat for train: # of samples=854 for client_id=1. # of batches=14. The batch size=64
+2021-07-14 15:03:45	Master initialized the local training data with workers.
+2021-07-14 15:03:45	Data partition for validation/test.
+2021-07-14 15:03:45		Data stat for validation/test: # of samples=1101 for Master. # of batches=18. The batch size=64
+2021-07-14 15:03:45	Master initialized val data.
+2021-07-14 15:03:45	Data partition for validation/test.
+2021-07-14 15:03:45		Data stat for validation/test: # of samples=2210 for Master. # of batches=35. The batch size=64
+2021-07-14 15:03:45	Master initialized model/dataset/criterion/metrics.
+2021-07-14 15:03:45	Master initialized the aggregator/coordinator.
+

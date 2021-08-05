@@ -1,0 +1,4 @@
+============= Round 1 Result =============
+Binary file /tmp/fedprj_alpha0.5_ratio0.3_cifar10_round1.txt matches
+============= Round 2 Result =============
+============= Round 3 Result =============

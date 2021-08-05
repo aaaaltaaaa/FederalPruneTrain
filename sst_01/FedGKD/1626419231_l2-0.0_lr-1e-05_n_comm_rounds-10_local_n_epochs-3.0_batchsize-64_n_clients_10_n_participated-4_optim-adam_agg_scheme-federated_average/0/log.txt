@@ -1,0 +1,230 @@
+2021-07-16 15:07:17		=> Master created model 'distilbert. Total params: 66.957317M
+2021-07-16 15:07:17	The client will use archs={'distilbert'}.
+2021-07-16 15:07:17	Master created model templates for client models.
+2021-07-16 15:07:20		=> Master created model 'distilbert. Total params: 66.957317M
+2021-07-16 15:07:20	Master initialize the clientid2arch mapping relations: {1: 'distilbert', 2: 'distilbert', 3: 'distilbert', 4: 'distilbert', 5: 'distilbert', 6: 'distilbert', 7: 'distilbert', 8: 'distilbert', 9: 'distilbert', 10: 'distilbert'}.
+2021-07-16 15:07:33	the histogram of the targets in the partitions: dict_items([(0, [(0, 1092), (1, 2218), (2, 1624), (3, 2322), (4, 1288)]), (1, []), (2, [])])
+2021-07-16 15:07:39	Data stat for original dataset: we have 8544 samples for train, 1101 samples for val, 2210 samples for test.
+2021-07-16 15:07:40	the histogram of the targets in the partitions: dict_items([(0, [(1, 76), (2, 2), (4, 776)]), (1, [(1, 390), (3, 462), (4, 2)]), (2, [(1, 854)]), (3, [(0, 250), (1, 147), (2, 3), (3, 290), (4, 164)]), (4, [(0, 831), (1, 7), (2, 6), (3, 9), (4, 1)]), (5, [(0, 6), (1, 349), (2, 107), (3, 48), (4, 344)]), (6, [(1, 394), (2, 459), (4, 1)]), (7, [(2, 854)]), (8, [(0, 5), (1, 1), (2, 193), (3, 655)]), (9, [(3, 854)])])
+2021-07-16 15:07:40	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-07-16 15:07:40		Data stat for train: # of samples=854 for client_id=1. # of batches=14. The batch size=64
+2021-07-16 15:07:40	Master initialized the local training data with workers.
+2021-07-16 15:07:40	Data partition for validation/test.
+2021-07-16 15:07:40		Data stat for validation/test: # of samples=1101 for Master. # of batches=18. The batch size=64
+2021-07-16 15:07:40	Master initialized val data.
+2021-07-16 15:07:40	Data partition for validation/test.
+2021-07-16 15:07:40		Data stat for validation/test: # of samples=2210 for Master. # of batches=35. The batch size=64
+2021-07-16 15:07:40	Master initialized model/dataset/criterion/metrics.
+2021-07-16 15:07:40	Master initialized the aggregator/coordinator.
+
+2021-07-16 15:07:40	Master starting one round of federated learning: (comm_round=1).
+2021-07-16 15:07:40	Master selected 4 from 10 clients: [2, 4, 6, 7].
+2021-07-16 15:07:40	Master activated the selected clients.
+2021-07-16 15:07:44	Master send the models to workers.
+2021-07-16 15:07:44		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:07:44		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:07:44		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:07:44		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:07:47	Master waits to receive the local models.
+2021-07-16 15:08:05	Master received all local models.
+2021-07-16 15:08:05	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:08:05	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:08:05	No indices to be removed.
+2021-07-16 15:08:07	Master enters the validation phase.
+2021-07-16 15:08:13	The validation performance = {'loss': 1.5957216359910922, 'top1': 28.642533909033865, 'loss2': 0.0}.
+2021-07-16 15:08:13	Best performance of loss             (best comm_round 1.000, current comm_round 1.000): 1.5957216359910922.
+2021-07-16 15:08:13	Best performance of top1             (best comm_round 1.000, current comm_round 1.000): 28.642533909033865.
+2021-07-16 15:08:13	Best performance of loss2             (best comm_round 1.000, current comm_round 1.000): 0.0.
+2021-07-16 15:08:13	Master finished the validation.
+2021-07-16 15:08:13	Master finished one round of federated learning.
+
+2021-07-16 15:08:13	Master starting one round of federated learning: (comm_round=2).
+2021-07-16 15:08:13	Master selected 4 from 10 clients: [1, 3, 4, 5].
+2021-07-16 15:08:13	Master activated the selected clients.
+2021-07-16 15:08:35	Master send the models to workers.
+2021-07-16 15:08:35		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:08:35		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:08:35		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:08:37		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:08:43	Master waits to receive the local models.
+2021-07-16 15:09:02	Master received all local models.
+2021-07-16 15:09:02	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:09:02	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:09:02	No indices to be removed.
+2021-07-16 15:09:04	Master enters the validation phase.
+2021-07-16 15:09:08	The validation performance = {'loss': 1.6760397396476021, 'top1': 29.36651581293857, 'loss2': 0.0}.
+2021-07-16 15:09:08	Best performance of loss             (best comm_round 1.000, current comm_round 2.000): 1.5957216359910922.
+2021-07-16 15:09:08	Best performance of top1             (best comm_round 2.000, current comm_round 2.000): 29.36651581293857.
+2021-07-16 15:09:08	Best performance of loss2             (best comm_round 1.000, current comm_round 2.000): 0.0.
+2021-07-16 15:09:08	Master finished the validation.
+2021-07-16 15:09:08	Master finished one round of federated learning.
+
+2021-07-16 15:09:08	Master starting one round of federated learning: (comm_round=3).
+2021-07-16 15:09:08	Master selected 4 from 10 clients: [2, 3, 6, 8].
+2021-07-16 15:09:08	Master activated the selected clients.
+2021-07-16 15:09:13	Master send the models to workers.
+2021-07-16 15:09:13		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:09:13		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:09:13		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:09:13		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:09:17	Master waits to receive the local models.
+2021-07-16 15:09:36	Master received all local models.
+2021-07-16 15:09:36	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:09:36	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:09:36	No indices to be removed.
+2021-07-16 15:09:38	Master enters the validation phase.
+2021-07-16 15:09:42	The validation performance = {'loss': 1.8655799205486592, 'top1': 28.687782812334294, 'loss2': 0.0}.
+2021-07-16 15:09:42	Best performance of loss             (best comm_round 1.000, current comm_round 3.000): 1.5957216359910922.
+2021-07-16 15:09:42	Best performance of top1             (best comm_round 2.000, current comm_round 3.000): 29.36651581293857.
+2021-07-16 15:09:42	Best performance of loss2             (best comm_round 1.000, current comm_round 3.000): 0.0.
+2021-07-16 15:09:42	Master finished the validation.
+2021-07-16 15:09:42	Master finished one round of federated learning.
+
+2021-07-16 15:09:42	Master starting one round of federated learning: (comm_round=4).
+2021-07-16 15:09:42	Master selected 4 from 10 clients: [1, 6, 7, 10].
+2021-07-16 15:09:42	Master activated the selected clients.
+2021-07-16 15:09:45	Master send the models to workers.
+2021-07-16 15:09:46		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:09:46		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:09:46		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:09:46		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:09:49	Master waits to receive the local models.
+2021-07-16 15:10:09	Master received all local models.
+2021-07-16 15:10:09	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:10:09	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:10:09	No indices to be removed.
+2021-07-16 15:10:10	Master enters the validation phase.
+2021-07-16 15:10:14	The validation performance = {'loss': 1.5290476837848646, 'top1': 40.99547511312217, 'loss2': 0.0}.
+2021-07-16 15:10:14	Best performance of loss             (best comm_round 4.000, current comm_round 4.000): 1.5290476837848646.
+2021-07-16 15:10:14	Best performance of top1             (best comm_round 4.000, current comm_round 4.000): 40.99547511312217.
+2021-07-16 15:10:14	Best performance of loss2             (best comm_round 1.000, current comm_round 4.000): 0.0.
+2021-07-16 15:10:14	Master finished the validation.
+2021-07-16 15:10:14	Master finished one round of federated learning.
+
+2021-07-16 15:10:14	Master starting one round of federated learning: (comm_round=5).
+2021-07-16 15:10:14	Master selected 4 from 10 clients: [2, 3, 6, 10].
+2021-07-16 15:10:14	Master activated the selected clients.
+2021-07-16 15:10:21	Master send the models to workers.
+2021-07-16 15:10:21		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:10:21		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:10:21		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:10:22		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:10:24	Master waits to receive the local models.
+2021-07-16 15:10:47	Master received all local models.
+2021-07-16 15:10:47	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:10:47	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:10:47	No indices to be removed.
+2021-07-16 15:10:56	Master enters the validation phase.
+2021-07-16 15:11:01	The validation performance = {'loss': 1.7313042426001433, 'top1': 39.90950223482572, 'loss2': 0.0}.
+2021-07-16 15:11:01	Best performance of loss             (best comm_round 4.000, current comm_round 5.000): 1.5290476837848646.
+2021-07-16 15:11:01	Best performance of top1             (best comm_round 4.000, current comm_round 5.000): 40.99547511312217.
+2021-07-16 15:11:01	Best performance of loss2             (best comm_round 1.000, current comm_round 5.000): 0.0.
+2021-07-16 15:11:01	Master finished the validation.
+2021-07-16 15:11:01	Master finished one round of federated learning.
+
+2021-07-16 15:11:01	Master starting one round of federated learning: (comm_round=6).
+2021-07-16 15:11:01	Master selected 4 from 10 clients: [2, 5, 9, 10].
+2021-07-16 15:11:01	Master activated the selected clients.
+2021-07-16 15:11:09	Master send the models to workers.
+2021-07-16 15:11:09		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:11:09		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:11:10		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:11:10		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:11:12	Master waits to receive the local models.
+2021-07-16 15:11:39	Master received all local models.
+2021-07-16 15:11:39	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:11:39	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:11:39	No indices to be removed.
+2021-07-16 15:11:49	Master enters the validation phase.
+2021-07-16 15:11:53	The validation performance = {'loss': 2.1093830128061284, 'top1': 27.78280540569875, 'loss2': 0.0}.
+2021-07-16 15:11:53	Best performance of loss             (best comm_round 4.000, current comm_round 6.000): 1.5290476837848646.
+2021-07-16 15:11:53	Best performance of top1             (best comm_round 4.000, current comm_round 6.000): 40.99547511312217.
+2021-07-16 15:11:53	Best performance of loss2             (best comm_round 1.000, current comm_round 6.000): 0.0.
+2021-07-16 15:11:53	Master finished the validation.
+2021-07-16 15:11:53	Master finished one round of federated learning.
+
+2021-07-16 15:11:53	Master starting one round of federated learning: (comm_round=7).
+2021-07-16 15:11:53	Master selected 4 from 10 clients: [3, 6, 8, 10].
+2021-07-16 15:11:53	Master activated the selected clients.
+2021-07-16 15:11:59	Master send the models to workers.
+2021-07-16 15:12:00		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:12:00		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:12:00		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:12:02		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:12:12	Master waits to receive the local models.
+2021-07-16 15:12:39	Master received all local models.
+2021-07-16 15:12:39	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:12:39	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:12:39	No indices to be removed.
+2021-07-16 15:12:41	Master enters the validation phase.
+2021-07-16 15:12:45	The validation performance = {'loss': 1.6682390094342814, 'top1': 42.62443438050973, 'loss2': 0.0}.
+2021-07-16 15:12:45	Best performance of loss             (best comm_round 4.000, current comm_round 7.000): 1.5290476837848646.
+2021-07-16 15:12:45	Best performance of top1             (best comm_round 7.000, current comm_round 7.000): 42.62443438050973.
+2021-07-16 15:12:45	Best performance of loss2             (best comm_round 1.000, current comm_round 7.000): 0.0.
+2021-07-16 15:12:45	Master finished the validation.
+2021-07-16 15:12:45	Master finished one round of federated learning.
+
+2021-07-16 15:12:45	Master starting one round of federated learning: (comm_round=8).
+2021-07-16 15:12:45	Master selected 4 from 10 clients: [3, 4, 5, 8].
+2021-07-16 15:12:45	Master activated the selected clients.
+2021-07-16 15:12:51	Master send the models to workers.
+2021-07-16 15:12:52		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:12:52		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:12:52		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:12:54		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:13:03	Master waits to receive the local models.
+2021-07-16 15:13:29	Master received all local models.
+2021-07-16 15:13:29	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:13:29	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:13:29	No indices to be removed.
+2021-07-16 15:13:32	Master enters the validation phase.
+2021-07-16 15:13:37	The validation performance = {'loss': 1.8474492009408874, 'top1': 29.411764695525708, 'loss2': 0.0}.
+2021-07-16 15:13:37	Best performance of loss             (best comm_round 4.000, current comm_round 8.000): 1.5290476837848646.
+2021-07-16 15:13:37	Best performance of top1             (best comm_round 7.000, current comm_round 8.000): 42.62443438050973.
+2021-07-16 15:13:37	Best performance of loss2             (best comm_round 1.000, current comm_round 8.000): 0.0.
+2021-07-16 15:13:37	Master finished the validation.
+2021-07-16 15:13:37	Master finished one round of federated learning.
+
+2021-07-16 15:13:37	Master starting one round of federated learning: (comm_round=9).
+2021-07-16 15:13:37	Master selected 4 from 10 clients: [7, 8, 9, 10].
+2021-07-16 15:13:37	Master activated the selected clients.
+2021-07-16 15:13:41	Master send the models to workers.
+2021-07-16 15:13:41		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:13:41		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:13:42		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:13:44		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:13:50	Master waits to receive the local models.
+2021-07-16 15:14:15	Master received all local models.
+2021-07-16 15:14:15	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:14:15	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:14:15	No indices to be removed.
+2021-07-16 15:14:17	Master enters the validation phase.
+2021-07-16 15:14:23	The validation performance = {'loss': 2.080264572644126, 'top1': 28.09954749059893, 'loss2': 0.0}.
+2021-07-16 15:14:23	Best performance of loss             (best comm_round 4.000, current comm_round 9.000): 1.5290476837848646.
+2021-07-16 15:14:23	Best performance of top1             (best comm_round 7.000, current comm_round 9.000): 42.62443438050973.
+2021-07-16 15:14:23	Best performance of loss2             (best comm_round 1.000, current comm_round 9.000): 0.0.
+2021-07-16 15:14:23	Master finished the validation.
+2021-07-16 15:14:23	Master finished one round of federated learning.
+
+2021-07-16 15:14:23	Master starting one round of federated learning: (comm_round=10).
+2021-07-16 15:14:23	Master selected 4 from 10 clients: [2, 5, 9, 10].
+2021-07-16 15:14:23	Master activated the selected clients.
+2021-07-16 15:14:33	Master send the models to workers.
+2021-07-16 15:14:33		Master send the current model=distilbert to process_id=1.
+2021-07-16 15:14:33		Master send the current model=distilbert to process_id=2.
+2021-07-16 15:14:33		Master send the current model=distilbert to process_id=3.
+2021-07-16 15:14:33		Master send the current model=distilbert to process_id=4.
+2021-07-16 15:14:39	Master waits to receive the local models.
+2021-07-16 15:15:08	Master received all local models.
+2021-07-16 15:15:08	Master uniformly average over 4 received models (distilbert).
+2021-07-16 15:15:08	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-07-16 15:15:08	No indices to be removed.
+2021-07-16 15:15:20	Master enters the validation phase.
+2021-07-16 15:15:24	The validation performance = {'loss': 2.3449840882245234, 'top1': 26.244343886224392, 'loss2': 0.0}.
+2021-07-16 15:15:24	Best performance of loss             (best comm_round 4.000, current comm_round 10.000): 1.5290476837848646.
+2021-07-16 15:15:24	Best performance of top1             (best comm_round 7.000, current comm_round 10.000): 42.62443438050973.
+2021-07-16 15:15:24	Best performance of loss2             (best comm_round 1.000, current comm_round 10.000): 0.0.
+2021-07-16 15:15:24	Master finished the validation.
+2021-07-16 15:15:24	Master finished one round of federated learning.
+
+2021-07-16 15:15:24	Master finished the federated learning.

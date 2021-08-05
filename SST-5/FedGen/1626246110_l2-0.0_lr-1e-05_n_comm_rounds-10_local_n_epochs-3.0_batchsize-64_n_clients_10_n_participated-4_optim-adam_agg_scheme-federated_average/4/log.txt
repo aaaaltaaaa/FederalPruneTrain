@@ -1,0 +1,6 @@
+2021-07-14 15:02:21	Data stat for original dataset: we have 8544 samples for train, 1101 samples for val, 2210 samples for test.
+2021-07-14 15:02:25	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-07-14 15:02:25		Data stat for train: # of samples=854 for client_id=1. # of batches=14. The batch size=64
+2021-07-14 15:02:25	Worker-4 initialized the local training data with Master.
+2021-07-14 15:02:25	Worker-4 initialized dataset/criterion.
+

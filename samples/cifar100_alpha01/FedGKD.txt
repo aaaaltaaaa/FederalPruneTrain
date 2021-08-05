@@ -1,0 +1,2320 @@
+2021-06-30 19:05:21		=> Master created model 'resnet8. Total params: 0.083892M
+2021-06-30 19:05:21	The client will use archs={'resnet8'}.
+2021-06-30 19:05:21	Master created model templates for client models.
+2021-06-30 19:05:21		=> Master created model 'resnet8. Total params: 0.083892M
+2021-06-30 19:05:21	Master initialize the clientid2arch mapping relations: {1: 'resnet8', 2: 'resnet8', 3: 'resnet8', 4: 'resnet8', 5: 'resnet8', 6: 'resnet8', 7: 'resnet8', 8: 'resnet8', 9: 'resnet8', 10: 'resnet8', 11: 'resnet8', 12: 'resnet8', 13: 'resnet8', 14: 'resnet8', 15: 'resnet8', 16: 'resnet8', 17: 'resnet8', 18: 'resnet8', 19: 'resnet8', 20: 'resnet8'}.
+2021-06-30 19:05:23	the histogram of the targets in the partitions: dict_items([(0, [(0, 458), (1, 453), (2, 452), (3, 445), (4, 454), (5, 447), (6, 456), (7, 447), (8, 465), (9, 446), (10, 441), (11, 446), (12, 449), (13, 450), (14, 460), (15, 438), (16, 455), (17, 456), (18, 461), (19, 461), (20, 446), (21, 458), (22, 460), (23, 445), (24, 449), (25, 442), (26, 451), (27, 445), (28, 439), (29, 442), (30, 462), (31, 459), (32, 463), (33, 447), (34, 457), (35, 453), (36, 455), (37, 439), (38, 454), (39, 439), (40, 461), (41, 447), (42, 452), (43, 452), (44, 446), (45, 451), (46, 441), (47, 442), (48, 447), (49, 447), (50, 456), (51, 441), (52, 444), (53, 440), (54, 459), (55, 446), (56, 448), (57, 441), (58, 452), (59, 459), (60, 453), (61, 448), (62, 462), (63, 446), (64, 449), (65, 447), (66, 455), (67, 454), (68, 454), (69, 460), (70, 459), (71, 451), (72, 461), (73, 455), (74, 439), (75, 440), (76, 450), (77, 449), (78, 456), (79, 450), (80, 451), (81, 453), (82, 453), (83, 447), (84, 447), (85, 451), (86, 433), (87, 453), (88, 441), (89, 459), (90, 453), (91, 445), (92, 456), (93, 455), (94, 429), (95, 439), (96, 436), (97, 439), (98, 449), (99, 456)]), (1, []), (2, [(0, 42), (1, 47), (2, 48), (3, 55), (4, 46), (5, 53), (6, 44), (7, 53), (8, 35), (9, 54), (10, 59), (11, 54), (12, 51), (13, 50), (14, 40), (15, 62), (16, 45), (17, 44), (18, 39), (19, 39), (20, 54), (21, 42), (22, 40), (23, 55), (24, 51), (25, 58), (26, 49), (27, 55), (28, 61), (29, 58), (30, 38), (31, 41), (32, 37), (33, 53), (34, 43), (35, 47), (36, 45), (37, 61), (38, 46), (39, 61), (40, 39), (41, 53), (42, 48), (43, 48), (44, 54), (45, 49), (46, 59), (47, 58), (48, 53), (49, 53), (50, 44), (51, 59), (52, 56), (53, 60), (54, 41), (55, 54), (56, 52), (57, 59), (58, 48), (59, 41), (60, 47), (61, 52), (62, 38), (63, 54), (64, 51), (65, 53), (66, 45), (67, 46), (68, 46), (69, 40), (70, 41), (71, 49), (72, 39), (73, 45), (74, 61), (75, 60), (76, 50), (77, 51), (78, 44), (79, 50), (80, 49), (81, 47), (82, 47), (83, 53), (84, 53), (85, 49), (86, 67), (87, 47), (88, 59), (89, 41), (90, 47), (91, 55), (92, 44), (93, 45), (94, 71), (95, 61), (96, 64), (97, 61), (98, 51), (99, 44)])])
+2021-06-30 19:05:23	Data stat for original dataset: we have 45000 samples for train, 5000 samples for val, 10000 samples for test.
+2021-06-30 19:05:25	the histogram of the targets in the partitions: dict_items([(0, [(1, 3), (3, 147), (9, 102), (11, 47), (14, 10), (17, 8), (18, 26), (19, 15), (20, 2), (22, 60), (23, 143), (24, 4), (26, 150), (29, 25), (30, 6), (31, 45), (38, 26), (41, 95), (44, 94), (46, 40), (50, 30), (52, 203), (54, 3), (58, 17), (61, 2), (64, 14), (65, 36), (66, 5), (67, 26), (68, 3), (71, 17), (74, 6), (75, 3), (76, 2), (79, 1), (81, 3), (84, 6), (85, 4), (86, 176), (89, 165), (90, 173), (91, 83), (92, 184), (93, 3), (94, 37)]), (1, [(1, 4), (5, 104), (6, 2), (8, 5), (10, 205), (11, 92), (14, 183), (15, 6), (17, 1), (19, 56), (20, 1), (21, 42), (24, 2), (25, 77), (30, 4), (31, 145), (32, 5), (33, 1), (37, 1), (38, 4), (39, 5), (40, 2), (43, 201), (44, 2), (47, 86), (48, 13), (49, 10), (50, 21), (54, 10), (55, 10), (56, 11), (58, 6), (61, 11), (65, 1), (68, 69), (69, 4), (72, 2), (74, 65), (77, 88), (78, 1), (79, 190), (81, 1), (82, 118), (84, 71), (87, 33), (88, 203), (94, 76)]), (2, [(2, 180), (5, 12), (10, 6), (11, 18), (13, 15), (14, 8), (15, 59), (18, 17), (21, 23), (22, 9), (23, 27), (24, 66), (26, 1), (29, 6), (32, 5), (33, 1), (35, 54), (37, 5), (38, 8), (40, 91), (42, 17), (43, 5), (44, 7), (45, 59), (46, 176), (48, 28), (49, 23), (53, 69), (56, 6), (57, 15), (60, 5), (61, 42), (62, 8), (63, 154), (64, 1), (68, 58), (69, 48), (70, 26), (73, 206), (74, 86), (75, 91), (76, 194), (79, 4), (80, 206), (88, 3), (90, 7), (94, 95)]), (3, [(0, 9), (1, 5), (4, 14), (6, 1), (7, 213), (10, 2), (15, 7), (17, 212), (18, 179), (19, 11), (27, 38), (29, 12), (31, 1), (38, 66), (42, 143), (44, 2), (47, 2), (52, 30), (58, 23), (60, 2), (61, 14), (64, 14), (66, 10), (67, 1), (71, 1), (72, 1), (76, 23), (77, 131), (80, 10), (81, 83), (82, 53), (83, 32), (85, 245), (86, 1), (89, 61), (91, 135), (92, 28), (94, 1), (95, 224), (96, 132), (99, 78)]), (4, [(1, 20), (3, 5), (4, 12), (9, 4), (14, 11), (15, 89), (19, 81), (20, 6), (21, 30), (22, 16), (23, 38), (24, 11), (25, 7), (26, 52), (29, 4), (31, 15), (32, 1), (35, 174), (36, 3), (37, 29), (42, 2), (47, 23), (48, 4), (49, 4), (53, 141), (55, 15), (57, 1), (58, 171), (60, 79), (61, 1), (62, 192), (63, 44), (69, 11), (70, 63), (72, 27), (73, 12), (78, 213), (81, 96), (82, 19), (84, 20), (85, 3), (86, 22), (88, 1), (90, 31), (95, 5), (96, 93), (97, 190), (99, 159)]), (5, [(4, 185), (5, 89), (8, 1), (9, 105), (12, 169), (13, 63), (19, 48), (20, 1), (22, 71), (27, 142), (30, 194), (34, 44), (36, 5), (38, 30), (40, 112), (44, 54), (45, 182), (46, 1), (47, 1), (48, 36), (49, 1), (51, 156), (54, 2), (55, 1), (56, 207), (57, 27), (61, 139), (62, 28), (63, 16), (64, 79), (65, 61)]), (6, [(0, 2), (1, 128), (2, 45), (3, 1), (4, 11), (5, 7), (8, 107), (9, 1), (14, 12), (16, 9), (23, 18), (26, 27), (27, 12), (29, 16), (30, 6), (37, 4), (38, 39), (39, 3), (41, 4), (47, 105), (49, 175), (54, 78), (59, 231), (61, 2), (63, 14), (65, 32), (66, 109), (68, 65), (69, 2), (70, 3), (71, 119), (72, 156), (74, 30), (77, 1), (78, 18), (86, 2), (87, 189), (89, 9), (91, 1), (92, 1), (93, 217), (94, 2), (95, 1), (96, 6), (98, 227), (99, 3)]), (7, [(1, 81), (3, 1), (4, 2), (5, 15), (8, 118), (9, 5), (13, 126), (15, 60), (16, 1), (19, 5), (20, 41), (24, 1), (29, 143), (30, 6), (33, 23), (36, 221), (37, 166), (38, 1), (39, 207), (40, 9), (42, 10), (44, 19), (50, 184), (51, 36), (56, 1), (57, 171), (60, 6), (62, 17), (64, 9), (65, 43), (66, 1), (69, 130), (70, 130), (71, 101), (72, 27), (75, 133)]), (8, [(0, 12), (5, 11), (6, 177), (7, 3), (11, 8), (12, 1), (21, 133), (22, 35), (25, 12), (28, 216), (33, 1), (34, 151), (38, 1), (39, 24), (40, 18), (42, 59), (43, 1), (44, 43), (45, 1), (48, 7), (51, 20), (52, 1), (53, 23), (54, 120), (55, 201), (56, 1), (57, 9), (60, 130), (61, 10), (62, 1), (63, 7), (64, 92), (65, 46), (67, 202), (71, 1), (72, 3), (73, 6), (74, 12), (75, 1), (77, 1), (78, 4), (80, 1), (81, 39), (82, 52), (83, 195), (84, 138), (85, 1), (86, 1), (87, 1), (88, 1), (89, 1), (90, 15)]), (9, [(0, 217), (1, 1), (2, 1), (3, 72), (4, 2), (5, 1), (6, 37), (7, 1), (8, 1), (9, 4), (10, 10), (11, 45), (12, 59), (13, 1), (14, 1), (15, 1), (16, 227), (17, 1), (18, 22), (19, 4), (20, 167), (21, 1), (22, 26), (23, 1), (24, 158), (25, 140), (26, 1), (27, 31), (28, 1), (29, 1), (30, 1), (31, 43), (32, 217), (33, 190), (34, 25), (35, 1), (36, 1), (37, 1), (38, 60), (39, 1), (40, 2), (41, 105), (42, 1), (43, 8), (44, 1), (46, 1), (47, 1), (48, 132), (49, 35), (50, 1), (51, 9), (52, 6), (53, 1), (54, 2), (56, 1), (57, 1), (58, 1), (59, 1), (60, 1), (61, 1), (63, 1), (64, 2), (65, 1), (66, 75), (67, 1), (68, 34), (69, 41), (70, 1), (72, 1), (76, 1), (79, 1), (86, 1), (90, 1), (96, 1), (97, 1), (98, 1)]), (10, [(0, 122), (1, 17), (3, 3), (6, 12), (7, 2), (8, 117), (9, 8), (10, 92), (11, 1), (13, 1), (14, 6), (15, 7), (16, 3), (17, 22), (18, 121), (20, 61), (23, 13), (27, 1), (28, 10), (35, 26), (37, 1), (44, 41), (45, 6), (46, 2), (47, 110), (49, 31), (53, 103), (57, 215), (58, 16), (60, 1), (65, 2), (67, 25), (76, 6), (77, 13), (86, 131), (87, 60), (90, 7), (92, 29), (93, 112), (96, 65), (97, 194), (98, 220), (99, 215)]), (11, [(0, 92), (2, 68), (3, 3), (6, 2), (7, 53), (9, 71), (11, 59), (20, 42), (21, 6), (22, 33), (28, 7), (37, 1), (40, 185), (42, 7), (44, 5), (45, 87), (47, 3), (52, 42), (55, 57), (56, 59), (59, 6), (63, 32), (64, 55), (65, 127), (67, 2), (73, 180), (75, 67), (77, 1), (78, 17), (79, 200), (82, 12), (83, 122), (84, 208), (85, 65), (86, 22), (87, 68), (88, 1), (90, 183)]), (12, [(1, 6), (2, 9), (3, 5), (4, 8), (7, 41), (8, 4), (9, 82), (10, 5), (11, 33), (12, 4), (13, 44), (14, 39), (18, 1), (19, 3), (20, 78), (21, 222), (24, 1), (25, 82), (27, 11), (29, 31), (30, 69), (31, 142), (32, 6), (33, 41), (34, 36), (35, 140), (36, 118), (37, 8), (41, 174), (43, 6), (44, 60), (45, 53), (47, 52), (50, 2), (54, 2), (56, 2), (62, 198), (63, 24), (65, 50), (66, 6), (70, 19), (71, 167), (72, 166)]), (13, [(2, 62), (3, 68), (4, 18), (5, 23), (14, 168), (19, 184), (22, 41), (23, 1), (24, 4), (26, 24), (28, 116), (29, 1), (34, 15), (36, 1), (37, 64), (39, 179), (40, 2), (42, 151), (43, 12), (46, 62), (47, 58), (48, 97), (50, 42), (51, 131), (52, 1), (53, 37), (54, 151), (55, 8), (58, 1), (59, 59), (60, 99), (64, 2), (67, 156), (68, 24), (70, 8), (72, 70), (74, 110)]), (14, [(1, 2), (4, 1), (5, 184), (6, 152), (8, 108), (9, 2), (10, 3), (11, 6), (12, 2), (13, 142), (16, 82), (17, 203), (19, 34), (20, 3), (22, 4), (30, 2), (34, 130), (38, 111), (39, 13), (41, 3), (46, 151), (48, 2), (49, 60), (55, 60), (56, 1), (59, 8), (63, 1), (64, 1), (66, 149), (68, 23), (69, 1), (75, 62), (79, 2), (80, 158), (81, 1), (83, 83), (86, 37), (87, 61), (95, 195), (97, 5), (98, 1), (99, 1)]), (15, [(0, 1), (2, 14), (3, 101), (6, 1), (7, 68), (13, 31), (14, 1), (15, 187), (16, 3), (18, 2), (20, 6), (22, 4), (25, 2), (26, 164), (30, 4), (31, 50), (33, 1), (35, 1), (36, 48), (37, 100), (41, 8), (42, 43), (43, 176), (46, 1), (50, 86), (51, 86), (53, 1), (54, 1), (55, 3), (56, 158), (59, 7), (60, 120), (61, 8), (62, 17), (63, 152), (65, 9), (67, 1), (69, 29), (70, 140), (71, 19), (74, 38), (75, 1), (76, 9), (77, 212), (78, 136)]), (16, [(1, 180), (7, 65), (8, 3), (10, 30), (15, 20), (16, 71), (22, 133), (24, 4), (25, 68), (27, 82), (29, 7), (33, 23), (35, 3), (36, 25), (38, 4), (39, 6), (41, 1), (42, 1), (43, 10), (44, 22), (45, 62), (48, 4), (49, 107), (52, 47), (54, 44), (55, 72), (61, 185), (64, 11), (65, 38), (67, 31), (69, 88), (70, 62), (74, 9), (75, 75), (77, 1), (78, 17), (80, 75), (83, 14), (86, 39), (87, 33), (90, 12), (91, 222), (94, 179), (95, 13), (96, 3), (97, 49)]), (17, [(1, 5), (2, 72), (3, 4), (4, 68), (6, 60), (9, 61), (10, 57), (11, 136), (13, 26), (14, 20), (16, 56), (17, 1), (18, 19), (19, 19), (20, 36), (23, 203), (27, 1), (28, 1), (29, 169), (30, 163), (31, 14), (32, 226), (33, 134), (34, 15), (35, 2), (37, 27), (42, 7), (43, 31), (44, 95), (46, 4), (50, 89), (51, 2), (52, 108), (54, 15), (55, 18), (59, 103), (60, 9), (64, 61), (67, 8), (69, 105)]), (18, [(0, 3), (1, 1), (2, 1), (3, 35), (4, 133), (5, 1), (6, 12), (7, 1), (8, 1), (9, 1), (10, 17), (12, 1), (15, 1), (16, 2), (18, 73), (22, 1), (24, 190), (25, 53), (26, 6), (27, 126), (28, 87), (29, 26), (32, 2), (34, 40), (36, 3), (40, 19), (41, 13), (42, 10), (43, 1), (46, 2), (48, 123), (54, 30), (57, 1), (59, 43), (61, 32), (66, 96), (68, 177), (69, 1), (71, 5), (72, 7), (74, 82), (78, 49), (79, 51), (81, 2), (82, 140), (87, 4), (88, 219), (89, 222), (91, 3), (93, 101)]), (19, [(10, 14), (11, 1), (12, 213), (13, 1), (14, 1), (15, 1), (16, 1), (17, 8), (18, 1), (19, 1), (20, 2), (21, 1), (22, 27), (23, 1), (24, 8), (25, 1), (26, 26), (27, 1), (28, 1), (29, 1), (30, 7), (31, 4), (32, 1), (33, 32), (34, 1), (35, 52), (36, 30), (37, 32), (38, 104), (39, 1), (40, 21), (41, 44), (42, 1), (43, 1), (44, 1), (45, 1), (46, 1), (47, 1), (48, 1), (49, 1), (50, 1), (51, 1), (52, 6), (53, 65), (54, 1), (55, 1), (56, 1), (57, 1), (58, 217), (59, 1), (60, 1), (61, 1), (62, 1), (63, 1), (64, 108), (65, 1), (66, 4), (67, 1), (68, 1), (70, 7), (71, 21), (72, 1), (73, 51), (74, 1), (75, 7), (76, 215), (77, 1), (78, 1), (79, 1), (80, 1), (81, 228), (82, 59), (83, 1), (84, 4), (85, 133), (86, 1), (87, 4), (88, 13), (89, 1), (90, 24), (91, 1), (92, 214), (93, 22), (94, 39), (95, 1), (96, 136)])])
+2021-06-30 19:05:25	Data partition for train (client_id=1): partitioned data and use subdata.
+2021-06-30 19:05:25		Data stat for train: # of samples=2250 for client_id=1. # of batches=36. The batch size=64
+2021-06-30 19:05:25	Master initialized the local training data with workers.
+2021-06-30 19:05:25	Data partition for validation/test.
+2021-06-30 19:05:25		Data stat for validation/test: # of samples=5000 for Master. # of batches=79. The batch size=64
+2021-06-30 19:05:25	Master initialized val data.
+2021-06-30 19:05:25	Data partition for validation/test.
+2021-06-30 19:05:25		Data stat for validation/test: # of samples=10000 for Master. # of batches=157. The batch size=64
+2021-06-30 19:05:25	Master initialized model/dataset/criterion/metrics.
+2021-06-30 19:05:25	Master initialized the aggregator/coordinator.
+
+2021-06-30 19:05:25	Master starting one round of federated learning: (comm_round=1).
+2021-06-30 19:05:25	Master selected 4 from 20 clients: [3, 9, 16, 18].
+2021-06-30 19:05:25	Master activated the selected clients.
+2021-06-30 19:05:25	Master send the models to workers.
+2021-06-30 19:05:25		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:05:25		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:05:25		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:05:25		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:05:29	Master waits to receive the local models.
+2021-06-30 19:05:51	Master received all local models.
+2021-06-30 19:05:51	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:05:51	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:05:51	No indices to be removed.
+2021-06-30 19:05:51	Master enters the validation phase.
+2021-06-30 19:05:57	The validation performance = {'loss': 4.9520685050964355, 'top1': 3.22, 'top5': 10.67, 'loss2': 0.0}.
+2021-06-30 19:05:57	Best performance of loss             (best comm_round 1.000, current comm_round 1.000): 4.9520685050964355.
+2021-06-30 19:05:57	Best performance of top1             (best comm_round 1.000, current comm_round 1.000): 3.22.
+2021-06-30 19:05:57	Best performance of top5             (best comm_round 1.000, current comm_round 1.000): 10.67.
+2021-06-30 19:05:57	Best performance of loss2             (best comm_round 1.000, current comm_round 1.000): 0.0.
+2021-06-30 19:05:57	Master finished the validation.
+2021-06-30 19:05:57	Master saved to checkpoint.
+2021-06-30 19:05:57	Master finished one round of federated learning.
+
+2021-06-30 19:05:57	Master starting one round of federated learning: (comm_round=2).
+2021-06-30 19:05:57	Master selected 4 from 20 clients: [3, 8, 12, 20].
+2021-06-30 19:05:57	Master activated the selected clients.
+2021-06-30 19:05:57	Master send the models to workers.
+2021-06-30 19:05:57		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:05:57		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:05:58		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:05:58		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:05:58	Master waits to receive the local models.
+2021-06-30 19:06:21	Master received all local models.
+2021-06-30 19:06:21	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:06:21	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:06:21	No indices to be removed.
+2021-06-30 19:06:21	Master enters the validation phase.
+2021-06-30 19:06:22	The validation performance = {'loss': 4.672208209228516, 'top1': 6.24, 'top5': 17.24, 'loss2': 0.0}.
+2021-06-30 19:06:22	Best performance of loss             (best comm_round 2.000, current comm_round 2.000): 4.672208209228516.
+2021-06-30 19:06:22	Best performance of top1             (best comm_round 2.000, current comm_round 2.000): 6.24.
+2021-06-30 19:06:22	Best performance of top5             (best comm_round 2.000, current comm_round 2.000): 17.24.
+2021-06-30 19:06:22	Best performance of loss2             (best comm_round 1.000, current comm_round 2.000): 0.0.
+2021-06-30 19:06:22	Master finished the validation.
+2021-06-30 19:06:22	Master saved to checkpoint.
+2021-06-30 19:06:22	Master finished one round of federated learning.
+
+2021-06-30 19:06:22	Master starting one round of federated learning: (comm_round=3).
+2021-06-30 19:06:22	Master selected 4 from 20 clients: [7, 11, 17, 20].
+2021-06-30 19:06:22	Master activated the selected clients.
+2021-06-30 19:06:22	Master send the models to workers.
+2021-06-30 19:06:22		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:06:22		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:06:22		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:06:22		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:06:23	Master waits to receive the local models.
+2021-06-30 19:06:45	Master received all local models.
+2021-06-30 19:06:45	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:06:45	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:06:45	No indices to be removed.
+2021-06-30 19:06:45	Master enters the validation phase.
+2021-06-30 19:06:47	The validation performance = {'loss': 4.2151923057556155, 'top1': 8.62, 'top5': 26.04, 'loss2': 0.0}.
+2021-06-30 19:06:47	Best performance of loss             (best comm_round 3.000, current comm_round 3.000): 4.2151923057556155.
+2021-06-30 19:06:47	Best performance of top1             (best comm_round 3.000, current comm_round 3.000): 8.62.
+2021-06-30 19:06:47	Best performance of top5             (best comm_round 3.000, current comm_round 3.000): 26.04.
+2021-06-30 19:06:47	Best performance of loss2             (best comm_round 1.000, current comm_round 3.000): 0.0.
+2021-06-30 19:06:47	Master finished the validation.
+2021-06-30 19:06:47	Master saved to checkpoint.
+2021-06-30 19:06:47	Master finished one round of federated learning.
+
+2021-06-30 19:06:47	Master starting one round of federated learning: (comm_round=4).
+2021-06-30 19:06:47	Master selected 4 from 20 clients: [4, 13, 14, 16].
+2021-06-30 19:06:47	Master activated the selected clients.
+2021-06-30 19:06:47	Master send the models to workers.
+2021-06-30 19:06:47		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:06:47		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:06:47		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:06:47		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:06:47	Master waits to receive the local models.
+2021-06-30 19:07:11	Master received all local models.
+2021-06-30 19:07:11	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:07:11	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:07:11	No indices to be removed.
+2021-06-30 19:07:11	Master enters the validation phase.
+2021-06-30 19:07:13	The validation performance = {'loss': 4.011571785354614, 'top1': 10.07, 'top5': 31.6, 'loss2': 0.0}.
+2021-06-30 19:07:13	Best performance of loss             (best comm_round 4.000, current comm_round 4.000): 4.011571785354614.
+2021-06-30 19:07:13	Best performance of top1             (best comm_round 4.000, current comm_round 4.000): 10.07.
+2021-06-30 19:07:13	Best performance of top5             (best comm_round 4.000, current comm_round 4.000): 31.6.
+2021-06-30 19:07:13	Best performance of loss2             (best comm_round 1.000, current comm_round 4.000): 0.0.
+2021-06-30 19:07:13	Master finished the validation.
+2021-06-30 19:07:13	Master saved to checkpoint.
+2021-06-30 19:07:13	Master finished one round of federated learning.
+
+2021-06-30 19:07:13	Master starting one round of federated learning: (comm_round=5).
+2021-06-30 19:07:13	Master selected 4 from 20 clients: [2, 3, 10, 18].
+2021-06-30 19:07:13	Master activated the selected clients.
+2021-06-30 19:07:13	Master send the models to workers.
+2021-06-30 19:07:13		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:07:13		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:07:13		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:07:13		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:07:13	Master waits to receive the local models.
+2021-06-30 19:07:37	Master received all local models.
+2021-06-30 19:07:37	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:07:37	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:07:37	No indices to be removed.
+2021-06-30 19:07:37	Master enters the validation phase.
+2021-06-30 19:07:38	The validation performance = {'loss': 3.918745373535156, 'top1': 13.65, 'top5': 35.75, 'loss2': 0.0}.
+2021-06-30 19:07:38	Best performance of loss             (best comm_round 5.000, current comm_round 5.000): 3.918745373535156.
+2021-06-30 19:07:38	Best performance of top1             (best comm_round 5.000, current comm_round 5.000): 13.65.
+2021-06-30 19:07:38	Best performance of top5             (best comm_round 5.000, current comm_round 5.000): 35.75.
+2021-06-30 19:07:38	Best performance of loss2             (best comm_round 1.000, current comm_round 5.000): 0.0.
+2021-06-30 19:07:38	Master finished the validation.
+2021-06-30 19:07:38	Master saved to checkpoint.
+2021-06-30 19:07:38	Master finished one round of federated learning.
+
+2021-06-30 19:07:38	Master starting one round of federated learning: (comm_round=6).
+2021-06-30 19:07:38	Master selected 4 from 20 clients: [2, 7, 8, 12].
+2021-06-30 19:07:38	Master activated the selected clients.
+2021-06-30 19:07:38	Master send the models to workers.
+2021-06-30 19:07:38		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:07:38		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:07:38		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:07:38		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:07:39	Master waits to receive the local models.
+2021-06-30 19:08:02	Master received all local models.
+2021-06-30 19:08:02	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:08:02	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:08:02	No indices to be removed.
+2021-06-30 19:08:03	Master enters the validation phase.
+2021-06-30 19:08:04	The validation performance = {'loss': 3.882780652618408, 'top1': 13.97, 'top5': 38.98, 'loss2': 0.0}.
+2021-06-30 19:08:04	Best performance of loss             (best comm_round 6.000, current comm_round 6.000): 3.882780652618408.
+2021-06-30 19:08:04	Best performance of top1             (best comm_round 6.000, current comm_round 6.000): 13.97.
+2021-06-30 19:08:04	Best performance of top5             (best comm_round 6.000, current comm_round 6.000): 38.98.
+2021-06-30 19:08:04	Best performance of loss2             (best comm_round 1.000, current comm_round 6.000): 0.0.
+2021-06-30 19:08:04	Master finished the validation.
+2021-06-30 19:08:04	Master saved to checkpoint.
+2021-06-30 19:08:04	Master finished one round of federated learning.
+
+2021-06-30 19:08:04	Master starting one round of federated learning: (comm_round=7).
+2021-06-30 19:08:04	Master selected 4 from 20 clients: [6, 8, 11, 13].
+2021-06-30 19:08:04	Master activated the selected clients.
+2021-06-30 19:08:04	Master send the models to workers.
+2021-06-30 19:08:04		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:08:04		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:08:04		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:08:04		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:08:05	Master waits to receive the local models.
+2021-06-30 19:08:27	Master received all local models.
+2021-06-30 19:08:27	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:08:27	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:08:27	No indices to be removed.
+2021-06-30 19:08:27	Master enters the validation phase.
+2021-06-30 19:08:29	The validation performance = {'loss': 4.01329167137146, 'top1': 14.66, 'top5': 39.26, 'loss2': 0.0}.
+2021-06-30 19:08:29	Best performance of loss             (best comm_round 6.000, current comm_round 7.000): 3.882780652618408.
+2021-06-30 19:08:29	Best performance of top1             (best comm_round 7.000, current comm_round 7.000): 14.66.
+2021-06-30 19:08:29	Best performance of top5             (best comm_round 7.000, current comm_round 7.000): 39.26.
+2021-06-30 19:08:29	Best performance of loss2             (best comm_round 1.000, current comm_round 7.000): 0.0.
+2021-06-30 19:08:29	Master finished the validation.
+2021-06-30 19:08:29	Master saved to checkpoint.
+2021-06-30 19:08:29	Master finished one round of federated learning.
+
+2021-06-30 19:08:29	Master starting one round of federated learning: (comm_round=8).
+2021-06-30 19:08:29	Master selected 4 from 20 clients: [5, 14, 15, 19].
+2021-06-30 19:08:29	Master activated the selected clients.
+2021-06-30 19:08:29	Master send the models to workers.
+2021-06-30 19:08:29		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:08:29		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:08:29		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:08:29		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:08:29	Master waits to receive the local models.
+2021-06-30 19:08:52	Master received all local models.
+2021-06-30 19:08:52	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:08:52	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:08:52	No indices to be removed.
+2021-06-30 19:08:52	Master enters the validation phase.
+2021-06-30 19:08:54	The validation performance = {'loss': 3.683419158554077, 'top1': 17.04, 'top5': 44.42, 'loss2': 0.0}.
+2021-06-30 19:08:54	Best performance of loss             (best comm_round 8.000, current comm_round 8.000): 3.683419158554077.
+2021-06-30 19:08:54	Best performance of top1             (best comm_round 8.000, current comm_round 8.000): 17.04.
+2021-06-30 19:08:54	Best performance of top5             (best comm_round 8.000, current comm_round 8.000): 44.42.
+2021-06-30 19:08:54	Best performance of loss2             (best comm_round 1.000, current comm_round 8.000): 0.0.
+2021-06-30 19:08:54	Master finished the validation.
+2021-06-30 19:08:54	Master saved to checkpoint.
+2021-06-30 19:08:54	Master finished one round of federated learning.
+
+2021-06-30 19:08:54	Master starting one round of federated learning: (comm_round=9).
+2021-06-30 19:08:54	Master selected 4 from 20 clients: [4, 5, 13, 19].
+2021-06-30 19:08:54	Master activated the selected clients.
+2021-06-30 19:08:54	Master send the models to workers.
+2021-06-30 19:08:54		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:08:54		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:08:54		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:08:54		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:08:54	Master waits to receive the local models.
+2021-06-30 19:09:17	Master received all local models.
+2021-06-30 19:09:17	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:09:17	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:09:17	No indices to be removed.
+2021-06-30 19:09:17	Master enters the validation phase.
+2021-06-30 19:09:19	The validation performance = {'loss': 3.587961251449585, 'top1': 18.09, 'top5': 47.98, 'loss2': 0.0}.
+2021-06-30 19:09:19	Best performance of loss             (best comm_round 9.000, current comm_round 9.000): 3.587961251449585.
+2021-06-30 19:09:19	Best performance of top1             (best comm_round 9.000, current comm_round 9.000): 18.09.
+2021-06-30 19:09:19	Best performance of top5             (best comm_round 9.000, current comm_round 9.000): 47.98.
+2021-06-30 19:09:19	Best performance of loss2             (best comm_round 1.000, current comm_round 9.000): 0.0.
+2021-06-30 19:09:19	Master finished the validation.
+2021-06-30 19:09:19	Master saved to checkpoint.
+2021-06-30 19:09:19	Master finished one round of federated learning.
+
+2021-06-30 19:09:19	Master starting one round of federated learning: (comm_round=10).
+2021-06-30 19:09:19	Master selected 4 from 20 clients: [2, 3, 5, 11].
+2021-06-30 19:09:19	Master activated the selected clients.
+2021-06-30 19:09:19	Master send the models to workers.
+2021-06-30 19:09:19		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:09:19		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:09:19		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:09:19		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:09:19	Master waits to receive the local models.
+2021-06-30 19:09:43	Master received all local models.
+2021-06-30 19:09:43	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:09:43	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:09:43	No indices to be removed.
+2021-06-30 19:09:43	Master enters the validation phase.
+2021-06-30 19:09:44	The validation performance = {'loss': 3.5378582641601564, 'top1': 19.22, 'top5': 49.53, 'loss2': 0.0}.
+2021-06-30 19:09:44	Best performance of loss             (best comm_round 10.000, current comm_round 10.000): 3.5378582641601564.
+2021-06-30 19:09:44	Best performance of top1             (best comm_round 10.000, current comm_round 10.000): 19.22.
+2021-06-30 19:09:44	Best performance of top5             (best comm_round 10.000, current comm_round 10.000): 49.53.
+2021-06-30 19:09:44	Best performance of loss2             (best comm_round 1.000, current comm_round 10.000): 0.0.
+2021-06-30 19:09:44	Master finished the validation.
+2021-06-30 19:09:44	Master saved to checkpoint.
+2021-06-30 19:09:44	Master finished one round of federated learning.
+
+2021-06-30 19:09:44	Master starting one round of federated learning: (comm_round=11).
+2021-06-30 19:09:44	Master selected 4 from 20 clients: [2, 6, 13, 20].
+2021-06-30 19:09:44	Master activated the selected clients.
+2021-06-30 19:09:44	Master send the models to workers.
+2021-06-30 19:09:44		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:09:44		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:09:45		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:09:45		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:09:45	Master waits to receive the local models.
+2021-06-30 19:10:08	Master received all local models.
+2021-06-30 19:10:08	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:10:08	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:10:08	No indices to be removed.
+2021-06-30 19:10:08	Master enters the validation phase.
+2021-06-30 19:10:10	The validation performance = {'loss': 3.5217175357818604, 'top1': 21.07, 'top5': 51.14, 'loss2': 0.0}.
+2021-06-30 19:10:10	Best performance of loss             (best comm_round 11.000, current comm_round 11.000): 3.5217175357818604.
+2021-06-30 19:10:10	Best performance of top1             (best comm_round 11.000, current comm_round 11.000): 21.07.
+2021-06-30 19:10:10	Best performance of top5             (best comm_round 11.000, current comm_round 11.000): 51.14.
+2021-06-30 19:10:10	Best performance of loss2             (best comm_round 1.000, current comm_round 11.000): 0.0.
+2021-06-30 19:10:10	Master finished the validation.
+2021-06-30 19:10:10	Master saved to checkpoint.
+2021-06-30 19:10:10	Master finished one round of federated learning.
+
+2021-06-30 19:10:10	Master starting one round of federated learning: (comm_round=12).
+2021-06-30 19:10:10	Master selected 4 from 20 clients: [1, 5, 8, 18].
+2021-06-30 19:10:10	Master activated the selected clients.
+2021-06-30 19:10:10	Master send the models to workers.
+2021-06-30 19:10:10		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:10:10		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:10:10		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:10:10		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:10:10	Master waits to receive the local models.
+2021-06-30 19:10:34	Master received all local models.
+2021-06-30 19:10:34	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:10:34	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:10:34	No indices to be removed.
+2021-06-30 19:10:34	Master enters the validation phase.
+2021-06-30 19:10:35	The validation performance = {'loss': 3.443346496963501, 'top1': 21.39, 'top5': 52.49, 'loss2': 0.0}.
+2021-06-30 19:10:35	Best performance of loss             (best comm_round 12.000, current comm_round 12.000): 3.443346496963501.
+2021-06-30 19:10:35	Best performance of top1             (best comm_round 12.000, current comm_round 12.000): 21.39.
+2021-06-30 19:10:35	Best performance of top5             (best comm_round 12.000, current comm_round 12.000): 52.49.
+2021-06-30 19:10:35	Best performance of loss2             (best comm_round 1.000, current comm_round 12.000): 0.0.
+2021-06-30 19:10:35	Master finished the validation.
+2021-06-30 19:10:35	Master saved to checkpoint.
+2021-06-30 19:10:35	Master finished one round of federated learning.
+
+2021-06-30 19:10:35	Master starting one round of federated learning: (comm_round=13).
+2021-06-30 19:10:35	Master selected 4 from 20 clients: [3, 6, 10, 20].
+2021-06-30 19:10:35	Master activated the selected clients.
+2021-06-30 19:10:35	Master send the models to workers.
+2021-06-30 19:10:35		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:10:35		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:10:35		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:10:35		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:10:36	Master waits to receive the local models.
+2021-06-30 19:10:58	Master received all local models.
+2021-06-30 19:10:58	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:10:58	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:10:58	No indices to be removed.
+2021-06-30 19:10:58	Master enters the validation phase.
+2021-06-30 19:11:00	The validation performance = {'loss': 3.428955263519287, 'top1': 22.8, 'top5': 52.84, 'loss2': 0.0}.
+2021-06-30 19:11:00	Best performance of loss             (best comm_round 13.000, current comm_round 13.000): 3.428955263519287.
+2021-06-30 19:11:00	Best performance of top1             (best comm_round 13.000, current comm_round 13.000): 22.8.
+2021-06-30 19:11:00	Best performance of top5             (best comm_round 13.000, current comm_round 13.000): 52.84.
+2021-06-30 19:11:00	Best performance of loss2             (best comm_round 1.000, current comm_round 13.000): 0.0.
+2021-06-30 19:11:00	Master finished the validation.
+2021-06-30 19:11:00	Master saved to checkpoint.
+2021-06-30 19:11:00	Master finished one round of federated learning.
+
+2021-06-30 19:11:00	Master starting one round of federated learning: (comm_round=14).
+2021-06-30 19:11:00	Master selected 4 from 20 clients: [7, 10, 13, 18].
+2021-06-30 19:11:00	Master activated the selected clients.
+2021-06-30 19:11:00	Master send the models to workers.
+2021-06-30 19:11:00		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:11:00		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:11:00		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:11:00		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:11:01	Master waits to receive the local models.
+2021-06-30 19:11:24	Master received all local models.
+2021-06-30 19:11:24	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:11:24	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:11:24	No indices to be removed.
+2021-06-30 19:11:24	Master enters the validation phase.
+2021-06-30 19:11:25	The validation performance = {'loss': 3.5403777416229247, 'top1': 23.0, 'top5': 52.44, 'loss2': 0.0}.
+2021-06-30 19:11:25	Best performance of loss             (best comm_round 13.000, current comm_round 14.000): 3.428955263519287.
+2021-06-30 19:11:25	Best performance of top1             (best comm_round 14.000, current comm_round 14.000): 23.0.
+2021-06-30 19:11:25	Best performance of top5             (best comm_round 13.000, current comm_round 14.000): 52.84.
+2021-06-30 19:11:25	Best performance of loss2             (best comm_round 1.000, current comm_round 14.000): 0.0.
+2021-06-30 19:11:25	Master finished the validation.
+2021-06-30 19:11:25	Master saved to checkpoint.
+2021-06-30 19:11:25	Master finished one round of federated learning.
+
+2021-06-30 19:11:25	Master starting one round of federated learning: (comm_round=15).
+2021-06-30 19:11:25	Master selected 4 from 20 clients: [5, 8, 13, 14].
+2021-06-30 19:11:25	Master activated the selected clients.
+2021-06-30 19:11:25	Master send the models to workers.
+2021-06-30 19:11:25		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:11:25		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:11:25		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:11:25		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:11:26	Master waits to receive the local models.
+2021-06-30 19:11:50	Master received all local models.
+2021-06-30 19:11:50	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:11:50	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:11:50	No indices to be removed.
+2021-06-30 19:11:50	Master enters the validation phase.
+2021-06-30 19:11:51	The validation performance = {'loss': 3.735502200317383, 'top1': 20.94, 'top5': 52.43, 'loss2': 0.0}.
+2021-06-30 19:11:51	Best performance of loss             (best comm_round 13.000, current comm_round 15.000): 3.428955263519287.
+2021-06-30 19:11:51	Best performance of top1             (best comm_round 14.000, current comm_round 15.000): 23.0.
+2021-06-30 19:11:51	Best performance of top5             (best comm_round 13.000, current comm_round 15.000): 52.84.
+2021-06-30 19:11:51	Best performance of loss2             (best comm_round 1.000, current comm_round 15.000): 0.0.
+2021-06-30 19:11:51	Master finished the validation.
+2021-06-30 19:11:51	Master saved to checkpoint.
+2021-06-30 19:11:51	Master finished one round of federated learning.
+
+2021-06-30 19:11:51	Master starting one round of federated learning: (comm_round=16).
+2021-06-30 19:11:51	Master selected 4 from 20 clients: [9, 12, 18, 20].
+2021-06-30 19:11:51	Master activated the selected clients.
+2021-06-30 19:11:51	Master send the models to workers.
+2021-06-30 19:11:51		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:11:51		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:11:51		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:11:51		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:11:52	Master waits to receive the local models.
+2021-06-30 19:12:15	Master received all local models.
+2021-06-30 19:12:15	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:12:15	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:12:15	No indices to be removed.
+2021-06-30 19:12:15	Master enters the validation phase.
+2021-06-30 19:12:16	The validation performance = {'loss': 3.346385836029053, 'top1': 24.55, 'top5': 55.77, 'loss2': 0.0}.
+2021-06-30 19:12:16	Best performance of loss             (best comm_round 16.000, current comm_round 16.000): 3.346385836029053.
+2021-06-30 19:12:16	Best performance of top1             (best comm_round 16.000, current comm_round 16.000): 24.55.
+2021-06-30 19:12:16	Best performance of top5             (best comm_round 16.000, current comm_round 16.000): 55.77.
+2021-06-30 19:12:16	Best performance of loss2             (best comm_round 1.000, current comm_round 16.000): 0.0.
+2021-06-30 19:12:16	Master finished the validation.
+2021-06-30 19:12:16	Master saved to checkpoint.
+2021-06-30 19:12:16	Master finished one round of federated learning.
+
+2021-06-30 19:12:16	Master starting one round of federated learning: (comm_round=17).
+2021-06-30 19:12:16	Master selected 4 from 20 clients: [1, 6, 11, 13].
+2021-06-30 19:12:16	Master activated the selected clients.
+2021-06-30 19:12:16	Master send the models to workers.
+2021-06-30 19:12:16		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:12:16		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:12:16		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:12:17		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:12:17	Master waits to receive the local models.
+2021-06-30 19:12:40	Master received all local models.
+2021-06-30 19:12:40	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:12:40	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:12:40	No indices to be removed.
+2021-06-30 19:12:40	Master enters the validation phase.
+2021-06-30 19:12:41	The validation performance = {'loss': 3.375035902404785, 'top1': 23.42, 'top5': 56.42, 'loss2': 0.0}.
+2021-06-30 19:12:41	Best performance of loss             (best comm_round 16.000, current comm_round 17.000): 3.346385836029053.
+2021-06-30 19:12:41	Best performance of top1             (best comm_round 16.000, current comm_round 17.000): 24.55.
+2021-06-30 19:12:41	Best performance of top5             (best comm_round 17.000, current comm_round 17.000): 56.42.
+2021-06-30 19:12:41	Best performance of loss2             (best comm_round 1.000, current comm_round 17.000): 0.0.
+2021-06-30 19:12:41	Master finished the validation.
+2021-06-30 19:12:41	Master saved to checkpoint.
+2021-06-30 19:12:41	Master finished one round of federated learning.
+
+2021-06-30 19:12:41	Master starting one round of federated learning: (comm_round=18).
+2021-06-30 19:12:41	Master selected 4 from 20 clients: [9, 12, 18, 19].
+2021-06-30 19:12:41	Master activated the selected clients.
+2021-06-30 19:12:41	Master send the models to workers.
+2021-06-30 19:12:41		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:12:41		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:12:41		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:12:41		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:12:42	Master waits to receive the local models.
+2021-06-30 19:13:05	Master received all local models.
+2021-06-30 19:13:05	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:13:05	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:13:05	No indices to be removed.
+2021-06-30 19:13:05	Master enters the validation phase.
+2021-06-30 19:13:06	The validation performance = {'loss': 3.40013879737854, 'top1': 24.26, 'top5': 55.82, 'loss2': 0.0}.
+2021-06-30 19:13:06	Best performance of loss             (best comm_round 16.000, current comm_round 18.000): 3.346385836029053.
+2021-06-30 19:13:06	Best performance of top1             (best comm_round 16.000, current comm_round 18.000): 24.55.
+2021-06-30 19:13:06	Best performance of top5             (best comm_round 17.000, current comm_round 18.000): 56.42.
+2021-06-30 19:13:06	Best performance of loss2             (best comm_round 1.000, current comm_round 18.000): 0.0.
+2021-06-30 19:13:06	Master finished the validation.
+2021-06-30 19:13:06	Master saved to checkpoint.
+2021-06-30 19:13:06	Master finished one round of federated learning.
+
+2021-06-30 19:13:06	Master starting one round of federated learning: (comm_round=19).
+2021-06-30 19:13:06	Master selected 4 from 20 clients: [1, 3, 10, 19].
+2021-06-30 19:13:06	Master activated the selected clients.
+2021-06-30 19:13:07	Master send the models to workers.
+2021-06-30 19:13:07		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:13:07		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:13:07		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:13:07		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:13:07	Master waits to receive the local models.
+2021-06-30 19:13:30	Master received all local models.
+2021-06-30 19:13:30	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:13:30	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:13:30	No indices to be removed.
+2021-06-30 19:13:30	Master enters the validation phase.
+2021-06-30 19:13:31	The validation performance = {'loss': 3.3232027572631835, 'top1': 26.2, 'top5': 57.63, 'loss2': 0.0}.
+2021-06-30 19:13:31	Best performance of loss             (best comm_round 19.000, current comm_round 19.000): 3.3232027572631835.
+2021-06-30 19:13:31	Best performance of top1             (best comm_round 19.000, current comm_round 19.000): 26.2.
+2021-06-30 19:13:31	Best performance of top5             (best comm_round 19.000, current comm_round 19.000): 57.63.
+2021-06-30 19:13:31	Best performance of loss2             (best comm_round 1.000, current comm_round 19.000): 0.0.
+2021-06-30 19:13:31	Master finished the validation.
+2021-06-30 19:13:31	Master saved to checkpoint.
+2021-06-30 19:13:31	Master finished one round of federated learning.
+
+2021-06-30 19:13:31	Master starting one round of federated learning: (comm_round=20).
+2021-06-30 19:13:31	Master selected 4 from 20 clients: [2, 5, 19, 20].
+2021-06-30 19:13:31	Master activated the selected clients.
+2021-06-30 19:13:31	Master send the models to workers.
+2021-06-30 19:13:31		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:13:32		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:13:32		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:13:32		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:13:32	Master waits to receive the local models.
+2021-06-30 19:13:55	Master received all local models.
+2021-06-30 19:13:55	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:13:55	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:13:55	No indices to be removed.
+2021-06-30 19:13:55	Master enters the validation phase.
+2021-06-30 19:13:57	The validation performance = {'loss': 3.121422392654419, 'top1': 28.88, 'top5': 59.83, 'loss2': 0.0}.
+2021-06-30 19:13:57	Best performance of loss             (best comm_round 20.000, current comm_round 20.000): 3.121422392654419.
+2021-06-30 19:13:57	Best performance of top1             (best comm_round 20.000, current comm_round 20.000): 28.88.
+2021-06-30 19:13:57	Best performance of top5             (best comm_round 20.000, current comm_round 20.000): 59.83.
+2021-06-30 19:13:57	Best performance of loss2             (best comm_round 1.000, current comm_round 20.000): 0.0.
+2021-06-30 19:13:57	Master finished the validation.
+2021-06-30 19:13:57	Master saved to checkpoint.
+2021-06-30 19:13:57	Master finished one round of federated learning.
+
+2021-06-30 19:13:57	Master starting one round of federated learning: (comm_round=21).
+2021-06-30 19:13:57	Master selected 4 from 20 clients: [2, 12, 15, 20].
+2021-06-30 19:13:57	Master activated the selected clients.
+2021-06-30 19:13:57	Master send the models to workers.
+2021-06-30 19:13:57		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:13:57		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:13:57		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:13:57		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:13:57	Master waits to receive the local models.
+2021-06-30 19:14:20	Master received all local models.
+2021-06-30 19:14:20	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:14:20	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:14:20	No indices to be removed.
+2021-06-30 19:14:20	Master enters the validation phase.
+2021-06-30 19:14:22	The validation performance = {'loss': 3.0811533920288086, 'top1': 28.9, 'top5': 60.85, 'loss2': 0.0}.
+2021-06-30 19:14:22	Best performance of loss             (best comm_round 21.000, current comm_round 21.000): 3.0811533920288086.
+2021-06-30 19:14:22	Best performance of top1             (best comm_round 21.000, current comm_round 21.000): 28.9.
+2021-06-30 19:14:22	Best performance of top5             (best comm_round 21.000, current comm_round 21.000): 60.85.
+2021-06-30 19:14:22	Best performance of loss2             (best comm_round 1.000, current comm_round 21.000): 0.0.
+2021-06-30 19:14:22	Master finished the validation.
+2021-06-30 19:14:22	Master saved to checkpoint.
+2021-06-30 19:14:22	Master finished one round of federated learning.
+
+2021-06-30 19:14:22	Master starting one round of federated learning: (comm_round=22).
+2021-06-30 19:14:22	Master selected 4 from 20 clients: [6, 8, 12, 18].
+2021-06-30 19:14:22	Master activated the selected clients.
+2021-06-30 19:14:22	Master send the models to workers.
+2021-06-30 19:14:22		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:14:22		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:14:22		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:14:22		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:14:22	Master waits to receive the local models.
+2021-06-30 19:14:45	Master received all local models.
+2021-06-30 19:14:45	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:14:45	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:14:45	No indices to be removed.
+2021-06-30 19:14:45	Master enters the validation phase.
+2021-06-30 19:14:47	The validation performance = {'loss': 3.164103213119507, 'top1': 27.79, 'top5': 60.77, 'loss2': 0.0}.
+2021-06-30 19:14:47	Best performance of loss             (best comm_round 21.000, current comm_round 22.000): 3.0811533920288086.
+2021-06-30 19:14:47	Best performance of top1             (best comm_round 21.000, current comm_round 22.000): 28.9.
+2021-06-30 19:14:47	Best performance of top5             (best comm_round 21.000, current comm_round 22.000): 60.85.
+2021-06-30 19:14:47	Best performance of loss2             (best comm_round 1.000, current comm_round 22.000): 0.0.
+2021-06-30 19:14:47	Master finished the validation.
+2021-06-30 19:14:47	Master saved to checkpoint.
+2021-06-30 19:14:47	Master finished one round of federated learning.
+
+2021-06-30 19:14:47	Master starting one round of federated learning: (comm_round=23).
+2021-06-30 19:14:47	Master selected 4 from 20 clients: [2, 3, 7, 18].
+2021-06-30 19:14:47	Master activated the selected clients.
+2021-06-30 19:14:47	Master send the models to workers.
+2021-06-30 19:14:47		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:14:47		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:14:47		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:14:47		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:14:47	Master waits to receive the local models.
+2021-06-30 19:15:10	Master received all local models.
+2021-06-30 19:15:10	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:15:10	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:15:10	No indices to be removed.
+2021-06-30 19:15:10	Master enters the validation phase.
+2021-06-30 19:15:11	The validation performance = {'loss': 3.1093093101501466, 'top1': 28.83, 'top5': 60.68, 'loss2': 0.0}.
+2021-06-30 19:15:11	Best performance of loss             (best comm_round 21.000, current comm_round 23.000): 3.0811533920288086.
+2021-06-30 19:15:11	Best performance of top1             (best comm_round 21.000, current comm_round 23.000): 28.9.
+2021-06-30 19:15:11	Best performance of top5             (best comm_round 21.000, current comm_round 23.000): 60.85.
+2021-06-30 19:15:11	Best performance of loss2             (best comm_round 1.000, current comm_round 23.000): 0.0.
+2021-06-30 19:15:11	Master finished the validation.
+2021-06-30 19:15:11	Master saved to checkpoint.
+2021-06-30 19:15:11	Master finished one round of federated learning.
+
+2021-06-30 19:15:11	Master starting one round of federated learning: (comm_round=24).
+2021-06-30 19:15:11	Master selected 4 from 20 clients: [2, 3, 7, 19].
+2021-06-30 19:15:11	Master activated the selected clients.
+2021-06-30 19:15:12	Master send the models to workers.
+2021-06-30 19:15:12		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:15:12		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:15:12		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:15:12		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:15:12	Master waits to receive the local models.
+2021-06-30 19:15:35	Master received all local models.
+2021-06-30 19:15:35	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:15:35	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:15:35	No indices to be removed.
+2021-06-30 19:15:35	Master enters the validation phase.
+2021-06-30 19:15:36	The validation performance = {'loss': 3.273075722122192, 'top1': 27.4, 'top5': 59.43, 'loss2': 0.0}.
+2021-06-30 19:15:36	Best performance of loss             (best comm_round 21.000, current comm_round 24.000): 3.0811533920288086.
+2021-06-30 19:15:36	Best performance of top1             (best comm_round 21.000, current comm_round 24.000): 28.9.
+2021-06-30 19:15:36	Best performance of top5             (best comm_round 21.000, current comm_round 24.000): 60.85.
+2021-06-30 19:15:36	Best performance of loss2             (best comm_round 1.000, current comm_round 24.000): 0.0.
+2021-06-30 19:15:36	Master finished the validation.
+2021-06-30 19:15:36	Master saved to checkpoint.
+2021-06-30 19:15:36	Master finished one round of federated learning.
+
+2021-06-30 19:15:36	Master starting one round of federated learning: (comm_round=25).
+2021-06-30 19:15:36	Master selected 4 from 20 clients: [7, 8, 10, 11].
+2021-06-30 19:15:36	Master activated the selected clients.
+2021-06-30 19:15:36	Master send the models to workers.
+2021-06-30 19:15:36		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:15:36		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:15:36		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:15:36		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:15:37	Master waits to receive the local models.
+2021-06-30 19:16:00	Master received all local models.
+2021-06-30 19:16:00	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:16:00	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:16:00	No indices to be removed.
+2021-06-30 19:16:00	Master enters the validation phase.
+2021-06-30 19:16:02	The validation performance = {'loss': 3.11673844871521, 'top1': 28.73, 'top5': 61.0, 'loss2': 0.0}.
+2021-06-30 19:16:02	Best performance of loss             (best comm_round 21.000, current comm_round 25.000): 3.0811533920288086.
+2021-06-30 19:16:02	Best performance of top1             (best comm_round 21.000, current comm_round 25.000): 28.9.
+2021-06-30 19:16:02	Best performance of top5             (best comm_round 25.000, current comm_round 25.000): 61.0.
+2021-06-30 19:16:02	Best performance of loss2             (best comm_round 1.000, current comm_round 25.000): 0.0.
+2021-06-30 19:16:02	Master finished the validation.
+2021-06-30 19:16:02	Master saved to checkpoint.
+2021-06-30 19:16:02	Master finished one round of federated learning.
+
+2021-06-30 19:16:02	Master starting one round of federated learning: (comm_round=26).
+2021-06-30 19:16:02	Master selected 4 from 20 clients: [1, 9, 15, 20].
+2021-06-30 19:16:02	Master activated the selected clients.
+2021-06-30 19:16:02	Master send the models to workers.
+2021-06-30 19:16:02		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:16:02		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:16:02		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:16:02		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:16:02	Master waits to receive the local models.
+2021-06-30 19:16:25	Master received all local models.
+2021-06-30 19:16:25	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:16:25	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:16:25	No indices to be removed.
+2021-06-30 19:16:25	Master enters the validation phase.
+2021-06-30 19:16:26	The validation performance = {'loss': 2.8780834972381593, 'top1': 31.36, 'top5': 64.03, 'loss2': 0.0}.
+2021-06-30 19:16:26	Best performance of loss             (best comm_round 26.000, current comm_round 26.000): 2.8780834972381593.
+2021-06-30 19:16:26	Best performance of top1             (best comm_round 26.000, current comm_round 26.000): 31.36.
+2021-06-30 19:16:26	Best performance of top5             (best comm_round 26.000, current comm_round 26.000): 64.03.
+2021-06-30 19:16:26	Best performance of loss2             (best comm_round 1.000, current comm_round 26.000): 0.0.
+2021-06-30 19:16:26	Master finished the validation.
+2021-06-30 19:16:26	Master saved to checkpoint.
+2021-06-30 19:16:26	Master finished one round of federated learning.
+
+2021-06-30 19:16:26	Master starting one round of federated learning: (comm_round=27).
+2021-06-30 19:16:26	Master selected 4 from 20 clients: [5, 10, 12, 19].
+2021-06-30 19:16:26	Master activated the selected clients.
+2021-06-30 19:16:27	Master send the models to workers.
+2021-06-30 19:16:27		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:16:27		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:16:27		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:16:27		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:16:27	Master waits to receive the local models.
+2021-06-30 19:16:50	Master received all local models.
+2021-06-30 19:16:50	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:16:50	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:16:50	No indices to be removed.
+2021-06-30 19:16:50	Master enters the validation phase.
+2021-06-30 19:16:52	The validation performance = {'loss': 2.876934739494324, 'top1': 31.85, 'top5': 64.8, 'loss2': 0.0}.
+2021-06-30 19:16:52	Best performance of loss             (best comm_round 27.000, current comm_round 27.000): 2.876934739494324.
+2021-06-30 19:16:52	Best performance of top1             (best comm_round 27.000, current comm_round 27.000): 31.85.
+2021-06-30 19:16:52	Best performance of top5             (best comm_round 27.000, current comm_round 27.000): 64.8.
+2021-06-30 19:16:52	Best performance of loss2             (best comm_round 1.000, current comm_round 27.000): 0.0.
+2021-06-30 19:16:52	Master finished the validation.
+2021-06-30 19:16:52	Master saved to checkpoint.
+2021-06-30 19:16:52	Master finished one round of federated learning.
+
+2021-06-30 19:16:52	Master starting one round of federated learning: (comm_round=28).
+2021-06-30 19:16:52	Master selected 4 from 20 clients: [1, 8, 10, 12].
+2021-06-30 19:16:52	Master activated the selected clients.
+2021-06-30 19:16:52	Master send the models to workers.
+2021-06-30 19:16:52		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:16:52		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:16:52		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:16:52		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:16:52	Master waits to receive the local models.
+2021-06-30 19:17:16	Master received all local models.
+2021-06-30 19:17:16	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:17:16	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:17:16	No indices to be removed.
+2021-06-30 19:17:16	Master enters the validation phase.
+2021-06-30 19:17:17	The validation performance = {'loss': 3.0587864574432375, 'top1': 29.83, 'top5': 63.47, 'loss2': 0.0}.
+2021-06-30 19:17:17	Best performance of loss             (best comm_round 27.000, current comm_round 28.000): 2.876934739494324.
+2021-06-30 19:17:17	Best performance of top1             (best comm_round 27.000, current comm_round 28.000): 31.85.
+2021-06-30 19:17:17	Best performance of top5             (best comm_round 27.000, current comm_round 28.000): 64.8.
+2021-06-30 19:17:17	Best performance of loss2             (best comm_round 1.000, current comm_round 28.000): 0.0.
+2021-06-30 19:17:17	Master finished the validation.
+2021-06-30 19:17:17	Master saved to checkpoint.
+2021-06-30 19:17:17	Master finished one round of federated learning.
+
+2021-06-30 19:17:17	Master starting one round of federated learning: (comm_round=29).
+2021-06-30 19:17:17	Master selected 4 from 20 clients: [3, 6, 9, 10].
+2021-06-30 19:17:17	Master activated the selected clients.
+2021-06-30 19:17:17	Master send the models to workers.
+2021-06-30 19:17:17		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:17:17		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:17:17		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:17:17		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:17:18	Master waits to receive the local models.
+2021-06-30 19:17:41	Master received all local models.
+2021-06-30 19:17:41	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:17:41	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:17:41	No indices to be removed.
+2021-06-30 19:17:41	Master enters the validation phase.
+2021-06-30 19:17:42	The validation performance = {'loss': 3.130244018173218, 'top1': 29.31, 'top5': 62.18, 'loss2': 0.0}.
+2021-06-30 19:17:42	Best performance of loss             (best comm_round 27.000, current comm_round 29.000): 2.876934739494324.
+2021-06-30 19:17:42	Best performance of top1             (best comm_round 27.000, current comm_round 29.000): 31.85.
+2021-06-30 19:17:42	Best performance of top5             (best comm_round 27.000, current comm_round 29.000): 64.8.
+2021-06-30 19:17:42	Best performance of loss2             (best comm_round 1.000, current comm_round 29.000): 0.0.
+2021-06-30 19:17:42	Master finished the validation.
+2021-06-30 19:17:42	Master saved to checkpoint.
+2021-06-30 19:17:42	Master finished one round of federated learning.
+
+2021-06-30 19:17:42	Master starting one round of federated learning: (comm_round=30).
+2021-06-30 19:17:42	Master selected 4 from 20 clients: [2, 3, 11, 12].
+2021-06-30 19:17:42	Master activated the selected clients.
+2021-06-30 19:17:42	Master send the models to workers.
+2021-06-30 19:17:42		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:17:42		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:17:42		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:17:42		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:17:43	Master waits to receive the local models.
+2021-06-30 19:18:06	Master received all local models.
+2021-06-30 19:18:06	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:18:06	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:18:06	No indices to be removed.
+2021-06-30 19:18:06	Master enters the validation phase.
+2021-06-30 19:18:07	The validation performance = {'loss': 3.066045036315918, 'top1': 29.88, 'top5': 62.77, 'loss2': 0.0}.
+2021-06-30 19:18:07	Best performance of loss             (best comm_round 27.000, current comm_round 30.000): 2.876934739494324.
+2021-06-30 19:18:07	Best performance of top1             (best comm_round 27.000, current comm_round 30.000): 31.85.
+2021-06-30 19:18:07	Best performance of top5             (best comm_round 27.000, current comm_round 30.000): 64.8.
+2021-06-30 19:18:07	Best performance of loss2             (best comm_round 1.000, current comm_round 30.000): 0.0.
+2021-06-30 19:18:07	Master finished the validation.
+2021-06-30 19:18:07	Master saved to checkpoint.
+2021-06-30 19:18:07	Master finished one round of federated learning.
+
+2021-06-30 19:18:07	Master starting one round of federated learning: (comm_round=31).
+2021-06-30 19:18:07	Master selected 4 from 20 clients: [3, 5, 7, 8].
+2021-06-30 19:18:07	Master activated the selected clients.
+2021-06-30 19:18:07	Master send the models to workers.
+2021-06-30 19:18:07		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:18:07		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:18:07		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:18:07		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:18:08	Master waits to receive the local models.
+2021-06-30 19:18:31	Master received all local models.
+2021-06-30 19:18:31	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:18:31	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:18:31	No indices to be removed.
+2021-06-30 19:18:31	Master enters the validation phase.
+2021-06-30 19:18:33	The validation performance = {'loss': 3.036520434188843, 'top1': 29.44, 'top5': 63.77, 'loss2': 0.0}.
+2021-06-30 19:18:33	Best performance of loss             (best comm_round 27.000, current comm_round 31.000): 2.876934739494324.
+2021-06-30 19:18:33	Best performance of top1             (best comm_round 27.000, current comm_round 31.000): 31.85.
+2021-06-30 19:18:33	Best performance of top5             (best comm_round 27.000, current comm_round 31.000): 64.8.
+2021-06-30 19:18:33	Best performance of loss2             (best comm_round 1.000, current comm_round 31.000): 0.0.
+2021-06-30 19:18:33	Master finished the validation.
+2021-06-30 19:18:33	Master saved to checkpoint.
+2021-06-30 19:18:33	Master finished one round of federated learning.
+
+2021-06-30 19:18:33	Master starting one round of federated learning: (comm_round=32).
+2021-06-30 19:18:33	Master selected 4 from 20 clients: [6, 12, 16, 19].
+2021-06-30 19:18:33	Master activated the selected clients.
+2021-06-30 19:18:33	Master send the models to workers.
+2021-06-30 19:18:33		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:18:33		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:18:33		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:18:33		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:18:33	Master waits to receive the local models.
+2021-06-30 19:18:56	Master received all local models.
+2021-06-30 19:18:56	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:18:56	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:18:56	No indices to be removed.
+2021-06-30 19:18:56	Master enters the validation phase.
+2021-06-30 19:18:58	The validation performance = {'loss': 3.0736025978088377, 'top1': 29.79, 'top5': 62.78, 'loss2': 0.0}.
+2021-06-30 19:18:58	Best performance of loss             (best comm_round 27.000, current comm_round 32.000): 2.876934739494324.
+2021-06-30 19:18:58	Best performance of top1             (best comm_round 27.000, current comm_round 32.000): 31.85.
+2021-06-30 19:18:58	Best performance of top5             (best comm_round 27.000, current comm_round 32.000): 64.8.
+2021-06-30 19:18:58	Best performance of loss2             (best comm_round 1.000, current comm_round 32.000): 0.0.
+2021-06-30 19:18:58	Master finished the validation.
+2021-06-30 19:18:58	Master saved to checkpoint.
+2021-06-30 19:18:58	Master finished one round of federated learning.
+
+2021-06-30 19:18:58	Master starting one round of federated learning: (comm_round=33).
+2021-06-30 19:18:58	Master selected 4 from 20 clients: [8, 15, 16, 19].
+2021-06-30 19:18:58	Master activated the selected clients.
+2021-06-30 19:18:58	Master send the models to workers.
+2021-06-30 19:18:58		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:18:58		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:18:58		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:18:58		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:18:58	Master waits to receive the local models.
+2021-06-30 19:19:22	Master received all local models.
+2021-06-30 19:19:22	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:19:22	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:19:22	No indices to be removed.
+2021-06-30 19:19:22	Master enters the validation phase.
+2021-06-30 19:19:24	The validation performance = {'loss': 3.153659299850464, 'top1': 29.04, 'top5': 62.3, 'loss2': 0.0}.
+2021-06-30 19:19:24	Best performance of loss             (best comm_round 27.000, current comm_round 33.000): 2.876934739494324.
+2021-06-30 19:19:24	Best performance of top1             (best comm_round 27.000, current comm_round 33.000): 31.85.
+2021-06-30 19:19:24	Best performance of top5             (best comm_round 27.000, current comm_round 33.000): 64.8.
+2021-06-30 19:19:24	Best performance of loss2             (best comm_round 1.000, current comm_round 33.000): 0.0.
+2021-06-30 19:19:24	Master finished the validation.
+2021-06-30 19:19:24	Master saved to checkpoint.
+2021-06-30 19:19:24	Master finished one round of federated learning.
+
+2021-06-30 19:19:24	Master starting one round of federated learning: (comm_round=34).
+2021-06-30 19:19:24	Master selected 4 from 20 clients: [5, 10, 13, 15].
+2021-06-30 19:19:24	Master activated the selected clients.
+2021-06-30 19:19:24	Master send the models to workers.
+2021-06-30 19:19:24		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:19:24		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:19:24		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:19:24		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:19:24	Master waits to receive the local models.
+2021-06-30 19:19:47	Master received all local models.
+2021-06-30 19:19:47	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:19:47	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:19:47	No indices to be removed.
+2021-06-30 19:19:47	Master enters the validation phase.
+2021-06-30 19:19:49	The validation performance = {'loss': 3.0905490509033204, 'top1': 29.68, 'top5': 63.88, 'loss2': 0.0}.
+2021-06-30 19:19:49	Best performance of loss             (best comm_round 27.000, current comm_round 34.000): 2.876934739494324.
+2021-06-30 19:19:49	Best performance of top1             (best comm_round 27.000, current comm_round 34.000): 31.85.
+2021-06-30 19:19:49	Best performance of top5             (best comm_round 27.000, current comm_round 34.000): 64.8.
+2021-06-30 19:19:49	Best performance of loss2             (best comm_round 1.000, current comm_round 34.000): 0.0.
+2021-06-30 19:19:49	Master finished the validation.
+2021-06-30 19:19:49	Master saved to checkpoint.
+2021-06-30 19:19:49	Master finished one round of federated learning.
+
+2021-06-30 19:19:49	Master starting one round of federated learning: (comm_round=35).
+2021-06-30 19:19:49	Master selected 4 from 20 clients: [4, 8, 12, 18].
+2021-06-30 19:19:49	Master activated the selected clients.
+2021-06-30 19:19:49	Master send the models to workers.
+2021-06-30 19:19:49		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:19:49		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:19:49		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:19:49		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:19:49	Master waits to receive the local models.
+2021-06-30 19:20:13	Master received all local models.
+2021-06-30 19:20:13	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:20:13	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:20:13	No indices to be removed.
+2021-06-30 19:20:13	Master enters the validation phase.
+2021-06-30 19:20:15	The validation performance = {'loss': 2.94076777381897, 'top1': 31.28, 'top5': 65.52, 'loss2': 0.0}.
+2021-06-30 19:20:15	Best performance of loss             (best comm_round 27.000, current comm_round 35.000): 2.876934739494324.
+2021-06-30 19:20:15	Best performance of top1             (best comm_round 27.000, current comm_round 35.000): 31.85.
+2021-06-30 19:20:15	Best performance of top5             (best comm_round 35.000, current comm_round 35.000): 65.52.
+2021-06-30 19:20:15	Best performance of loss2             (best comm_round 1.000, current comm_round 35.000): 0.0.
+2021-06-30 19:20:15	Master finished the validation.
+2021-06-30 19:20:15	Master saved to checkpoint.
+2021-06-30 19:20:15	Master finished one round of federated learning.
+
+2021-06-30 19:20:15	Master starting one round of federated learning: (comm_round=36).
+2021-06-30 19:20:15	Master selected 4 from 20 clients: [2, 5, 6, 9].
+2021-06-30 19:20:15	Master activated the selected clients.
+2021-06-30 19:20:15	Master send the models to workers.
+2021-06-30 19:20:15		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:20:15		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:20:15		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:20:15		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:20:15	Master waits to receive the local models.
+2021-06-30 19:20:38	Master received all local models.
+2021-06-30 19:20:38	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:20:38	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:20:38	No indices to be removed.
+2021-06-30 19:20:38	Master enters the validation phase.
+2021-06-30 19:20:40	The validation performance = {'loss': 2.8787048309326173, 'top1': 31.95, 'top5': 65.68, 'loss2': 0.0}.
+2021-06-30 19:20:40	Best performance of loss             (best comm_round 27.000, current comm_round 36.000): 2.876934739494324.
+2021-06-30 19:20:40	Best performance of top1             (best comm_round 36.000, current comm_round 36.000): 31.95.
+2021-06-30 19:20:40	Best performance of top5             (best comm_round 36.000, current comm_round 36.000): 65.68.
+2021-06-30 19:20:40	Best performance of loss2             (best comm_round 1.000, current comm_round 36.000): 0.0.
+2021-06-30 19:20:40	Master finished the validation.
+2021-06-30 19:20:40	Master saved to checkpoint.
+2021-06-30 19:20:40	Master finished one round of federated learning.
+
+2021-06-30 19:20:40	Master starting one round of federated learning: (comm_round=37).
+2021-06-30 19:20:40	Master selected 4 from 20 clients: [3, 10, 12, 20].
+2021-06-30 19:20:40	Master activated the selected clients.
+2021-06-30 19:20:40	Master send the models to workers.
+2021-06-30 19:20:40		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:20:40		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:20:40		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:20:40		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:20:40	Master waits to receive the local models.
+2021-06-30 19:20:59	Master received all local models.
+2021-06-30 19:20:59	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:20:59	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:20:59	No indices to be removed.
+2021-06-30 19:20:59	Master enters the validation phase.
+2021-06-30 19:21:00	The validation performance = {'loss': 2.9299316856384277, 'top1': 32.92, 'top5': 65.75, 'loss2': 0.0}.
+2021-06-30 19:21:00	Best performance of loss             (best comm_round 27.000, current comm_round 37.000): 2.876934739494324.
+2021-06-30 19:21:00	Best performance of top1             (best comm_round 37.000, current comm_round 37.000): 32.92.
+2021-06-30 19:21:00	Best performance of top5             (best comm_round 37.000, current comm_round 37.000): 65.75.
+2021-06-30 19:21:00	Best performance of loss2             (best comm_round 1.000, current comm_round 37.000): 0.0.
+2021-06-30 19:21:00	Master finished the validation.
+2021-06-30 19:21:00	Master saved to checkpoint.
+2021-06-30 19:21:00	Master finished one round of federated learning.
+
+2021-06-30 19:21:00	Master starting one round of federated learning: (comm_round=38).
+2021-06-30 19:21:00	Master selected 4 from 20 clients: [1, 3, 4, 7].
+2021-06-30 19:21:00	Master activated the selected clients.
+2021-06-30 19:21:00	Master send the models to workers.
+2021-06-30 19:21:00		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:21:00		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:21:00		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:21:00		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:21:01	Master waits to receive the local models.
+2021-06-30 19:21:17	Master received all local models.
+2021-06-30 19:21:17	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:21:17	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:21:17	No indices to be removed.
+2021-06-30 19:21:17	Master enters the validation phase.
+2021-06-30 19:21:19	The validation performance = {'loss': 2.8047749130249024, 'top1': 33.75, 'top5': 67.25, 'loss2': 0.0}.
+2021-06-30 19:21:19	Best performance of loss             (best comm_round 38.000, current comm_round 38.000): 2.8047749130249024.
+2021-06-30 19:21:19	Best performance of top1             (best comm_round 38.000, current comm_round 38.000): 33.75.
+2021-06-30 19:21:19	Best performance of top5             (best comm_round 38.000, current comm_round 38.000): 67.25.
+2021-06-30 19:21:19	Best performance of loss2             (best comm_round 1.000, current comm_round 38.000): 0.0.
+2021-06-30 19:21:19	Master finished the validation.
+2021-06-30 19:21:19	Master saved to checkpoint.
+2021-06-30 19:21:19	Master finished one round of federated learning.
+
+2021-06-30 19:21:19	Master starting one round of federated learning: (comm_round=39).
+2021-06-30 19:21:19	Master selected 4 from 20 clients: [5, 7, 11, 19].
+2021-06-30 19:21:19	Master activated the selected clients.
+2021-06-30 19:21:19	Master send the models to workers.
+2021-06-30 19:21:19		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:21:19		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:21:19		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:21:19		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:21:19	Master waits to receive the local models.
+2021-06-30 19:21:36	Master received all local models.
+2021-06-30 19:21:36	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:21:36	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:21:36	No indices to be removed.
+2021-06-30 19:21:36	Master enters the validation phase.
+2021-06-30 19:21:37	The validation performance = {'loss': 2.843907565689087, 'top1': 33.12, 'top5': 66.55, 'loss2': 0.0}.
+2021-06-30 19:21:37	Best performance of loss             (best comm_round 38.000, current comm_round 39.000): 2.8047749130249024.
+2021-06-30 19:21:37	Best performance of top1             (best comm_round 38.000, current comm_round 39.000): 33.75.
+2021-06-30 19:21:37	Best performance of top5             (best comm_round 38.000, current comm_round 39.000): 67.25.
+2021-06-30 19:21:37	Best performance of loss2             (best comm_round 1.000, current comm_round 39.000): 0.0.
+2021-06-30 19:21:37	Master finished the validation.
+2021-06-30 19:21:37	Master saved to checkpoint.
+2021-06-30 19:21:37	Master finished one round of federated learning.
+
+2021-06-30 19:21:37	Master starting one round of federated learning: (comm_round=40).
+2021-06-30 19:21:37	Master selected 4 from 20 clients: [2, 7, 17, 19].
+2021-06-30 19:21:37	Master activated the selected clients.
+2021-06-30 19:21:37	Master send the models to workers.
+2021-06-30 19:21:37		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:21:37		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:21:37		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:21:37		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:21:37	Master waits to receive the local models.
+2021-06-30 19:21:54	Master received all local models.
+2021-06-30 19:21:54	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:21:54	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:21:54	No indices to be removed.
+2021-06-30 19:21:54	Master enters the validation phase.
+2021-06-30 19:21:55	The validation performance = {'loss': 2.929750304412842, 'top1': 31.1, 'top5': 66.62, 'loss2': 0.0}.
+2021-06-30 19:21:55	Best performance of loss             (best comm_round 38.000, current comm_round 40.000): 2.8047749130249024.
+2021-06-30 19:21:55	Best performance of top1             (best comm_round 38.000, current comm_round 40.000): 33.75.
+2021-06-30 19:21:55	Best performance of top5             (best comm_round 38.000, current comm_round 40.000): 67.25.
+2021-06-30 19:21:55	Best performance of loss2             (best comm_round 1.000, current comm_round 40.000): 0.0.
+2021-06-30 19:21:55	Master finished the validation.
+2021-06-30 19:21:55	Master saved to checkpoint.
+2021-06-30 19:21:55	Master finished one round of federated learning.
+
+2021-06-30 19:21:55	Master starting one round of federated learning: (comm_round=41).
+2021-06-30 19:21:55	Master selected 4 from 20 clients: [5, 11, 16, 20].
+2021-06-30 19:21:55	Master activated the selected clients.
+2021-06-30 19:21:55	Master send the models to workers.
+2021-06-30 19:21:55		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:21:55		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:21:55		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:21:55		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:21:56	Master waits to receive the local models.
+2021-06-30 19:22:12	Master received all local models.
+2021-06-30 19:22:12	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:22:12	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:22:12	No indices to be removed.
+2021-06-30 19:22:12	Master enters the validation phase.
+2021-06-30 19:22:14	The validation performance = {'loss': 2.8901909259796144, 'top1': 32.46, 'top5': 66.84, 'loss2': 0.0}.
+2021-06-30 19:22:14	Best performance of loss             (best comm_round 38.000, current comm_round 41.000): 2.8047749130249024.
+2021-06-30 19:22:14	Best performance of top1             (best comm_round 38.000, current comm_round 41.000): 33.75.
+2021-06-30 19:22:14	Best performance of top5             (best comm_round 38.000, current comm_round 41.000): 67.25.
+2021-06-30 19:22:14	Best performance of loss2             (best comm_round 1.000, current comm_round 41.000): 0.0.
+2021-06-30 19:22:14	Master finished the validation.
+2021-06-30 19:22:14	Master saved to checkpoint.
+2021-06-30 19:22:14	Master finished one round of federated learning.
+
+2021-06-30 19:22:14	Master starting one round of federated learning: (comm_round=42).
+2021-06-30 19:22:14	Master selected 4 from 20 clients: [1, 4, 10, 14].
+2021-06-30 19:22:14	Master activated the selected clients.
+2021-06-30 19:22:14	Master send the models to workers.
+2021-06-30 19:22:14		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:22:14		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:22:14		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:22:14		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:22:14	Master waits to receive the local models.
+2021-06-30 19:22:31	Master received all local models.
+2021-06-30 19:22:31	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:22:31	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:22:31	No indices to be removed.
+2021-06-30 19:22:31	Master enters the validation phase.
+2021-06-30 19:22:32	The validation performance = {'loss': 2.771860296821594, 'top1': 33.73, 'top5': 67.29, 'loss2': 0.0}.
+2021-06-30 19:22:32	Best performance of loss             (best comm_round 42.000, current comm_round 42.000): 2.771860296821594.
+2021-06-30 19:22:32	Best performance of top1             (best comm_round 38.000, current comm_round 42.000): 33.75.
+2021-06-30 19:22:32	Best performance of top5             (best comm_round 42.000, current comm_round 42.000): 67.29.
+2021-06-30 19:22:32	Best performance of loss2             (best comm_round 1.000, current comm_round 42.000): 0.0.
+2021-06-30 19:22:32	Master finished the validation.
+2021-06-30 19:22:32	Master saved to checkpoint.
+2021-06-30 19:22:32	Master finished one round of federated learning.
+
+2021-06-30 19:22:32	Master starting one round of federated learning: (comm_round=43).
+2021-06-30 19:22:32	Master selected 4 from 20 clients: [2, 6, 11, 18].
+2021-06-30 19:22:32	Master activated the selected clients.
+2021-06-30 19:22:32	Master send the models to workers.
+2021-06-30 19:22:32		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:22:32		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:22:32		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:22:32		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:22:32	Master waits to receive the local models.
+2021-06-30 19:22:49	Master received all local models.
+2021-06-30 19:22:49	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:22:49	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:22:49	No indices to be removed.
+2021-06-30 19:22:49	Master enters the validation phase.
+2021-06-30 19:22:51	The validation performance = {'loss': 2.7641042583465576, 'top1': 32.78, 'top5': 68.24, 'loss2': 0.0}.
+2021-06-30 19:22:51	Best performance of loss             (best comm_round 43.000, current comm_round 43.000): 2.7641042583465576.
+2021-06-30 19:22:51	Best performance of top1             (best comm_round 38.000, current comm_round 43.000): 33.75.
+2021-06-30 19:22:51	Best performance of top5             (best comm_round 43.000, current comm_round 43.000): 68.24.
+2021-06-30 19:22:51	Best performance of loss2             (best comm_round 1.000, current comm_round 43.000): 0.0.
+2021-06-30 19:22:51	Master finished the validation.
+2021-06-30 19:22:51	Master saved to checkpoint.
+2021-06-30 19:22:51	Master finished one round of federated learning.
+
+2021-06-30 19:22:51	Master starting one round of federated learning: (comm_round=44).
+2021-06-30 19:22:51	Master selected 4 from 20 clients: [5, 7, 11, 14].
+2021-06-30 19:22:51	Master activated the selected clients.
+2021-06-30 19:22:51	Master send the models to workers.
+2021-06-30 19:22:51		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:22:51		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:22:51		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:22:51		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:22:51	Master waits to receive the local models.
+2021-06-30 19:23:08	Master received all local models.
+2021-06-30 19:23:08	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:23:08	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:23:08	No indices to be removed.
+2021-06-30 19:23:08	Master enters the validation phase.
+2021-06-30 19:23:09	The validation performance = {'loss': 3.009575337219238, 'top1': 30.44, 'top5': 65.15, 'loss2': 0.0}.
+2021-06-30 19:23:09	Best performance of loss             (best comm_round 43.000, current comm_round 44.000): 2.7641042583465576.
+2021-06-30 19:23:09	Best performance of top1             (best comm_round 38.000, current comm_round 44.000): 33.75.
+2021-06-30 19:23:09	Best performance of top5             (best comm_round 43.000, current comm_round 44.000): 68.24.
+2021-06-30 19:23:09	Best performance of loss2             (best comm_round 1.000, current comm_round 44.000): 0.0.
+2021-06-30 19:23:09	Master finished the validation.
+2021-06-30 19:23:09	Master saved to checkpoint.
+2021-06-30 19:23:09	Master finished one round of federated learning.
+
+2021-06-30 19:23:09	Master starting one round of federated learning: (comm_round=45).
+2021-06-30 19:23:09	Master selected 4 from 20 clients: [6, 9, 13, 20].
+2021-06-30 19:23:09	Master activated the selected clients.
+2021-06-30 19:23:09	Master send the models to workers.
+2021-06-30 19:23:09		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:23:09		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:23:09		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:23:09		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:23:10	Master waits to receive the local models.
+2021-06-30 19:23:26	Master received all local models.
+2021-06-30 19:23:26	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:23:26	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:23:26	No indices to be removed.
+2021-06-30 19:23:26	Master enters the validation phase.
+2021-06-30 19:23:27	The validation performance = {'loss': 2.8138697593688966, 'top1': 32.49, 'top5': 67.8, 'loss2': 0.0}.
+2021-06-30 19:23:27	Best performance of loss             (best comm_round 43.000, current comm_round 45.000): 2.7641042583465576.
+2021-06-30 19:23:27	Best performance of top1             (best comm_round 38.000, current comm_round 45.000): 33.75.
+2021-06-30 19:23:27	Best performance of top5             (best comm_round 43.000, current comm_round 45.000): 68.24.
+2021-06-30 19:23:27	Best performance of loss2             (best comm_round 1.000, current comm_round 45.000): 0.0.
+2021-06-30 19:23:27	Master finished the validation.
+2021-06-30 19:23:27	Master saved to checkpoint.
+2021-06-30 19:23:27	Master finished one round of federated learning.
+
+2021-06-30 19:23:27	Master starting one round of federated learning: (comm_round=46).
+2021-06-30 19:23:27	Master selected 4 from 20 clients: [7, 8, 10, 12].
+2021-06-30 19:23:27	Master activated the selected clients.
+2021-06-30 19:23:28	Master send the models to workers.
+2021-06-30 19:23:28		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:23:28		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:23:28		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:23:28		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:23:28	Master waits to receive the local models.
+2021-06-30 19:23:45	Master received all local models.
+2021-06-30 19:23:45	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:23:45	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:23:45	No indices to be removed.
+2021-06-30 19:23:45	Master enters the validation phase.
+2021-06-30 19:23:46	The validation performance = {'loss': 2.7542095706939698, 'top1': 33.53, 'top5': 68.75, 'loss2': 0.0}.
+2021-06-30 19:23:46	Best performance of loss             (best comm_round 46.000, current comm_round 46.000): 2.7542095706939698.
+2021-06-30 19:23:46	Best performance of top1             (best comm_round 38.000, current comm_round 46.000): 33.75.
+2021-06-30 19:23:46	Best performance of top5             (best comm_round 46.000, current comm_round 46.000): 68.75.
+2021-06-30 19:23:46	Best performance of loss2             (best comm_round 1.000, current comm_round 46.000): 0.0.
+2021-06-30 19:23:46	Master finished the validation.
+2021-06-30 19:23:46	Master saved to checkpoint.
+2021-06-30 19:23:46	Master finished one round of federated learning.
+
+2021-06-30 19:23:46	Master starting one round of federated learning: (comm_round=47).
+2021-06-30 19:23:46	Master selected 4 from 20 clients: [2, 3, 5, 19].
+2021-06-30 19:23:46	Master activated the selected clients.
+2021-06-30 19:23:46	Master send the models to workers.
+2021-06-30 19:23:46		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:23:46		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:23:46		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:23:46		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:23:46	Master waits to receive the local models.
+2021-06-30 19:24:03	Master received all local models.
+2021-06-30 19:24:03	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:24:03	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:24:03	No indices to be removed.
+2021-06-30 19:24:03	Master enters the validation phase.
+2021-06-30 19:24:05	The validation performance = {'loss': 2.733863342666626, 'top1': 34.7, 'top5': 69.33, 'loss2': 0.0}.
+2021-06-30 19:24:05	Best performance of loss             (best comm_round 47.000, current comm_round 47.000): 2.733863342666626.
+2021-06-30 19:24:05	Best performance of top1             (best comm_round 47.000, current comm_round 47.000): 34.7.
+2021-06-30 19:24:05	Best performance of top5             (best comm_round 47.000, current comm_round 47.000): 69.33.
+2021-06-30 19:24:05	Best performance of loss2             (best comm_round 1.000, current comm_round 47.000): 0.0.
+2021-06-30 19:24:05	Master finished the validation.
+2021-06-30 19:24:05	Master saved to checkpoint.
+2021-06-30 19:24:05	Master finished one round of federated learning.
+
+2021-06-30 19:24:05	Master starting one round of federated learning: (comm_round=48).
+2021-06-30 19:24:05	Master selected 4 from 20 clients: [6, 7, 14, 16].
+2021-06-30 19:24:05	Master activated the selected clients.
+2021-06-30 19:24:05	Master send the models to workers.
+2021-06-30 19:24:05		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:24:05		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:24:05		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:24:05		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:24:05	Master waits to receive the local models.
+2021-06-30 19:24:22	Master received all local models.
+2021-06-30 19:24:22	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:24:22	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:24:22	No indices to be removed.
+2021-06-30 19:24:22	Master enters the validation phase.
+2021-06-30 19:24:23	The validation performance = {'loss': 2.9294164848327635, 'top1': 31.78, 'top5': 66.16, 'loss2': 0.0}.
+2021-06-30 19:24:23	Best performance of loss             (best comm_round 47.000, current comm_round 48.000): 2.733863342666626.
+2021-06-30 19:24:23	Best performance of top1             (best comm_round 47.000, current comm_round 48.000): 34.7.
+2021-06-30 19:24:23	Best performance of top5             (best comm_round 47.000, current comm_round 48.000): 69.33.
+2021-06-30 19:24:23	Best performance of loss2             (best comm_round 1.000, current comm_round 48.000): 0.0.
+2021-06-30 19:24:23	Master finished the validation.
+2021-06-30 19:24:23	Master saved to checkpoint.
+2021-06-30 19:24:23	Master finished one round of federated learning.
+
+2021-06-30 19:24:23	Master starting one round of federated learning: (comm_round=49).
+2021-06-30 19:24:23	Master selected 4 from 20 clients: [1, 12, 16, 19].
+2021-06-30 19:24:23	Master activated the selected clients.
+2021-06-30 19:24:23	Master send the models to workers.
+2021-06-30 19:24:23		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:24:23		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:24:23		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:24:23		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:24:24	Master waits to receive the local models.
+2021-06-30 19:24:40	Master received all local models.
+2021-06-30 19:24:40	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:24:40	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:24:40	No indices to be removed.
+2021-06-30 19:24:40	Master enters the validation phase.
+2021-06-30 19:24:41	The validation performance = {'loss': 2.9251497772216797, 'top1': 32.77, 'top5': 65.81, 'loss2': 0.0}.
+2021-06-30 19:24:41	Best performance of loss             (best comm_round 47.000, current comm_round 49.000): 2.733863342666626.
+2021-06-30 19:24:41	Best performance of top1             (best comm_round 47.000, current comm_round 49.000): 34.7.
+2021-06-30 19:24:41	Best performance of top5             (best comm_round 47.000, current comm_round 49.000): 69.33.
+2021-06-30 19:24:41	Best performance of loss2             (best comm_round 1.000, current comm_round 49.000): 0.0.
+2021-06-30 19:24:41	Master finished the validation.
+2021-06-30 19:24:41	Master saved to checkpoint.
+2021-06-30 19:24:41	Master finished one round of federated learning.
+
+2021-06-30 19:24:41	Master starting one round of federated learning: (comm_round=50).
+2021-06-30 19:24:41	Master selected 4 from 20 clients: [1, 6, 13, 14].
+2021-06-30 19:24:41	Master activated the selected clients.
+2021-06-30 19:24:41	Master send the models to workers.
+2021-06-30 19:24:41		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:24:41		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:24:41		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:24:41		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:24:42	Master waits to receive the local models.
+2021-06-30 19:24:59	Master received all local models.
+2021-06-30 19:24:59	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:24:59	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:24:59	No indices to be removed.
+2021-06-30 19:24:59	Master enters the validation phase.
+2021-06-30 19:25:00	The validation performance = {'loss': 3.144188840866089, 'top1': 29.94, 'top5': 63.53, 'loss2': 0.0}.
+2021-06-30 19:25:00	Best performance of loss             (best comm_round 47.000, current comm_round 50.000): 2.733863342666626.
+2021-06-30 19:25:00	Best performance of top1             (best comm_round 47.000, current comm_round 50.000): 34.7.
+2021-06-30 19:25:00	Best performance of top5             (best comm_round 47.000, current comm_round 50.000): 69.33.
+2021-06-30 19:25:00	Best performance of loss2             (best comm_round 1.000, current comm_round 50.000): 0.0.
+2021-06-30 19:25:00	Master finished the validation.
+2021-06-30 19:25:00	Master saved to checkpoint.
+2021-06-30 19:25:00	Master finished one round of federated learning.
+
+2021-06-30 19:25:00	Master starting one round of federated learning: (comm_round=51).
+2021-06-30 19:25:00	Master selected 4 from 20 clients: [6, 7, 8, 12].
+2021-06-30 19:25:00	Master activated the selected clients.
+2021-06-30 19:25:00	Master send the models to workers.
+2021-06-30 19:25:00		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:25:00		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:25:00		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:25:00		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:25:00	Master waits to receive the local models.
+2021-06-30 19:25:18	Master received all local models.
+2021-06-30 19:25:18	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:25:18	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:25:18	No indices to be removed.
+2021-06-30 19:25:18	Master enters the validation phase.
+2021-06-30 19:25:19	The validation performance = {'loss': 3.2121554233551026, 'top1': 30.25, 'top5': 64.05, 'loss2': 0.0}.
+2021-06-30 19:25:19	Best performance of loss             (best comm_round 47.000, current comm_round 51.000): 2.733863342666626.
+2021-06-30 19:25:19	Best performance of top1             (best comm_round 47.000, current comm_round 51.000): 34.7.
+2021-06-30 19:25:19	Best performance of top5             (best comm_round 47.000, current comm_round 51.000): 69.33.
+2021-06-30 19:25:19	Best performance of loss2             (best comm_round 1.000, current comm_round 51.000): 0.0.
+2021-06-30 19:25:19	Master finished the validation.
+2021-06-30 19:25:19	Master saved to checkpoint.
+2021-06-30 19:25:19	Master finished one round of federated learning.
+
+2021-06-30 19:25:19	Master starting one round of federated learning: (comm_round=52).
+2021-06-30 19:25:19	Master selected 4 from 20 clients: [3, 13, 18, 20].
+2021-06-30 19:25:19	Master activated the selected clients.
+2021-06-30 19:25:19	Master send the models to workers.
+2021-06-30 19:25:19		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:25:19		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:25:19		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:25:19		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:25:19	Master waits to receive the local models.
+2021-06-30 19:25:36	Master received all local models.
+2021-06-30 19:25:36	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:25:36	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:25:36	No indices to be removed.
+2021-06-30 19:25:36	Master enters the validation phase.
+2021-06-30 19:25:37	The validation performance = {'loss': 3.097805869293213, 'top1': 31.08, 'top5': 65.1, 'loss2': 0.0}.
+2021-06-30 19:25:37	Best performance of loss             (best comm_round 47.000, current comm_round 52.000): 2.733863342666626.
+2021-06-30 19:25:37	Best performance of top1             (best comm_round 47.000, current comm_round 52.000): 34.7.
+2021-06-30 19:25:37	Best performance of top5             (best comm_round 47.000, current comm_round 52.000): 69.33.
+2021-06-30 19:25:37	Best performance of loss2             (best comm_round 1.000, current comm_round 52.000): 0.0.
+2021-06-30 19:25:37	Master finished the validation.
+2021-06-30 19:25:37	Master saved to checkpoint.
+2021-06-30 19:25:37	Master finished one round of federated learning.
+
+2021-06-30 19:25:37	Master starting one round of federated learning: (comm_round=53).
+2021-06-30 19:25:37	Master selected 4 from 20 clients: [2, 6, 8, 14].
+2021-06-30 19:25:37	Master activated the selected clients.
+2021-06-30 19:25:38	Master send the models to workers.
+2021-06-30 19:25:38		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:25:38		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:25:38		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:25:38		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:25:38	Master waits to receive the local models.
+2021-06-30 19:25:55	Master received all local models.
+2021-06-30 19:25:55	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:25:55	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:25:55	No indices to be removed.
+2021-06-30 19:25:55	Master enters the validation phase.
+2021-06-30 19:25:56	The validation performance = {'loss': 3.2109388988494874, 'top1': 30.07, 'top5': 64.09, 'loss2': 0.0}.
+2021-06-30 19:25:56	Best performance of loss             (best comm_round 47.000, current comm_round 53.000): 2.733863342666626.
+2021-06-30 19:25:56	Best performance of top1             (best comm_round 47.000, current comm_round 53.000): 34.7.
+2021-06-30 19:25:56	Best performance of top5             (best comm_round 47.000, current comm_round 53.000): 69.33.
+2021-06-30 19:25:56	Best performance of loss2             (best comm_round 1.000, current comm_round 53.000): 0.0.
+2021-06-30 19:25:56	Master finished the validation.
+2021-06-30 19:25:56	Master saved to checkpoint.
+2021-06-30 19:25:56	Master finished one round of federated learning.
+
+2021-06-30 19:25:56	Master starting one round of federated learning: (comm_round=54).
+2021-06-30 19:25:56	Master selected 4 from 20 clients: [5, 6, 12, 16].
+2021-06-30 19:25:56	Master activated the selected clients.
+2021-06-30 19:25:56	Master send the models to workers.
+2021-06-30 19:25:56		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:25:56		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:25:56		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:25:56		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:25:57	Master waits to receive the local models.
+2021-06-30 19:26:13	Master received all local models.
+2021-06-30 19:26:13	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:26:13	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:26:13	No indices to be removed.
+2021-06-30 19:26:13	Master enters the validation phase.
+2021-06-30 19:26:15	The validation performance = {'loss': 3.2504800270080567, 'top1': 29.71, 'top5': 63.97, 'loss2': 0.0}.
+2021-06-30 19:26:15	Best performance of loss             (best comm_round 47.000, current comm_round 54.000): 2.733863342666626.
+2021-06-30 19:26:15	Best performance of top1             (best comm_round 47.000, current comm_round 54.000): 34.7.
+2021-06-30 19:26:15	Best performance of top5             (best comm_round 47.000, current comm_round 54.000): 69.33.
+2021-06-30 19:26:15	Best performance of loss2             (best comm_round 1.000, current comm_round 54.000): 0.0.
+2021-06-30 19:26:15	Master finished the validation.
+2021-06-30 19:26:15	Master saved to checkpoint.
+2021-06-30 19:26:15	Master finished one round of federated learning.
+
+2021-06-30 19:26:15	Master starting one round of federated learning: (comm_round=55).
+2021-06-30 19:26:15	Master selected 4 from 20 clients: [8, 14, 16, 20].
+2021-06-30 19:26:15	Master activated the selected clients.
+2021-06-30 19:26:15	Master send the models to workers.
+2021-06-30 19:26:15		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:26:15		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:26:15		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:26:15		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:26:15	Master waits to receive the local models.
+2021-06-30 19:26:32	Master received all local models.
+2021-06-30 19:26:32	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:26:32	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:26:32	No indices to be removed.
+2021-06-30 19:26:32	Master enters the validation phase.
+2021-06-30 19:26:33	The validation performance = {'loss': 3.31678748626709, 'top1': 29.68, 'top5': 63.09, 'loss2': 0.0}.
+2021-06-30 19:26:33	Best performance of loss             (best comm_round 47.000, current comm_round 55.000): 2.733863342666626.
+2021-06-30 19:26:33	Best performance of top1             (best comm_round 47.000, current comm_round 55.000): 34.7.
+2021-06-30 19:26:33	Best performance of top5             (best comm_round 47.000, current comm_round 55.000): 69.33.
+2021-06-30 19:26:33	Best performance of loss2             (best comm_round 1.000, current comm_round 55.000): 0.0.
+2021-06-30 19:26:33	Master finished the validation.
+2021-06-30 19:26:33	Master saved to checkpoint.
+2021-06-30 19:26:33	Master finished one round of federated learning.
+
+2021-06-30 19:26:33	Master starting one round of federated learning: (comm_round=56).
+2021-06-30 19:26:33	Master selected 4 from 20 clients: [6, 15, 17, 20].
+2021-06-30 19:26:33	Master activated the selected clients.
+2021-06-30 19:26:33	Master send the models to workers.
+2021-06-30 19:26:33		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:26:33		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:26:33		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:26:33		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:26:33	Master waits to receive the local models.
+2021-06-30 19:26:50	Master received all local models.
+2021-06-30 19:26:50	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:26:50	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:26:50	No indices to be removed.
+2021-06-30 19:26:50	Master enters the validation phase.
+2021-06-30 19:26:52	The validation performance = {'loss': 2.9766230236053466, 'top1': 31.67, 'top5': 66.24, 'loss2': 0.0}.
+2021-06-30 19:26:52	Best performance of loss             (best comm_round 47.000, current comm_round 56.000): 2.733863342666626.
+2021-06-30 19:26:52	Best performance of top1             (best comm_round 47.000, current comm_round 56.000): 34.7.
+2021-06-30 19:26:52	Best performance of top5             (best comm_round 47.000, current comm_round 56.000): 69.33.
+2021-06-30 19:26:52	Best performance of loss2             (best comm_round 1.000, current comm_round 56.000): 0.0.
+2021-06-30 19:26:52	Master finished the validation.
+2021-06-30 19:26:52	Master saved to checkpoint.
+2021-06-30 19:26:52	Master finished one round of federated learning.
+
+2021-06-30 19:26:52	Master starting one round of federated learning: (comm_round=57).
+2021-06-30 19:26:52	Master selected 4 from 20 clients: [1, 10, 16, 18].
+2021-06-30 19:26:52	Master activated the selected clients.
+2021-06-30 19:26:52	Master send the models to workers.
+2021-06-30 19:26:52		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:26:52		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:26:52		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:26:52		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:26:52	Master waits to receive the local models.
+2021-06-30 19:27:09	Master received all local models.
+2021-06-30 19:27:09	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:27:09	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:27:09	No indices to be removed.
+2021-06-30 19:27:09	Master enters the validation phase.
+2021-06-30 19:27:10	The validation performance = {'loss': 2.9605506523132323, 'top1': 32.24, 'top5': 66.64, 'loss2': 0.0}.
+2021-06-30 19:27:10	Best performance of loss             (best comm_round 47.000, current comm_round 57.000): 2.733863342666626.
+2021-06-30 19:27:10	Best performance of top1             (best comm_round 47.000, current comm_round 57.000): 34.7.
+2021-06-30 19:27:10	Best performance of top5             (best comm_round 47.000, current comm_round 57.000): 69.33.
+2021-06-30 19:27:10	Best performance of loss2             (best comm_round 1.000, current comm_round 57.000): 0.0.
+2021-06-30 19:27:10	Master finished the validation.
+2021-06-30 19:27:10	Master saved to checkpoint.
+2021-06-30 19:27:10	Master finished one round of federated learning.
+
+2021-06-30 19:27:10	Master starting one round of federated learning: (comm_round=58).
+2021-06-30 19:27:10	Master selected 4 from 20 clients: [2, 7, 12, 13].
+2021-06-30 19:27:10	Master activated the selected clients.
+2021-06-30 19:27:10	Master send the models to workers.
+2021-06-30 19:27:10		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:27:11		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:27:11		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:27:11		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:27:11	Master waits to receive the local models.
+2021-06-30 19:27:28	Master received all local models.
+2021-06-30 19:27:28	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:27:28	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:27:28	No indices to be removed.
+2021-06-30 19:27:28	Master enters the validation phase.
+2021-06-30 19:27:29	The validation performance = {'loss': 2.830628066253662, 'top1': 33.39, 'top5': 67.88, 'loss2': 0.0}.
+2021-06-30 19:27:29	Best performance of loss             (best comm_round 47.000, current comm_round 58.000): 2.733863342666626.
+2021-06-30 19:27:29	Best performance of top1             (best comm_round 47.000, current comm_round 58.000): 34.7.
+2021-06-30 19:27:29	Best performance of top5             (best comm_round 47.000, current comm_round 58.000): 69.33.
+2021-06-30 19:27:29	Best performance of loss2             (best comm_round 1.000, current comm_round 58.000): 0.0.
+2021-06-30 19:27:29	Master finished the validation.
+2021-06-30 19:27:29	Master saved to checkpoint.
+2021-06-30 19:27:29	Master finished one round of federated learning.
+
+2021-06-30 19:27:29	Master starting one round of federated learning: (comm_round=59).
+2021-06-30 19:27:29	Master selected 4 from 20 clients: [2, 14, 15, 20].
+2021-06-30 19:27:29	Master activated the selected clients.
+2021-06-30 19:27:29	Master send the models to workers.
+2021-06-30 19:27:29		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:27:29		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:27:29		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:27:29		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:27:30	Master waits to receive the local models.
+2021-06-30 19:27:47	Master received all local models.
+2021-06-30 19:27:47	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:27:47	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:27:47	No indices to be removed.
+2021-06-30 19:27:47	Master enters the validation phase.
+2021-06-30 19:27:48	The validation performance = {'loss': 2.830380997848511, 'top1': 33.55, 'top5': 68.06, 'loss2': 0.0}.
+2021-06-30 19:27:48	Best performance of loss             (best comm_round 47.000, current comm_round 59.000): 2.733863342666626.
+2021-06-30 19:27:48	Best performance of top1             (best comm_round 47.000, current comm_round 59.000): 34.7.
+2021-06-30 19:27:48	Best performance of top5             (best comm_round 47.000, current comm_round 59.000): 69.33.
+2021-06-30 19:27:48	Best performance of loss2             (best comm_round 1.000, current comm_round 59.000): 0.0.
+2021-06-30 19:27:48	Master finished the validation.
+2021-06-30 19:27:48	Master saved to checkpoint.
+2021-06-30 19:27:48	Master finished one round of federated learning.
+
+2021-06-30 19:27:48	Master starting one round of federated learning: (comm_round=60).
+2021-06-30 19:27:48	Master selected 4 from 20 clients: [8, 13, 16, 17].
+2021-06-30 19:27:48	Master activated the selected clients.
+2021-06-30 19:27:49	Master send the models to workers.
+2021-06-30 19:27:49		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:27:49		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:27:49		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:27:49		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:27:49	Master waits to receive the local models.
+2021-06-30 19:28:05	Master received all local models.
+2021-06-30 19:28:05	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:28:05	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:28:05	No indices to be removed.
+2021-06-30 19:28:05	Master enters the validation phase.
+2021-06-30 19:28:07	The validation performance = {'loss': 3.035987144470215, 'top1': 31.6, 'top5': 66.09, 'loss2': 0.0}.
+2021-06-30 19:28:07	Best performance of loss             (best comm_round 47.000, current comm_round 60.000): 2.733863342666626.
+2021-06-30 19:28:07	Best performance of top1             (best comm_round 47.000, current comm_round 60.000): 34.7.
+2021-06-30 19:28:07	Best performance of top5             (best comm_round 47.000, current comm_round 60.000): 69.33.
+2021-06-30 19:28:07	Best performance of loss2             (best comm_round 1.000, current comm_round 60.000): 0.0.
+2021-06-30 19:28:07	Master finished the validation.
+2021-06-30 19:28:07	Master saved to checkpoint.
+2021-06-30 19:28:07	Master finished one round of federated learning.
+
+2021-06-30 19:28:07	Master starting one round of federated learning: (comm_round=61).
+2021-06-30 19:28:07	Master selected 4 from 20 clients: [2, 3, 11, 14].
+2021-06-30 19:28:07	Master activated the selected clients.
+2021-06-30 19:28:07	Master send the models to workers.
+2021-06-30 19:28:07		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:28:07		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:28:07		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:28:07		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:28:07	Master waits to receive the local models.
+2021-06-30 19:28:24	Master received all local models.
+2021-06-30 19:28:24	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:28:24	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:28:24	No indices to be removed.
+2021-06-30 19:28:24	Master enters the validation phase.
+2021-06-30 19:28:25	The validation performance = {'loss': 2.9411379615783693, 'top1': 32.39, 'top5': 67.25, 'loss2': 0.0}.
+2021-06-30 19:28:25	Best performance of loss             (best comm_round 47.000, current comm_round 61.000): 2.733863342666626.
+2021-06-30 19:28:25	Best performance of top1             (best comm_round 47.000, current comm_round 61.000): 34.7.
+2021-06-30 19:28:25	Best performance of top5             (best comm_round 47.000, current comm_round 61.000): 69.33.
+2021-06-30 19:28:25	Best performance of loss2             (best comm_round 1.000, current comm_round 61.000): 0.0.
+2021-06-30 19:28:25	Master finished the validation.
+2021-06-30 19:28:25	Master saved to checkpoint.
+2021-06-30 19:28:25	Master finished one round of federated learning.
+
+2021-06-30 19:28:25	Master starting one round of federated learning: (comm_round=62).
+2021-06-30 19:28:25	Master selected 4 from 20 clients: [2, 3, 12, 20].
+2021-06-30 19:28:25	Master activated the selected clients.
+2021-06-30 19:28:25	Master send the models to workers.
+2021-06-30 19:28:25		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:28:25		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:28:25		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:28:25		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:28:25	Master waits to receive the local models.
+2021-06-30 19:28:41	Master received all local models.
+2021-06-30 19:28:41	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:28:41	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:28:41	No indices to be removed.
+2021-06-30 19:28:41	Master enters the validation phase.
+2021-06-30 19:28:43	The validation performance = {'loss': 2.9516736907958983, 'top1': 32.68, 'top5': 67.56, 'loss2': 0.0}.
+2021-06-30 19:28:43	Best performance of loss             (best comm_round 47.000, current comm_round 62.000): 2.733863342666626.
+2021-06-30 19:28:43	Best performance of top1             (best comm_round 47.000, current comm_round 62.000): 34.7.
+2021-06-30 19:28:43	Best performance of top5             (best comm_round 47.000, current comm_round 62.000): 69.33.
+2021-06-30 19:28:43	Best performance of loss2             (best comm_round 1.000, current comm_round 62.000): 0.0.
+2021-06-30 19:28:43	Master finished the validation.
+2021-06-30 19:28:43	Master saved to checkpoint.
+2021-06-30 19:28:43	Master finished one round of federated learning.
+
+2021-06-30 19:28:43	Master starting one round of federated learning: (comm_round=63).
+2021-06-30 19:28:43	Master selected 4 from 20 clients: [11, 14, 15, 19].
+2021-06-30 19:28:43	Master activated the selected clients.
+2021-06-30 19:28:43	Master send the models to workers.
+2021-06-30 19:28:43		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:28:43		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:28:43		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:28:43		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:28:43	Master waits to receive the local models.
+2021-06-30 19:29:00	Master received all local models.
+2021-06-30 19:29:00	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:29:00	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:29:00	No indices to be removed.
+2021-06-30 19:29:00	Master enters the validation phase.
+2021-06-30 19:29:01	The validation performance = {'loss': 2.783214730834961, 'top1': 33.93, 'top5': 68.84, 'loss2': 0.0}.
+2021-06-30 19:29:01	Best performance of loss             (best comm_round 47.000, current comm_round 63.000): 2.733863342666626.
+2021-06-30 19:29:01	Best performance of top1             (best comm_round 47.000, current comm_round 63.000): 34.7.
+2021-06-30 19:29:01	Best performance of top5             (best comm_round 47.000, current comm_round 63.000): 69.33.
+2021-06-30 19:29:01	Best performance of loss2             (best comm_round 1.000, current comm_round 63.000): 0.0.
+2021-06-30 19:29:01	Master finished the validation.
+2021-06-30 19:29:01	Master saved to checkpoint.
+2021-06-30 19:29:01	Master finished one round of federated learning.
+
+2021-06-30 19:29:01	Master starting one round of federated learning: (comm_round=64).
+2021-06-30 19:29:01	Master selected 4 from 20 clients: [5, 8, 17, 19].
+2021-06-30 19:29:01	Master activated the selected clients.
+2021-06-30 19:29:01	Master send the models to workers.
+2021-06-30 19:29:01		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:29:01		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:29:01		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:29:01		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:29:01	Master waits to receive the local models.
+2021-06-30 19:29:18	Master received all local models.
+2021-06-30 19:29:18	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:29:18	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:29:18	No indices to be removed.
+2021-06-30 19:29:18	Master enters the validation phase.
+2021-06-30 19:29:20	The validation performance = {'loss': 2.7270020275115967, 'top1': 35.0, 'top5': 69.39, 'loss2': 0.0}.
+2021-06-30 19:29:20	Best performance of loss             (best comm_round 64.000, current comm_round 64.000): 2.7270020275115967.
+2021-06-30 19:29:20	Best performance of top1             (best comm_round 64.000, current comm_round 64.000): 35.0.
+2021-06-30 19:29:20	Best performance of top5             (best comm_round 64.000, current comm_round 64.000): 69.39.
+2021-06-30 19:29:20	Best performance of loss2             (best comm_round 1.000, current comm_round 64.000): 0.0.
+2021-06-30 19:29:20	Master finished the validation.
+2021-06-30 19:29:20	Master saved to checkpoint.
+2021-06-30 19:29:20	Master finished one round of federated learning.
+
+2021-06-30 19:29:20	Master starting one round of federated learning: (comm_round=65).
+2021-06-30 19:29:20	Master selected 4 from 20 clients: [3, 12, 18, 19].
+2021-06-30 19:29:20	Master activated the selected clients.
+2021-06-30 19:29:20	Master send the models to workers.
+2021-06-30 19:29:20		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:29:20		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:29:20		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:29:20		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:29:20	Master waits to receive the local models.
+2021-06-30 19:29:37	Master received all local models.
+2021-06-30 19:29:37	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:29:37	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:29:37	No indices to be removed.
+2021-06-30 19:29:37	Master enters the validation phase.
+2021-06-30 19:29:38	The validation performance = {'loss': 2.842050311279297, 'top1': 34.15, 'top5': 68.26, 'loss2': 0.0}.
+2021-06-30 19:29:38	Best performance of loss             (best comm_round 64.000, current comm_round 65.000): 2.7270020275115967.
+2021-06-30 19:29:38	Best performance of top1             (best comm_round 64.000, current comm_round 65.000): 35.0.
+2021-06-30 19:29:38	Best performance of top5             (best comm_round 64.000, current comm_round 65.000): 69.39.
+2021-06-30 19:29:38	Best performance of loss2             (best comm_round 1.000, current comm_round 65.000): 0.0.
+2021-06-30 19:29:38	Master finished the validation.
+2021-06-30 19:29:38	Master saved to checkpoint.
+2021-06-30 19:29:38	Master finished one round of federated learning.
+
+2021-06-30 19:29:38	Master starting one round of federated learning: (comm_round=66).
+2021-06-30 19:29:38	Master selected 4 from 20 clients: [2, 4, 13, 14].
+2021-06-30 19:29:38	Master activated the selected clients.
+2021-06-30 19:29:38	Master send the models to workers.
+2021-06-30 19:29:38		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:29:38		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:29:38		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:29:38		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:29:39	Master waits to receive the local models.
+2021-06-30 19:29:55	Master received all local models.
+2021-06-30 19:29:55	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:29:55	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:29:55	No indices to be removed.
+2021-06-30 19:29:55	Master enters the validation phase.
+2021-06-30 19:29:56	The validation performance = {'loss': 2.764544895362854, 'top1': 33.95, 'top5': 69.03, 'loss2': 0.0}.
+2021-06-30 19:29:56	Best performance of loss             (best comm_round 64.000, current comm_round 66.000): 2.7270020275115967.
+2021-06-30 19:29:56	Best performance of top1             (best comm_round 64.000, current comm_round 66.000): 35.0.
+2021-06-30 19:29:56	Best performance of top5             (best comm_round 64.000, current comm_round 66.000): 69.39.
+2021-06-30 19:29:56	Best performance of loss2             (best comm_round 1.000, current comm_round 66.000): 0.0.
+2021-06-30 19:29:56	Master finished the validation.
+2021-06-30 19:29:56	Master saved to checkpoint.
+2021-06-30 19:29:56	Master finished one round of federated learning.
+
+2021-06-30 19:29:56	Master starting one round of federated learning: (comm_round=67).
+2021-06-30 19:29:56	Master selected 4 from 20 clients: [12, 13, 18, 20].
+2021-06-30 19:29:56	Master activated the selected clients.
+2021-06-30 19:29:56	Master send the models to workers.
+2021-06-30 19:29:56		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:29:56		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:29:56		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:29:56		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:29:56	Master waits to receive the local models.
+2021-06-30 19:30:13	Master received all local models.
+2021-06-30 19:30:13	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:30:13	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:30:13	No indices to be removed.
+2021-06-30 19:30:13	Master enters the validation phase.
+2021-06-30 19:30:14	The validation performance = {'loss': 2.9056103275299074, 'top1': 33.03, 'top5': 68.09, 'loss2': 0.0}.
+2021-06-30 19:30:14	Best performance of loss             (best comm_round 64.000, current comm_round 67.000): 2.7270020275115967.
+2021-06-30 19:30:14	Best performance of top1             (best comm_round 64.000, current comm_round 67.000): 35.0.
+2021-06-30 19:30:14	Best performance of top5             (best comm_round 64.000, current comm_round 67.000): 69.39.
+2021-06-30 19:30:14	Best performance of loss2             (best comm_round 1.000, current comm_round 67.000): 0.0.
+2021-06-30 19:30:14	Master finished the validation.
+2021-06-30 19:30:14	Master saved to checkpoint.
+2021-06-30 19:30:14	Master finished one round of federated learning.
+
+2021-06-30 19:30:14	Master starting one round of federated learning: (comm_round=68).
+2021-06-30 19:30:14	Master selected 4 from 20 clients: [5, 6, 10, 15].
+2021-06-30 19:30:14	Master activated the selected clients.
+2021-06-30 19:30:14	Master send the models to workers.
+2021-06-30 19:30:14		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:30:14		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:30:14		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:30:14		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:30:14	Master waits to receive the local models.
+2021-06-30 19:30:30	Master received all local models.
+2021-06-30 19:30:30	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:30:30	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:30:30	No indices to be removed.
+2021-06-30 19:30:30	Master enters the validation phase.
+2021-06-30 19:30:32	The validation performance = {'loss': 2.7640297668457032, 'top1': 34.68, 'top5': 69.65, 'loss2': 0.0}.
+2021-06-30 19:30:32	Best performance of loss             (best comm_round 64.000, current comm_round 68.000): 2.7270020275115967.
+2021-06-30 19:30:32	Best performance of top1             (best comm_round 64.000, current comm_round 68.000): 35.0.
+2021-06-30 19:30:32	Best performance of top5             (best comm_round 68.000, current comm_round 68.000): 69.65.
+2021-06-30 19:30:32	Best performance of loss2             (best comm_round 1.000, current comm_round 68.000): 0.0.
+2021-06-30 19:30:32	Master finished the validation.
+2021-06-30 19:30:32	Master saved to checkpoint.
+2021-06-30 19:30:32	Master finished one round of federated learning.
+
+2021-06-30 19:30:32	Master starting one round of federated learning: (comm_round=69).
+2021-06-30 19:30:32	Master selected 4 from 20 clients: [3, 8, 14, 15].
+2021-06-30 19:30:32	Master activated the selected clients.
+2021-06-30 19:30:32	Master send the models to workers.
+2021-06-30 19:30:32		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:30:32		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:30:32		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:30:32		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:30:32	Master waits to receive the local models.
+2021-06-30 19:30:48	Master received all local models.
+2021-06-30 19:30:48	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:30:48	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:30:48	No indices to be removed.
+2021-06-30 19:30:48	Master enters the validation phase.
+2021-06-30 19:30:50	The validation performance = {'loss': 2.9382015727996826, 'top1': 32.93, 'top5': 67.65, 'loss2': 0.0}.
+2021-06-30 19:30:50	Best performance of loss             (best comm_round 64.000, current comm_round 69.000): 2.7270020275115967.
+2021-06-30 19:30:50	Best performance of top1             (best comm_round 64.000, current comm_round 69.000): 35.0.
+2021-06-30 19:30:50	Best performance of top5             (best comm_round 68.000, current comm_round 69.000): 69.65.
+2021-06-30 19:30:50	Best performance of loss2             (best comm_round 1.000, current comm_round 69.000): 0.0.
+2021-06-30 19:30:50	Master finished the validation.
+2021-06-30 19:30:50	Master saved to checkpoint.
+2021-06-30 19:30:50	Master finished one round of federated learning.
+
+2021-06-30 19:30:50	Master starting one round of federated learning: (comm_round=70).
+2021-06-30 19:30:50	Master selected 4 from 20 clients: [9, 12, 14, 20].
+2021-06-30 19:30:50	Master activated the selected clients.
+2021-06-30 19:30:50	Master send the models to workers.
+2021-06-30 19:30:50		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:30:50		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:30:50		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:30:50		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:30:50	Master waits to receive the local models.
+2021-06-30 19:31:06	Master received all local models.
+2021-06-30 19:31:06	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:31:06	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:31:06	No indices to be removed.
+2021-06-30 19:31:06	Master enters the validation phase.
+2021-06-30 19:31:07	The validation performance = {'loss': 2.9817760456085205, 'top1': 33.01, 'top5': 67.19, 'loss2': 0.0}.
+2021-06-30 19:31:07	Best performance of loss             (best comm_round 64.000, current comm_round 70.000): 2.7270020275115967.
+2021-06-30 19:31:07	Best performance of top1             (best comm_round 64.000, current comm_round 70.000): 35.0.
+2021-06-30 19:31:07	Best performance of top5             (best comm_round 68.000, current comm_round 70.000): 69.65.
+2021-06-30 19:31:07	Best performance of loss2             (best comm_round 1.000, current comm_round 70.000): 0.0.
+2021-06-30 19:31:07	Master finished the validation.
+2021-06-30 19:31:07	Master saved to checkpoint.
+2021-06-30 19:31:07	Master finished one round of federated learning.
+
+2021-06-30 19:31:07	Master starting one round of federated learning: (comm_round=71).
+2021-06-30 19:31:07	Master selected 4 from 20 clients: [9, 11, 15, 17].
+2021-06-30 19:31:07	Master activated the selected clients.
+2021-06-30 19:31:07	Master send the models to workers.
+2021-06-30 19:31:07		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:31:07		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:31:07		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:31:08		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:31:08	Master waits to receive the local models.
+2021-06-30 19:31:25	Master received all local models.
+2021-06-30 19:31:25	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:31:25	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:31:25	No indices to be removed.
+2021-06-30 19:31:25	Master enters the validation phase.
+2021-06-30 19:31:26	The validation performance = {'loss': 2.9720850345611574, 'top1': 32.69, 'top5': 66.98, 'loss2': 0.0}.
+2021-06-30 19:31:26	Best performance of loss             (best comm_round 64.000, current comm_round 71.000): 2.7270020275115967.
+2021-06-30 19:31:26	Best performance of top1             (best comm_round 64.000, current comm_round 71.000): 35.0.
+2021-06-30 19:31:26	Best performance of top5             (best comm_round 68.000, current comm_round 71.000): 69.65.
+2021-06-30 19:31:26	Best performance of loss2             (best comm_round 1.000, current comm_round 71.000): 0.0.
+2021-06-30 19:31:26	Master finished the validation.
+2021-06-30 19:31:26	Master saved to checkpoint.
+2021-06-30 19:31:26	Master finished one round of federated learning.
+
+2021-06-30 19:31:26	Master starting one round of federated learning: (comm_round=72).
+2021-06-30 19:31:26	Master selected 4 from 20 clients: [4, 6, 10, 12].
+2021-06-30 19:31:26	Master activated the selected clients.
+2021-06-30 19:31:26	Master send the models to workers.
+2021-06-30 19:31:26		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:31:26		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:31:26		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:31:26		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:31:26	Master waits to receive the local models.
+2021-06-30 19:31:43	Master received all local models.
+2021-06-30 19:31:43	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:31:43	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:31:43	No indices to be removed.
+2021-06-30 19:31:43	Master enters the validation phase.
+2021-06-30 19:31:44	The validation performance = {'loss': 2.8760060176849365, 'top1': 33.02, 'top5': 68.22, 'loss2': 0.0}.
+2021-06-30 19:31:44	Best performance of loss             (best comm_round 64.000, current comm_round 72.000): 2.7270020275115967.
+2021-06-30 19:31:44	Best performance of top1             (best comm_round 64.000, current comm_round 72.000): 35.0.
+2021-06-30 19:31:44	Best performance of top5             (best comm_round 68.000, current comm_round 72.000): 69.65.
+2021-06-30 19:31:44	Best performance of loss2             (best comm_round 1.000, current comm_round 72.000): 0.0.
+2021-06-30 19:31:44	Master finished the validation.
+2021-06-30 19:31:44	Master saved to checkpoint.
+2021-06-30 19:31:44	Master finished one round of federated learning.
+
+2021-06-30 19:31:44	Master starting one round of federated learning: (comm_round=73).
+2021-06-30 19:31:44	Master selected 4 from 20 clients: [1, 3, 5, 10].
+2021-06-30 19:31:44	Master activated the selected clients.
+2021-06-30 19:31:44	Master send the models to workers.
+2021-06-30 19:31:44		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:31:44		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:31:44		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:31:44		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:31:44	Master waits to receive the local models.
+2021-06-30 19:32:01	Master received all local models.
+2021-06-30 19:32:01	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:32:01	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:32:01	No indices to be removed.
+2021-06-30 19:32:01	Master enters the validation phase.
+2021-06-30 19:32:02	The validation performance = {'loss': 2.746623705291748, 'top1': 35.6, 'top5': 69.83, 'loss2': 0.0}.
+2021-06-30 19:32:02	Best performance of loss             (best comm_round 64.000, current comm_round 73.000): 2.7270020275115967.
+2021-06-30 19:32:02	Best performance of top1             (best comm_round 73.000, current comm_round 73.000): 35.6.
+2021-06-30 19:32:02	Best performance of top5             (best comm_round 73.000, current comm_round 73.000): 69.83.
+2021-06-30 19:32:02	Best performance of loss2             (best comm_round 1.000, current comm_round 73.000): 0.0.
+2021-06-30 19:32:02	Master finished the validation.
+2021-06-30 19:32:02	Master saved to checkpoint.
+2021-06-30 19:32:02	Master finished one round of federated learning.
+
+2021-06-30 19:32:02	Master starting one round of federated learning: (comm_round=74).
+2021-06-30 19:32:02	Master selected 4 from 20 clients: [1, 4, 7, 18].
+2021-06-30 19:32:02	Master activated the selected clients.
+2021-06-30 19:32:02	Master send the models to workers.
+2021-06-30 19:32:02		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:32:02		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:32:02		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:32:02		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:32:02	Master waits to receive the local models.
+2021-06-30 19:32:18	Master received all local models.
+2021-06-30 19:32:18	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:32:18	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:32:18	No indices to be removed.
+2021-06-30 19:32:18	Master enters the validation phase.
+2021-06-30 19:32:19	The validation performance = {'loss': 2.722930290222168, 'top1': 35.18, 'top5': 69.59, 'loss2': 0.0}.
+2021-06-30 19:32:19	Best performance of loss             (best comm_round 74.000, current comm_round 74.000): 2.722930290222168.
+2021-06-30 19:32:19	Best performance of top1             (best comm_round 73.000, current comm_round 74.000): 35.6.
+2021-06-30 19:32:19	Best performance of top5             (best comm_round 73.000, current comm_round 74.000): 69.83.
+2021-06-30 19:32:19	Best performance of loss2             (best comm_round 1.000, current comm_round 74.000): 0.0.
+2021-06-30 19:32:19	Master finished the validation.
+2021-06-30 19:32:19	Master saved to checkpoint.
+2021-06-30 19:32:19	Master finished one round of federated learning.
+
+2021-06-30 19:32:19	Master starting one round of federated learning: (comm_round=75).
+2021-06-30 19:32:19	Master selected 4 from 20 clients: [2, 5, 6, 16].
+2021-06-30 19:32:19	Master activated the selected clients.
+2021-06-30 19:32:19	Master send the models to workers.
+2021-06-30 19:32:19		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:32:19		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:32:19		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:32:20		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:32:20	Master waits to receive the local models.
+2021-06-30 19:32:36	Master received all local models.
+2021-06-30 19:32:36	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:32:36	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:32:36	No indices to be removed.
+2021-06-30 19:32:36	Master enters the validation phase.
+2021-06-30 19:32:37	The validation performance = {'loss': 2.63518933429718, 'top1': 36.13, 'top5': 70.43, 'loss2': 0.0}.
+2021-06-30 19:32:37	Best performance of loss             (best comm_round 75.000, current comm_round 75.000): 2.63518933429718.
+2021-06-30 19:32:37	Best performance of top1             (best comm_round 75.000, current comm_round 75.000): 36.13.
+2021-06-30 19:32:37	Best performance of top5             (best comm_round 75.000, current comm_round 75.000): 70.43.
+2021-06-30 19:32:37	Best performance of loss2             (best comm_round 1.000, current comm_round 75.000): 0.0.
+2021-06-30 19:32:37	Master finished the validation.
+2021-06-30 19:32:37	Master saved to checkpoint.
+2021-06-30 19:32:37	Master finished one round of federated learning.
+
+2021-06-30 19:32:37	Master starting one round of federated learning: (comm_round=76).
+2021-06-30 19:32:37	Master selected 4 from 20 clients: [6, 8, 11, 19].
+2021-06-30 19:32:37	Master activated the selected clients.
+2021-06-30 19:32:37	Master send the models to workers.
+2021-06-30 19:32:37		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:32:37		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:32:38		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:32:38		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:32:38	Master waits to receive the local models.
+2021-06-30 19:32:54	Master received all local models.
+2021-06-30 19:32:54	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:32:54	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:32:54	No indices to be removed.
+2021-06-30 19:32:54	Master enters the validation phase.
+2021-06-30 19:32:56	The validation performance = {'loss': 2.6538835248947144, 'top1': 35.66, 'top5': 70.81, 'loss2': 0.0}.
+2021-06-30 19:32:56	Best performance of loss             (best comm_round 75.000, current comm_round 76.000): 2.63518933429718.
+2021-06-30 19:32:56	Best performance of top1             (best comm_round 75.000, current comm_round 76.000): 36.13.
+2021-06-30 19:32:56	Best performance of top5             (best comm_round 76.000, current comm_round 76.000): 70.81.
+2021-06-30 19:32:56	Best performance of loss2             (best comm_round 1.000, current comm_round 76.000): 0.0.
+2021-06-30 19:32:56	Master finished the validation.
+2021-06-30 19:32:56	Master saved to checkpoint.
+2021-06-30 19:32:56	Master finished one round of federated learning.
+
+2021-06-30 19:32:56	Master starting one round of federated learning: (comm_round=77).
+2021-06-30 19:32:56	Master selected 4 from 20 clients: [1, 2, 9, 19].
+2021-06-30 19:32:56	Master activated the selected clients.
+2021-06-30 19:32:56	Master send the models to workers.
+2021-06-30 19:32:56		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:32:56		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:32:56		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:32:56		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:32:56	Master waits to receive the local models.
+2021-06-30 19:33:13	Master received all local models.
+2021-06-30 19:33:13	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:33:13	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:33:13	No indices to be removed.
+2021-06-30 19:33:13	Master enters the validation phase.
+2021-06-30 19:33:14	The validation performance = {'loss': 2.6804021961212157, 'top1': 36.62, 'top5': 70.18, 'loss2': 0.0}.
+2021-06-30 19:33:14	Best performance of loss             (best comm_round 75.000, current comm_round 77.000): 2.63518933429718.
+2021-06-30 19:33:14	Best performance of top1             (best comm_round 77.000, current comm_round 77.000): 36.62.
+2021-06-30 19:33:14	Best performance of top5             (best comm_round 76.000, current comm_round 77.000): 70.81.
+2021-06-30 19:33:14	Best performance of loss2             (best comm_round 1.000, current comm_round 77.000): 0.0.
+2021-06-30 19:33:14	Master finished the validation.
+2021-06-30 19:33:14	Master saved to checkpoint.
+2021-06-30 19:33:14	Master finished one round of federated learning.
+
+2021-06-30 19:33:14	Master starting one round of federated learning: (comm_round=78).
+2021-06-30 19:33:14	Master selected 4 from 20 clients: [2, 12, 14, 18].
+2021-06-30 19:33:14	Master activated the selected clients.
+2021-06-30 19:33:14	Master send the models to workers.
+2021-06-30 19:33:14		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:33:14		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:33:14		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:33:14		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:33:15	Master waits to receive the local models.
+2021-06-30 19:33:31	Master received all local models.
+2021-06-30 19:33:31	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:33:31	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:33:31	No indices to be removed.
+2021-06-30 19:33:31	Master enters the validation phase.
+2021-06-30 19:33:32	The validation performance = {'loss': 2.8443265605926515, 'top1': 34.43, 'top5': 69.21, 'loss2': 0.0}.
+2021-06-30 19:33:32	Best performance of loss             (best comm_round 75.000, current comm_round 78.000): 2.63518933429718.
+2021-06-30 19:33:32	Best performance of top1             (best comm_round 77.000, current comm_round 78.000): 36.62.
+2021-06-30 19:33:32	Best performance of top5             (best comm_round 76.000, current comm_round 78.000): 70.81.
+2021-06-30 19:33:32	Best performance of loss2             (best comm_round 1.000, current comm_round 78.000): 0.0.
+2021-06-30 19:33:32	Master finished the validation.
+2021-06-30 19:33:32	Master saved to checkpoint.
+2021-06-30 19:33:32	Master finished one round of federated learning.
+
+2021-06-30 19:33:32	Master starting one round of federated learning: (comm_round=79).
+2021-06-30 19:33:32	Master selected 4 from 20 clients: [7, 11, 14, 17].
+2021-06-30 19:33:32	Master activated the selected clients.
+2021-06-30 19:33:32	Master send the models to workers.
+2021-06-30 19:33:32		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:33:32		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:33:32		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:33:32		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:33:33	Master waits to receive the local models.
+2021-06-30 19:33:49	Master received all local models.
+2021-06-30 19:33:49	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:33:49	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:33:49	No indices to be removed.
+2021-06-30 19:33:49	Master enters the validation phase.
+2021-06-30 19:33:51	The validation performance = {'loss': 2.7385611068725586, 'top1': 34.67, 'top5': 70.09, 'loss2': 0.0}.
+2021-06-30 19:33:51	Best performance of loss             (best comm_round 75.000, current comm_round 79.000): 2.63518933429718.
+2021-06-30 19:33:51	Best performance of top1             (best comm_round 77.000, current comm_round 79.000): 36.62.
+2021-06-30 19:33:51	Best performance of top5             (best comm_round 76.000, current comm_round 79.000): 70.81.
+2021-06-30 19:33:51	Best performance of loss2             (best comm_round 1.000, current comm_round 79.000): 0.0.
+2021-06-30 19:33:51	Master finished the validation.
+2021-06-30 19:33:51	Master saved to checkpoint.
+2021-06-30 19:33:51	Master finished one round of federated learning.
+
+2021-06-30 19:33:51	Master starting one round of federated learning: (comm_round=80).
+2021-06-30 19:33:51	Master selected 4 from 20 clients: [1, 7, 13, 17].
+2021-06-30 19:33:51	Master activated the selected clients.
+2021-06-30 19:33:51	Master send the models to workers.
+2021-06-30 19:33:51		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:33:51		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:33:51		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:33:51		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:33:51	Master waits to receive the local models.
+2021-06-30 19:34:07	Master received all local models.
+2021-06-30 19:34:07	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:34:07	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:34:07	No indices to be removed.
+2021-06-30 19:34:07	Master enters the validation phase.
+2021-06-30 19:34:08	The validation performance = {'loss': 2.8328615016937255, 'top1': 34.31, 'top5': 68.58, 'loss2': 0.0}.
+2021-06-30 19:34:08	Best performance of loss             (best comm_round 75.000, current comm_round 80.000): 2.63518933429718.
+2021-06-30 19:34:08	Best performance of top1             (best comm_round 77.000, current comm_round 80.000): 36.62.
+2021-06-30 19:34:08	Best performance of top5             (best comm_round 76.000, current comm_round 80.000): 70.81.
+2021-06-30 19:34:08	Best performance of loss2             (best comm_round 1.000, current comm_round 80.000): 0.0.
+2021-06-30 19:34:08	Master finished the validation.
+2021-06-30 19:34:08	Master saved to checkpoint.
+2021-06-30 19:34:08	Master finished one round of federated learning.
+
+2021-06-30 19:34:08	Master starting one round of federated learning: (comm_round=81).
+2021-06-30 19:34:08	Master selected 4 from 20 clients: [4, 8, 11, 12].
+2021-06-30 19:34:08	Master activated the selected clients.
+2021-06-30 19:34:08	Master send the models to workers.
+2021-06-30 19:34:08		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:34:08		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:34:09		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:34:09		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:34:09	Master waits to receive the local models.
+2021-06-30 19:34:25	Master received all local models.
+2021-06-30 19:34:25	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:34:25	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:34:25	No indices to be removed.
+2021-06-30 19:34:25	Master enters the validation phase.
+2021-06-30 19:34:26	The validation performance = {'loss': 2.696162112045288, 'top1': 35.5, 'top5': 69.67, 'loss2': 0.0}.
+2021-06-30 19:34:26	Best performance of loss             (best comm_round 75.000, current comm_round 81.000): 2.63518933429718.
+2021-06-30 19:34:26	Best performance of top1             (best comm_round 77.000, current comm_round 81.000): 36.62.
+2021-06-30 19:34:26	Best performance of top5             (best comm_round 76.000, current comm_round 81.000): 70.81.
+2021-06-30 19:34:26	Best performance of loss2             (best comm_round 1.000, current comm_round 81.000): 0.0.
+2021-06-30 19:34:26	Master finished the validation.
+2021-06-30 19:34:26	Master saved to checkpoint.
+2021-06-30 19:34:26	Master finished one round of federated learning.
+
+2021-06-30 19:34:26	Master starting one round of federated learning: (comm_round=82).
+2021-06-30 19:34:26	Master selected 4 from 20 clients: [15, 16, 18, 20].
+2021-06-30 19:34:26	Master activated the selected clients.
+2021-06-30 19:34:26	Master send the models to workers.
+2021-06-30 19:34:26		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:34:26		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:34:26		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:34:26		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:34:27	Master waits to receive the local models.
+2021-06-30 19:34:43	Master received all local models.
+2021-06-30 19:34:43	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:34:43	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:34:43	No indices to be removed.
+2021-06-30 19:34:43	Master enters the validation phase.
+2021-06-30 19:34:44	The validation performance = {'loss': 2.599870203399658, 'top1': 36.08, 'top5': 71.3, 'loss2': 0.0}.
+2021-06-30 19:34:44	Best performance of loss             (best comm_round 82.000, current comm_round 82.000): 2.599870203399658.
+2021-06-30 19:34:44	Best performance of top1             (best comm_round 77.000, current comm_round 82.000): 36.62.
+2021-06-30 19:34:44	Best performance of top5             (best comm_round 82.000, current comm_round 82.000): 71.3.
+2021-06-30 19:34:44	Best performance of loss2             (best comm_round 1.000, current comm_round 82.000): 0.0.
+2021-06-30 19:34:44	Master finished the validation.
+2021-06-30 19:34:44	Master saved to checkpoint.
+2021-06-30 19:34:44	Master finished one round of federated learning.
+
+2021-06-30 19:34:44	Master starting one round of federated learning: (comm_round=83).
+2021-06-30 19:34:44	Master selected 4 from 20 clients: [7, 10, 12, 17].
+2021-06-30 19:34:44	Master activated the selected clients.
+2021-06-30 19:34:44	Master send the models to workers.
+2021-06-30 19:34:44		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:34:44		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:34:44		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:34:44		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:34:45	Master waits to receive the local models.
+2021-06-30 19:35:01	Master received all local models.
+2021-06-30 19:35:01	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:35:01	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:35:01	No indices to be removed.
+2021-06-30 19:35:01	Master enters the validation phase.
+2021-06-30 19:35:02	The validation performance = {'loss': 2.7205689430236815, 'top1': 35.29, 'top5': 70.31, 'loss2': 0.0}.
+2021-06-30 19:35:02	Best performance of loss             (best comm_round 82.000, current comm_round 83.000): 2.599870203399658.
+2021-06-30 19:35:02	Best performance of top1             (best comm_round 77.000, current comm_round 83.000): 36.62.
+2021-06-30 19:35:02	Best performance of top5             (best comm_round 82.000, current comm_round 83.000): 71.3.
+2021-06-30 19:35:02	Best performance of loss2             (best comm_round 1.000, current comm_round 83.000): 0.0.
+2021-06-30 19:35:02	Master finished the validation.
+2021-06-30 19:35:02	Master saved to checkpoint.
+2021-06-30 19:35:02	Master finished one round of federated learning.
+
+2021-06-30 19:35:02	Master starting one round of federated learning: (comm_round=84).
+2021-06-30 19:35:02	Master selected 4 from 20 clients: [5, 16, 18, 19].
+2021-06-30 19:35:02	Master activated the selected clients.
+2021-06-30 19:35:02	Master send the models to workers.
+2021-06-30 19:35:02		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:35:02		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:35:02		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:35:02		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:35:02	Master waits to receive the local models.
+2021-06-30 19:35:19	Master received all local models.
+2021-06-30 19:35:19	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:35:19	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:35:19	No indices to be removed.
+2021-06-30 19:35:19	Master enters the validation phase.
+2021-06-30 19:35:20	The validation performance = {'loss': 2.7347527645111085, 'top1': 35.32, 'top5': 70.0, 'loss2': 0.0}.
+2021-06-30 19:35:20	Best performance of loss             (best comm_round 82.000, current comm_round 84.000): 2.599870203399658.
+2021-06-30 19:35:20	Best performance of top1             (best comm_round 77.000, current comm_round 84.000): 36.62.
+2021-06-30 19:35:20	Best performance of top5             (best comm_round 82.000, current comm_round 84.000): 71.3.
+2021-06-30 19:35:20	Best performance of loss2             (best comm_round 1.000, current comm_round 84.000): 0.0.
+2021-06-30 19:35:20	Master finished the validation.
+2021-06-30 19:35:20	Master saved to checkpoint.
+2021-06-30 19:35:20	Master finished one round of federated learning.
+
+2021-06-30 19:35:20	Master starting one round of federated learning: (comm_round=85).
+2021-06-30 19:35:20	Master selected 4 from 20 clients: [5, 7, 13, 15].
+2021-06-30 19:35:20	Master activated the selected clients.
+2021-06-30 19:35:20	Master send the models to workers.
+2021-06-30 19:35:20		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:35:20		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:35:20		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:35:20		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:35:21	Master waits to receive the local models.
+2021-06-30 19:35:37	Master received all local models.
+2021-06-30 19:35:37	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:35:37	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:35:37	No indices to be removed.
+2021-06-30 19:35:37	Master enters the validation phase.
+2021-06-30 19:35:38	The validation performance = {'loss': 2.8292045314788816, 'top1': 34.64, 'top5': 69.38, 'loss2': 0.0}.
+2021-06-30 19:35:38	Best performance of loss             (best comm_round 82.000, current comm_round 85.000): 2.599870203399658.
+2021-06-30 19:35:38	Best performance of top1             (best comm_round 77.000, current comm_round 85.000): 36.62.
+2021-06-30 19:35:38	Best performance of top5             (best comm_round 82.000, current comm_round 85.000): 71.3.
+2021-06-30 19:35:38	Best performance of loss2             (best comm_round 1.000, current comm_round 85.000): 0.0.
+2021-06-30 19:35:38	Master finished the validation.
+2021-06-30 19:35:38	Master saved to checkpoint.
+2021-06-30 19:35:38	Master finished one round of federated learning.
+
+2021-06-30 19:35:38	Master starting one round of federated learning: (comm_round=86).
+2021-06-30 19:35:38	Master selected 4 from 20 clients: [8, 10, 13, 14].
+2021-06-30 19:35:38	Master activated the selected clients.
+2021-06-30 19:35:38	Master send the models to workers.
+2021-06-30 19:35:38		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:35:38		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:35:38		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:35:38		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:35:38	Master waits to receive the local models.
+2021-06-30 19:35:54	Master received all local models.
+2021-06-30 19:35:54	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:35:54	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:35:54	No indices to be removed.
+2021-06-30 19:35:55	Master enters the validation phase.
+2021-06-30 19:35:56	The validation performance = {'loss': 2.986459981536865, 'top1': 33.03, 'top5': 68.17, 'loss2': 0.0}.
+2021-06-30 19:35:56	Best performance of loss             (best comm_round 82.000, current comm_round 86.000): 2.599870203399658.
+2021-06-30 19:35:56	Best performance of top1             (best comm_round 77.000, current comm_round 86.000): 36.62.
+2021-06-30 19:35:56	Best performance of top5             (best comm_round 82.000, current comm_round 86.000): 71.3.
+2021-06-30 19:35:56	Best performance of loss2             (best comm_round 1.000, current comm_round 86.000): 0.0.
+2021-06-30 19:35:56	Master finished the validation.
+2021-06-30 19:35:56	Master saved to checkpoint.
+2021-06-30 19:35:56	Master finished one round of federated learning.
+
+2021-06-30 19:35:56	Master starting one round of federated learning: (comm_round=87).
+2021-06-30 19:35:56	Master selected 4 from 20 clients: [4, 13, 14, 15].
+2021-06-30 19:35:56	Master activated the selected clients.
+2021-06-30 19:35:56	Master send the models to workers.
+2021-06-30 19:35:56		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:35:56		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:35:56		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:35:56		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:35:56	Master waits to receive the local models.
+2021-06-30 19:36:12	Master received all local models.
+2021-06-30 19:36:12	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:36:12	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:36:12	No indices to be removed.
+2021-06-30 19:36:12	Master enters the validation phase.
+2021-06-30 19:36:14	The validation performance = {'loss': 2.999239134979248, 'top1': 32.69, 'top5': 67.65, 'loss2': 0.0}.
+2021-06-30 19:36:14	Best performance of loss             (best comm_round 82.000, current comm_round 87.000): 2.599870203399658.
+2021-06-30 19:36:14	Best performance of top1             (best comm_round 77.000, current comm_round 87.000): 36.62.
+2021-06-30 19:36:14	Best performance of top5             (best comm_round 82.000, current comm_round 87.000): 71.3.
+2021-06-30 19:36:14	Best performance of loss2             (best comm_round 1.000, current comm_round 87.000): 0.0.
+2021-06-30 19:36:14	Master finished the validation.
+2021-06-30 19:36:14	Master saved to checkpoint.
+2021-06-30 19:36:14	Master finished one round of federated learning.
+
+2021-06-30 19:36:14	Master starting one round of federated learning: (comm_round=88).
+2021-06-30 19:36:14	Master selected 4 from 20 clients: [1, 12, 14, 15].
+2021-06-30 19:36:14	Master activated the selected clients.
+2021-06-30 19:36:14	Master send the models to workers.
+2021-06-30 19:36:14		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:36:14		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:36:14		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:36:14		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:36:14	Master waits to receive the local models.
+2021-06-30 19:36:31	Master received all local models.
+2021-06-30 19:36:31	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:36:31	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:36:31	No indices to be removed.
+2021-06-30 19:36:31	Master enters the validation phase.
+2021-06-30 19:36:33	The validation performance = {'loss': 2.962087798309326, 'top1': 33.08, 'top5': 68.22, 'loss2': 0.0}.
+2021-06-30 19:36:33	Best performance of loss             (best comm_round 82.000, current comm_round 88.000): 2.599870203399658.
+2021-06-30 19:36:33	Best performance of top1             (best comm_round 77.000, current comm_round 88.000): 36.62.
+2021-06-30 19:36:33	Best performance of top5             (best comm_round 82.000, current comm_round 88.000): 71.3.
+2021-06-30 19:36:33	Best performance of loss2             (best comm_round 1.000, current comm_round 88.000): 0.0.
+2021-06-30 19:36:33	Master finished the validation.
+2021-06-30 19:36:33	Master saved to checkpoint.
+2021-06-30 19:36:33	Master finished one round of federated learning.
+
+2021-06-30 19:36:33	Master starting one round of federated learning: (comm_round=89).
+2021-06-30 19:36:33	Master selected 4 from 20 clients: [5, 6, 8, 17].
+2021-06-30 19:36:33	Master activated the selected clients.
+2021-06-30 19:36:33	Master send the models to workers.
+2021-06-30 19:36:33		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:36:33		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:36:33		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:36:33		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:36:33	Master waits to receive the local models.
+2021-06-30 19:36:51	Master received all local models.
+2021-06-30 19:36:51	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:36:51	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:36:51	No indices to be removed.
+2021-06-30 19:36:51	Master enters the validation phase.
+2021-06-30 19:36:52	The validation performance = {'loss': 2.849464358139038, 'top1': 34.2, 'top5': 68.77, 'loss2': 0.0}.
+2021-06-30 19:36:52	Best performance of loss             (best comm_round 82.000, current comm_round 89.000): 2.599870203399658.
+2021-06-30 19:36:52	Best performance of top1             (best comm_round 77.000, current comm_round 89.000): 36.62.
+2021-06-30 19:36:52	Best performance of top5             (best comm_round 82.000, current comm_round 89.000): 71.3.
+2021-06-30 19:36:52	Best performance of loss2             (best comm_round 1.000, current comm_round 89.000): 0.0.
+2021-06-30 19:36:52	Master finished the validation.
+2021-06-30 19:36:52	Master saved to checkpoint.
+2021-06-30 19:36:52	Master finished one round of federated learning.
+
+2021-06-30 19:36:52	Master starting one round of federated learning: (comm_round=90).
+2021-06-30 19:36:52	Master selected 4 from 20 clients: [1, 3, 15, 18].
+2021-06-30 19:36:52	Master activated the selected clients.
+2021-06-30 19:36:52	Master send the models to workers.
+2021-06-30 19:36:52		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:36:52		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:36:52		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:36:52		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:36:52	Master waits to receive the local models.
+2021-06-30 19:37:09	Master received all local models.
+2021-06-30 19:37:09	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:37:09	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:37:09	No indices to be removed.
+2021-06-30 19:37:09	Master enters the validation phase.
+2021-06-30 19:37:11	The validation performance = {'loss': 2.888625079345703, 'top1': 34.27, 'top5': 69.13, 'loss2': 0.0}.
+2021-06-30 19:37:11	Best performance of loss             (best comm_round 82.000, current comm_round 90.000): 2.599870203399658.
+2021-06-30 19:37:11	Best performance of top1             (best comm_round 77.000, current comm_round 90.000): 36.62.
+2021-06-30 19:37:11	Best performance of top5             (best comm_round 82.000, current comm_round 90.000): 71.3.
+2021-06-30 19:37:11	Best performance of loss2             (best comm_round 1.000, current comm_round 90.000): 0.0.
+2021-06-30 19:37:11	Master finished the validation.
+2021-06-30 19:37:11	Master saved to checkpoint.
+2021-06-30 19:37:11	Master finished one round of federated learning.
+
+2021-06-30 19:37:11	Master starting one round of federated learning: (comm_round=91).
+2021-06-30 19:37:11	Master selected 4 from 20 clients: [3, 6, 8, 16].
+2021-06-30 19:37:11	Master activated the selected clients.
+2021-06-30 19:37:11	Master send the models to workers.
+2021-06-30 19:37:11		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:37:11		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:37:11		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:37:11		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:37:11	Master waits to receive the local models.
+2021-06-30 19:37:29	Master received all local models.
+2021-06-30 19:37:29	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:37:29	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:37:29	No indices to be removed.
+2021-06-30 19:37:29	Master enters the validation phase.
+2021-06-30 19:37:31	The validation performance = {'loss': 3.097232034301758, 'top1': 32.74, 'top5': 66.49, 'loss2': 0.0}.
+2021-06-30 19:37:31	Best performance of loss             (best comm_round 82.000, current comm_round 91.000): 2.599870203399658.
+2021-06-30 19:37:31	Best performance of top1             (best comm_round 77.000, current comm_round 91.000): 36.62.
+2021-06-30 19:37:31	Best performance of top5             (best comm_round 82.000, current comm_round 91.000): 71.3.
+2021-06-30 19:37:31	Best performance of loss2             (best comm_round 1.000, current comm_round 91.000): 0.0.
+2021-06-30 19:37:31	Master finished the validation.
+2021-06-30 19:37:31	Master saved to checkpoint.
+2021-06-30 19:37:31	Master finished one round of federated learning.
+
+2021-06-30 19:37:31	Master starting one round of federated learning: (comm_round=92).
+2021-06-30 19:37:31	Master selected 4 from 20 clients: [5, 8, 17, 18].
+2021-06-30 19:37:31	Master activated the selected clients.
+2021-06-30 19:37:31	Master send the models to workers.
+2021-06-30 19:37:31		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:37:31		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:37:31		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:37:31		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:37:31	Master waits to receive the local models.
+2021-06-30 19:37:48	Master received all local models.
+2021-06-30 19:37:48	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:37:48	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:37:48	No indices to be removed.
+2021-06-30 19:37:48	Master enters the validation phase.
+2021-06-30 19:37:50	The validation performance = {'loss': 3.1510425689697263, 'top1': 32.73, 'top5': 66.73, 'loss2': 0.0}.
+2021-06-30 19:37:50	Best performance of loss             (best comm_round 82.000, current comm_round 92.000): 2.599870203399658.
+2021-06-30 19:37:50	Best performance of top1             (best comm_round 77.000, current comm_round 92.000): 36.62.
+2021-06-30 19:37:50	Best performance of top5             (best comm_round 82.000, current comm_round 92.000): 71.3.
+2021-06-30 19:37:50	Best performance of loss2             (best comm_round 1.000, current comm_round 92.000): 0.0.
+2021-06-30 19:37:50	Master finished the validation.
+2021-06-30 19:37:50	Master saved to checkpoint.
+2021-06-30 19:37:50	Master finished one round of federated learning.
+
+2021-06-30 19:37:50	Master starting one round of federated learning: (comm_round=93).
+2021-06-30 19:37:50	Master selected 4 from 20 clients: [4, 10, 12, 19].
+2021-06-30 19:37:50	Master activated the selected clients.
+2021-06-30 19:37:50	Master send the models to workers.
+2021-06-30 19:37:50		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:37:50		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:37:50		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:37:50		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:37:50	Master waits to receive the local models.
+2021-06-30 19:38:08	Master received all local models.
+2021-06-30 19:38:08	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:38:08	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:38:08	No indices to be removed.
+2021-06-30 19:38:08	Master enters the validation phase.
+2021-06-30 19:38:09	The validation performance = {'loss': 2.6822992473602296, 'top1': 36.15, 'top5': 70.94, 'loss2': 0.0}.
+2021-06-30 19:38:09	Best performance of loss             (best comm_round 82.000, current comm_round 93.000): 2.599870203399658.
+2021-06-30 19:38:09	Best performance of top1             (best comm_round 77.000, current comm_round 93.000): 36.62.
+2021-06-30 19:38:09	Best performance of top5             (best comm_round 82.000, current comm_round 93.000): 71.3.
+2021-06-30 19:38:09	Best performance of loss2             (best comm_round 1.000, current comm_round 93.000): 0.0.
+2021-06-30 19:38:09	Master finished the validation.
+2021-06-30 19:38:09	Master saved to checkpoint.
+2021-06-30 19:38:09	Master finished one round of federated learning.
+
+2021-06-30 19:38:09	Master starting one round of federated learning: (comm_round=94).
+2021-06-30 19:38:09	Master selected 4 from 20 clients: [6, 9, 12, 20].
+2021-06-30 19:38:09	Master activated the selected clients.
+2021-06-30 19:38:10	Master send the models to workers.
+2021-06-30 19:38:10		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:38:10		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:38:10		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:38:10		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:38:10	Master waits to receive the local models.
+2021-06-30 19:38:27	Master received all local models.
+2021-06-30 19:38:27	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:38:27	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:38:27	No indices to be removed.
+2021-06-30 19:38:27	Master enters the validation phase.
+2021-06-30 19:38:28	The validation performance = {'loss': 2.831352656173706, 'top1': 34.57, 'top5': 69.87, 'loss2': 0.0}.
+2021-06-30 19:38:28	Best performance of loss             (best comm_round 82.000, current comm_round 94.000): 2.599870203399658.
+2021-06-30 19:38:28	Best performance of top1             (best comm_round 77.000, current comm_round 94.000): 36.62.
+2021-06-30 19:38:28	Best performance of top5             (best comm_round 82.000, current comm_round 94.000): 71.3.
+2021-06-30 19:38:28	Best performance of loss2             (best comm_round 1.000, current comm_round 94.000): 0.0.
+2021-06-30 19:38:28	Master finished the validation.
+2021-06-30 19:38:28	Master saved to checkpoint.
+2021-06-30 19:38:28	Master finished one round of federated learning.
+
+2021-06-30 19:38:28	Master starting one round of federated learning: (comm_round=95).
+2021-06-30 19:38:28	Master selected 4 from 20 clients: [1, 6, 12, 16].
+2021-06-30 19:38:28	Master activated the selected clients.
+2021-06-30 19:38:28	Master send the models to workers.
+2021-06-30 19:38:28		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:38:29		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:38:29		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:38:29		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:38:29	Master waits to receive the local models.
+2021-06-30 19:38:47	Master received all local models.
+2021-06-30 19:38:47	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:38:47	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:38:47	No indices to be removed.
+2021-06-30 19:38:47	Master enters the validation phase.
+2021-06-30 19:38:48	The validation performance = {'loss': 3.0133962615966796, 'top1': 32.02, 'top5': 67.77, 'loss2': 0.0}.
+2021-06-30 19:38:48	Best performance of loss             (best comm_round 82.000, current comm_round 95.000): 2.599870203399658.
+2021-06-30 19:38:48	Best performance of top1             (best comm_round 77.000, current comm_round 95.000): 36.62.
+2021-06-30 19:38:48	Best performance of top5             (best comm_round 82.000, current comm_round 95.000): 71.3.
+2021-06-30 19:38:48	Best performance of loss2             (best comm_round 1.000, current comm_round 95.000): 0.0.
+2021-06-30 19:38:48	Master finished the validation.
+2021-06-30 19:38:48	Master saved to checkpoint.
+2021-06-30 19:38:48	Master finished one round of federated learning.
+
+2021-06-30 19:38:48	Master starting one round of federated learning: (comm_round=96).
+2021-06-30 19:38:48	Master selected 4 from 20 clients: [1, 2, 3, 16].
+2021-06-30 19:38:48	Master activated the selected clients.
+2021-06-30 19:38:48	Master send the models to workers.
+2021-06-30 19:38:48		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:38:48		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:38:48		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:38:48		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:38:49	Master waits to receive the local models.
+2021-06-30 19:39:06	Master received all local models.
+2021-06-30 19:39:06	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:39:06	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:39:06	No indices to be removed.
+2021-06-30 19:39:06	Master enters the validation phase.
+2021-06-30 19:39:07	The validation performance = {'loss': 2.902219976425171, 'top1': 34.48, 'top5': 68.48, 'loss2': 0.0}.
+2021-06-30 19:39:07	Best performance of loss             (best comm_round 82.000, current comm_round 96.000): 2.599870203399658.
+2021-06-30 19:39:07	Best performance of top1             (best comm_round 77.000, current comm_round 96.000): 36.62.
+2021-06-30 19:39:07	Best performance of top5             (best comm_round 82.000, current comm_round 96.000): 71.3.
+2021-06-30 19:39:07	Best performance of loss2             (best comm_round 1.000, current comm_round 96.000): 0.0.
+2021-06-30 19:39:07	Master finished the validation.
+2021-06-30 19:39:07	Master saved to checkpoint.
+2021-06-30 19:39:07	Master finished one round of federated learning.
+
+2021-06-30 19:39:07	Master starting one round of federated learning: (comm_round=97).
+2021-06-30 19:39:07	Master selected 4 from 20 clients: [9, 11, 12, 16].
+2021-06-30 19:39:07	Master activated the selected clients.
+2021-06-30 19:39:07	Master send the models to workers.
+2021-06-30 19:39:07		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:39:07		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:39:07		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:39:07		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:39:07	Master waits to receive the local models.
+2021-06-30 19:39:25	Master received all local models.
+2021-06-30 19:39:25	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:39:25	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:39:25	No indices to be removed.
+2021-06-30 19:39:25	Master enters the validation phase.
+2021-06-30 19:39:27	The validation performance = {'loss': 2.9190290161132815, 'top1': 34.03, 'top5': 67.97, 'loss2': 0.0}.
+2021-06-30 19:39:27	Best performance of loss             (best comm_round 82.000, current comm_round 97.000): 2.599870203399658.
+2021-06-30 19:39:27	Best performance of top1             (best comm_round 77.000, current comm_round 97.000): 36.62.
+2021-06-30 19:39:27	Best performance of top5             (best comm_round 82.000, current comm_round 97.000): 71.3.
+2021-06-30 19:39:27	Best performance of loss2             (best comm_round 1.000, current comm_round 97.000): 0.0.
+2021-06-30 19:39:27	Master finished the validation.
+2021-06-30 19:39:27	Master saved to checkpoint.
+2021-06-30 19:39:27	Master finished one round of federated learning.
+
+2021-06-30 19:39:27	Master starting one round of federated learning: (comm_round=98).
+2021-06-30 19:39:27	Master selected 4 from 20 clients: [4, 6, 14, 19].
+2021-06-30 19:39:27	Master activated the selected clients.
+2021-06-30 19:39:27	Master send the models to workers.
+2021-06-30 19:39:27		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:39:27		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:39:27		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:39:27		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:39:27	Master waits to receive the local models.
+2021-06-30 19:39:44	Master received all local models.
+2021-06-30 19:39:44	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:39:44	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:39:44	No indices to be removed.
+2021-06-30 19:39:44	Master enters the validation phase.
+2021-06-30 19:39:46	The validation performance = {'loss': 2.785487149810791, 'top1': 35.5, 'top5': 69.38, 'loss2': 0.0}.
+2021-06-30 19:39:46	Best performance of loss             (best comm_round 82.000, current comm_round 98.000): 2.599870203399658.
+2021-06-30 19:39:46	Best performance of top1             (best comm_round 77.000, current comm_round 98.000): 36.62.
+2021-06-30 19:39:46	Best performance of top5             (best comm_round 82.000, current comm_round 98.000): 71.3.
+2021-06-30 19:39:46	Best performance of loss2             (best comm_round 1.000, current comm_round 98.000): 0.0.
+2021-06-30 19:39:46	Master finished the validation.
+2021-06-30 19:39:46	Master saved to checkpoint.
+2021-06-30 19:39:46	Master finished one round of federated learning.
+
+2021-06-30 19:39:46	Master starting one round of federated learning: (comm_round=99).
+2021-06-30 19:39:46	Master selected 4 from 20 clients: [5, 8, 10, 13].
+2021-06-30 19:39:46	Master activated the selected clients.
+2021-06-30 19:39:46	Master send the models to workers.
+2021-06-30 19:39:46		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:39:46		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:39:46		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:39:47		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:39:47	Master waits to receive the local models.
+2021-06-30 19:40:04	Master received all local models.
+2021-06-30 19:40:04	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:40:04	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:40:04	No indices to be removed.
+2021-06-30 19:40:04	Master enters the validation phase.
+2021-06-30 19:40:05	The validation performance = {'loss': 2.7102549667358398, 'top1': 35.54, 'top5': 70.86, 'loss2': 0.0}.
+2021-06-30 19:40:05	Best performance of loss             (best comm_round 82.000, current comm_round 99.000): 2.599870203399658.
+2021-06-30 19:40:05	Best performance of top1             (best comm_round 77.000, current comm_round 99.000): 36.62.
+2021-06-30 19:40:05	Best performance of top5             (best comm_round 82.000, current comm_round 99.000): 71.3.
+2021-06-30 19:40:05	Best performance of loss2             (best comm_round 1.000, current comm_round 99.000): 0.0.
+2021-06-30 19:40:05	Master finished the validation.
+2021-06-30 19:40:05	Master saved to checkpoint.
+2021-06-30 19:40:05	Master finished one round of federated learning.
+
+2021-06-30 19:40:05	Master starting one round of federated learning: (comm_round=100).
+2021-06-30 19:40:05	Master selected 4 from 20 clients: [8, 13, 14, 15].
+2021-06-30 19:40:05	Master activated the selected clients.
+2021-06-30 19:40:05	Master send the models to workers.
+2021-06-30 19:40:05		Master send the current model=resnet8 to process_id=1.
+2021-06-30 19:40:05		Master send the current model=resnet8 to process_id=2.
+2021-06-30 19:40:05		Master send the current model=resnet8 to process_id=3.
+2021-06-30 19:40:05		Master send the current model=resnet8 to process_id=4.
+2021-06-30 19:40:06	Master waits to receive the local models.
+2021-06-30 19:40:24	Master received all local models.
+2021-06-30 19:40:24	Master uniformly average over 4 received models (resnet8).
+2021-06-30 19:40:24	Aggregator via _s1_federated_average: scheme={"scheme": "federated_average"}
+2021-06-30 19:40:24	No indices to be removed.
+2021-06-30 19:40:24	Master enters the validation phase.
+2021-06-30 19:40:25	The validation performance = {'loss': 2.937097455596924, 'top1': 33.79, 'top5': 68.81, 'loss2': 0.0}.
+2021-06-30 19:40:25	Best performance of loss             (best comm_round 82.000, current comm_round 100.000): 2.599870203399658.
+2021-06-30 19:40:25	Best performance of top1             (best comm_round 77.000, current comm_round 100.000): 36.62.
+2021-06-30 19:40:25	Best performance of top5             (best comm_round 82.000, current comm_round 100.000): 71.3.
+2021-06-30 19:40:25	Best performance of loss2             (best comm_round 1.000, current comm_round 100.000): 0.0.
+2021-06-30 19:40:25	Master finished the validation.
+2021-06-30 19:40:25	Master saved to checkpoint.
+2021-06-30 19:40:25	Master finished one round of federated learning.
+
+2021-06-30 19:40:25	Master finished the federated learning.
