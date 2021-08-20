@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 import copy
 import time
+
 import numpy as np
 import torch
+import torch.distributed as dist
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.distributed as dist
 
-import pcode.local_training.compressor as compressor
-import pcode.local_training.random_reinit as random_reinit
-import pcode.datasets.mixup_data as mixup
-import pcode.create_model as create_model
 import pcode.create_dataset as create_dataset
+import pcode.create_metrics as create_metrics
+import pcode.create_model as create_model
 import pcode.create_optimizer as create_optimizer
 import pcode.create_scheduler as create_scheduler
-import pcode.create_metrics as create_metrics
-from pcode.utils.tensor_buffer import TensorBuffer
-from pcode.utils.logging import display_training_stat
-from pcode.utils.timer import Timer
-from pcode.utils.stat_tracker import RuntimeTracker, LogitTracker
+import pcode.datasets.mixup_data as mixup
+import pcode.local_training.compressor as compressor
 from pcode.models.generator import Generator
-
+from pcode.utils.logging import display_training_stat
+from pcode.utils.stat_tracker import RuntimeTracker, LogitTracker
+from pcode.utils.tensor_buffer import TensorBuffer
+from pcode.utils.timer import Timer
 from pruneagent import PruneAgent
 
 
@@ -33,8 +32,9 @@ class Worker(object):
         conf.graph.worker_id = conf.graph.rank
         if self.conf.nlp_input:
             total_devices = torch.cuda.device_count()
-            self.device = torch.device("cuda:"+str(self.conf.graph.worker_id % (total_devices-1)+1) if self.conf.graph.on_cuda else "cpu")
-            info = "cuda:"+str(self.conf.graph.worker_id % total_devices)
+            self.device = torch.device(
+                "cuda:" + str(self.conf.graph.worker_id % total_devices) if self.conf.graph.on_cuda else "cpu")
+            info = "cuda:" + str(self.conf.graph.worker_id % total_devices)
             conf.logger.log(
                 f"Worker-{self.conf.graph.worker_id} use the device {info}"
             )
@@ -50,7 +50,7 @@ class Worker(object):
 
         # create dataset (as well as the potential data_partitioner) for training.
         dist.barrier()
-        self.dataset = create_dataset.define_dataset(conf, data=conf.data,agg_data_ratio=conf.agg_data_ratio)
+        self.dataset = create_dataset.define_dataset(conf, data=conf.data, agg_data_ratio=conf.agg_data_ratio)
         _, self.data_partitioner = create_dataset.define_data_loader(
             self.conf,
             dataset=self.dataset["train"],
@@ -83,8 +83,9 @@ class Worker(object):
         elif self.conf.generator:
             self.generative_model = Generator(self.conf.data, self.device)
 
-        self.prune_agent=PruneAgent(10,self.device)
-        self.clients_comm_round=np.zeros(self.conf.n_clients)
+        self.prune_agent = PruneAgent(10, self.device)
+        self.clients_comm_round = np.zeros(self.conf.n_clients)
+        self.prune_agent.original_filters_number = 0
 
     def run(self):
         while True:
@@ -100,12 +101,11 @@ class Worker(object):
                 self._recv_generator_from_master()
             self._recv_model_from_master()
 
+            # self._getFLOPs()
 
             self._train()
-            if self.prune_agent.pruned_ratio.item() != 0:
-                self.conf.logger.log(f'worker-{self.conf.graph.worker_id} pruned {int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number)} filer')
-                self.optimizer = self.prune_agent.prune(self.model, self.optimizer,
-                                                        int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number))
+
+            self._prune()
 
             if self.conf.global_logits:
                 self._send_logits_to_master()
@@ -116,6 +116,27 @@ class Worker(object):
             # check if we need to terminate the training or not.
             if self._terminate_by_complete_training():
                 return
+
+    def _prune(self):
+
+        if self.prune_agent.pruned_ratio.item() != 0:
+            self.conf.logger.log(
+                f'worker-{self.conf.graph.worker_id} pruned {int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number)} filer')
+            self.optimizer = self.prune_agent.prune(self.model, self.optimizer,
+                                                    int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number))
+
+    def _getFLOPs(self):
+        from thop import profile
+        from thop import clever_format
+        filename = './FLOPs/worker' + str(self.conf.graph.worker_id) + '.log'
+        model = copy.deepcopy(self.model)
+        with open(filename, 'a') as f:
+            input = torch.randn(1, 3, 32, 32)
+            flops, params = profile(model, inputs=(input,))
+            flops, params = clever_format([flops, params], "%.3f")
+            print(flops, params)
+            f.write(f'comm: ' + str(self.comm_round) + ' FLOPs: ' + flops + ' params: ' + params)
+        del model
 
     def _listen_to_master(self):
         # listen to master, related to the function `_activate_selected_clients` in `master.py`.
@@ -129,19 +150,23 @@ class Worker(object):
             msg[:3, self.conf.graph.rank - 1].to(int).cpu().numpy().tolist()
         )
 
-        self.clients_comm_round[(msg[0].int()-1).tolist()]+=1
-        self.comm_round = self.clients_comm_round[self.conf.graph.client_id-1]
+        self.clients_comm_round[(msg[0].int() - 1).tolist()] += 1
+        self.comm_round = self.clients_comm_round[self.conf.graph.client_id - 1]
+        self.global_comm_round = self.conf.graph.comm_round
         self.conf.logger.log(f'client:{self.conf.graph.client_id} is activated')
 
         if self.conf.global_history:
             self.global_models_buffer_len = msg[3][self.conf.graph.rank - 1].to(int).cpu().numpy().tolist()
 
         # once we receive the signal, we init for the local training.
-        if self.comm_round==1:
-            self.arch, self.model = create_model.define_model(
-                self.conf, to_consistent_model=False, client_id=self.conf.graph.client_id
-            )
+
+        self.arch, self.model = create_model.define_model(
+            self.conf, to_consistent_model=False, client_id=self.conf.graph.client_id
+        )
         self.model_state_dict = self.model.state_dict()
+        if self.global_comm_round == 1:
+            self.prune_agent.get_original_filters_number(self.model)
+            self.prune_agent.master_model = self.model
 
         self.model_tb = TensorBuffer(list(self.model_state_dict.values()))
         if self.conf.generator:
@@ -179,24 +204,43 @@ class Worker(object):
 
     def _recv_model_from_master(self):
         # related to the function `_send_model_to_selected_clients` in `master.py`
-
+        retention_number = torch.tensor(0, dtype=int)
+        dist.recv(retention_number, src=0)
+        self.prune_agent.retention_number = int(retention_number)
+        self.prune_agent.original_idx_len = len(self.model_tb.buffer)
+        self.prune_agent.dense_chs_idx = {}
+        for name, param in self.prune_agent.master_model.named_parameters():
+            if 'weight' in name:
+                if param.ndim == 1:
+                    self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[0])
+                if param.ndim == 2:
+                    self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[1])
+                if param.ndim == 4:
+                    self.prune_agent.dense_chs_idx[name] = {'in_chs': np.arange(param.shape[1]),
+                                                            'out_chs': np.arange(param.shape[0])}
+        if self.prune_agent.retention_number != self.prune_agent.original_filters_number:
+            self.prune_agent.prune(self.model, self.optimizer,
+                                   0)
+        self.model_state_dict = self.model.state_dict()
+        self.model_tb = TensorBuffer(list(self.model_state_dict.values()))
         old_buffer = copy.deepcopy(self.model_tb.buffer)
-        self.prune_agent.pruned_ratio=torch.tensor(0.0 , dtype=float)
+
+        self.prune_agent.pruned_ratio = torch.tensor(0.0, dtype=float)
         if self.comm_round > 1:
-            idx_len=torch.tensor(0,dtype=int)
+            idx_len = torch.tensor(0, dtype=int)
             dist.recv(idx_len, src=0)
-        if self.comm_round>2:
-            buffer=torch.zeros(self.prune_agent.original_idx_len)
+        if self.comm_round > 2:
+            buffer = torch.zeros(self.prune_agent.original_idx_len)
             dist.recv(buffer, src=0)
-            self.model_tb.buffer = buffer[:len(self.prune_agent.idx)]
+            assert len(self.model_tb.buffer) == idx_len
+            self.model_tb.buffer = buffer[:idx_len]
         else:
             dist.recv(self.model_tb.buffer, src=0)
 
-        dist.recv(self.prune_agent.pruned_ratio,src=0)
+        dist.recv(self.prune_agent.pruned_ratio, src=0)
 
         new_buffer = copy.deepcopy(self.model_tb.buffer)
         self.model_tb.unpack(self.model_state_dict.values())
-
 
         if self.comm_round > 1:
             self.prev_model = self._turn_off_grad(copy.deepcopy(self.model).to(self.device))
@@ -204,31 +248,29 @@ class Worker(object):
         else:
             self.prev_model = None
             self.prune_agent.idx = torch.tensor(np.arange(len(new_buffer)))
-            self.prune_agent.retention_ratio=1
+            self.prune_agent.retention_ratio = 1
 
         self.model.load_state_dict(self.model_state_dict)
 
         if self.comm_round == 2:
-            original_number = torch.tensor(0,dtype=int)
+            original_number = torch.tensor(0, dtype=int)
             dist.recv(original_number, src=0)
             self.prune_agent.original_number = original_number.item()
-            self.prune_agent.original_idx_len= len(self.model_tb.buffer)
+            self.prune_agent.original_idx_len = len(self.model_tb.buffer)
             self.prune_agent.original_score = torch.zeros(self.prune_agent.original_number)
             dist.recv(self.prune_agent.original_score, src=0)
-            self.prune_agent.retention_number = len(self.prune_agent.original_score)
-            self.prune_agent.master_model= copy.deepcopy(self.model)
+            self.prune_agent.master_model = copy.deepcopy(self.model)
             self.prune_agent.dense_chs_idx = {}
-            for name,param in self.prune_agent.master_model.named_parameters():
+            for name, param in self.prune_agent.master_model.named_parameters():
 
                 if 'weight' in name:
-                    if param.ndim==1:
+                    if param.ndim == 1:
                         self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[0])
-                    if param.ndim==2:
-                        self.prune_agent.dense_chs_idx[name]=np.arange(param.shape[1])
-                    if param.ndim==4:
-                        self.prune_agent.dense_chs_idx[name]= {'in_chs': np.arange(param.shape[1]),
-                                                               'out_chs': np.arange(param.shape[0])}
-
+                    if param.ndim == 2:
+                        self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[1])
+                    if param.ndim == 4:
+                        self.prune_agent.dense_chs_idx[name] = {'in_chs': np.arange(param.shape[1]),
+                                                                'out_chs': np.arange(param.shape[0])}
 
             idx = 0
             self.prune_agent.original_score_list = {}
@@ -242,7 +284,7 @@ class Worker(object):
                     self.prune_agent.bn_idx_list.update({m.weight: np.arange(idx, idx + m.weight.shape[0]).tolist()})
                     idx += m.weight.shape[0]
 
-        #random_reinit.random_reinit_model(self.conf, self.model)
+        # random_reinit.random_reinit_model(self.conf, self.model)
 
         self.init_model = self._turn_off_grad(copy.deepcopy(self.model).to(self.device))
         # self.aggregation = Aggregation(self.model.classifier.in_features).cuda()
@@ -252,7 +294,7 @@ class Worker(object):
         if self.conf.global_history:
             for i in range(self.global_models_buffer_len):
                 old_buffer = copy.deepcopy(self.global_tbs[i].buffer)
-                dist.recv(self.global_tbs[i].buffer,src=0)
+                dist.recv(self.global_tbs[i].buffer, src=0)
                 new_buffer = copy.deepcopy(self.global_tbs[i].buffer)
                 self.global_tbs[i].unpack(self.global_dicts[i].values())
                 self.global_models_buffer[i].load_state_dict(self.global_dicts[i])
@@ -276,10 +318,11 @@ class Worker(object):
             # localdata_id start from 0 to the # of clients - 1.
             # client_id starts from 1 to the # of clients.
             localdata_id=self.conf.graph.client_id - 1,
+            # localdata_id=np.random.randint(100),
             is_train=True,
             data_partitioner=self.data_partitioner,
         )
-        if self.conf.graph.comm_round==2:
+        if self.global_comm_round == 10:
             self.prune_agent.get_score(self.model)
         # define optimizer, scheduler and runtime tracker.
         # models = [self.model]
@@ -287,10 +330,10 @@ class Worker(object):
         #     for global_model in self.global_models_buffer:
         #         models.append(global_model)
         #     models.append(self.aggregation)
-        # if self.conf.graph.comm_round==75:
-        #     self.conf.lr=0.01
-        # if self.conf.graph.comm_round==112:
-        #     self.conf.lr=0.001
+        if self.conf.graph.comm_round == 100:
+            self.conf.lr *= 0.1
+        # if self.conf.graph.comm_round == 150:
+        #     self.conf.lr *= 0.1
         self.optimizer = create_optimizer.define_optimizer(
             self.conf, model=self.model, optimizer_name=self.conf.optimizer
         )
@@ -316,7 +359,7 @@ class Worker(object):
                 # load data
                 with self.timer("load_data", epoch=self.scheduler.epoch_):
                     data_batch = create_dataset.load_data_batch(
-                        self.conf, _input, _target,is_training=True,device=self.device
+                        self.conf, _input, _target, is_training=True, device=self.device
                     )
 
                 # inference and get current performance.
@@ -344,7 +387,7 @@ class Worker(object):
                         self.logit_tracker.update(logits=output, Y=data_batch["target"])
                         loss = self._local_training_with_logits_distillation(loss, output, data_batch)
                     elif self.conf.grp_lasso_coeff:
-                        self._local_training_with_group_lasso_global(loss,output)
+                        self._local_training_with_group_lasso_global(loss, output)
                     else:
                         loss = self._local_training_with_self_distillation(
                             loss, output, data_batch
@@ -377,6 +420,7 @@ class Worker(object):
                 # if self.tracker.stat["loss"].avg > 1e3 or np.isnan(
                 #         self.tracker.stat["loss"].vg
                 # ):
+
                 # if loss > 1e3 or torch.isnan(loss):
                 #     self.conf.logger.log(
                 #         f"Worker-{self.conf.graph.worker_id} (client-{self.conf.graph.client_id}) diverges!!!!!Early stop it."
@@ -460,7 +504,7 @@ class Worker(object):
 
             gen_output = self.generative_model(data_batch["target"], latent_layer_idx=-1)['output']
             with torch.no_grad():
-                _,logit_given_gen = self.model(gen_output, start_layer_idx=-1)
+                _, logit_given_gen = self.model(gen_output, start_layer_idx=-1)
             user_latent_loss = generative_beta * self._divergence(output, logit_given_gen)
 
             sampled_y = np.random.choice(self.conf.num_classes, self.conf.batch_size)
@@ -468,7 +512,7 @@ class Worker(object):
             gen_result = self.generative_model(sampled_y, latent_layer_idx=-1)
             gen_output = gen_result['output']  # latent representation when latent = True, x otherwise
 
-            _,user_output = self.model(gen_output, start_layer_idx=-1)
+            _, user_output = self.model(gen_output, start_layer_idx=-1)
             teacher_loss = generative_alpha * torch.mean(
                 self.criterion(user_output, sampled_y)
             )
@@ -480,7 +524,6 @@ class Worker(object):
                     loss2.item(), -1, n_samples=output.size(0)
                 )
             loss = loss + loss2
-
 
         return loss
 
@@ -498,11 +541,11 @@ class Worker(object):
 
         return loss
 
-    def _local_training_with_group_lasso_global(self,loss,output):
+    def _local_training_with_group_lasso_global(self, loss, output):
         lasso_in_ch = []
         lasso_out_ch = []
-        model=self.model
-        arch=self.arch
+        model = self.model
+        arch = self.arch
         for name, param in model.named_parameters():
             # Lasso added to only the neuronal layers
             if ('weight' in name) and any([i for i in ['conv', 'classifier'] if i in name]):
@@ -530,7 +573,7 @@ class Worker(object):
         lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt().sum()
 
         lasso_penalty = lasso_penalty_in_ch + lasso_penalty_out_ch
-        loss2=lasso_penalty*self.conf.grp_lasso_coeff
+        loss2 = lasso_penalty * self.conf.grp_lasso_coeff
         loss = loss + loss2.to(self.device)
 
         if self.tracker is not None:
@@ -680,7 +723,7 @@ class Worker(object):
             f"Worker-{self.conf.graph.worker_id} (client-{self.conf.graph.client_id}) sending the label_counts back to Master."
         )
         label_counts = self.label_counts.detach().cpu()
-        dist.send(tensor=label_counts,dst=0)
+        dist.send(tensor=label_counts, dst=0)
         dist.barrier()
 
     def _send_model_to_master(self):
@@ -689,15 +732,16 @@ class Worker(object):
             f"Worker-{self.conf.graph.worker_id} (client-{self.conf.graph.client_id}) sending the model ({self.arch}) back to Master."
         )
         flatten_model = TensorBuffer(list(self.model.state_dict().values()))
-        if self.comm_round>1 and self.prune_agent.pruned_ratio !=0:
-            self.prune_agent.get_idx()
+        self.prune_agent.get_idx()
         idx_len = torch.tensor(len(self.prune_agent.idx))
         dist.send(tensor=idx_len, dst=0)
         dist.send(tensor=flatten_model.buffer.cpu(), dst=0)
         dist.send(tensor=self.prune_agent.idx, dst=0)
-        dist.send(tensor=torch.tensor(time.time(),dtype=float),dst=0)
-        dist.send(tensor=torch.tensor(self.prune_agent.retention_ratio,dtype=float),dst=0)
-        self.conf.logger.log(f'worker-{self.conf.graph.worker_id} retention_ratio is {self.prune_agent.retention_ratio}')
+        dist.send(tensor=torch.tensor(time.time(), dtype=float), dst=0)
+        dist.send(tensor=torch.tensor(self.prune_agent.retention_ratio, dtype=float), dst=0)
+        dist.send(tensor=torch.tensor(self.prune_agent.retention_number, dtype=int), dst=0)
+        self.conf.logger.log(
+            f'worker-{self.conf.graph.worker_id},clinet-{self.conf.graph.client_id} retention_ratio is {self.prune_agent.retention_ratio}')
         dist.barrier()
 
     def _terminate_comm_round(self):
@@ -768,7 +812,7 @@ class Worker(object):
 
     def update_label_counts(self, labels, counts):
         for label, count in zip(labels, counts):
-            self.label_counts[int(label)-1] += count
+            self.label_counts[int(label) - 1] += count
 
     def clean_up_counts(self):
         self.label_counts = torch.ones(self.conf.num_classes)

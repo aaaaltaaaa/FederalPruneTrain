@@ -1,15 +1,14 @@
-from tqdm import tqdm
 from datasets import load_dataset
-from transformers import DistilBertTokenizer
 from torch.utils.data import Dataset
-import numpy as np
+from tqdm import tqdm
+
 
 def tokenize(
-    examples,
-    tokenizer,
-    max_seq_len,
-    pad_token=0,
-    pad_token_segment_id=0,
+        examples,
+        tokenizer,
+        max_seq_len,
+        pad_token=0,
+        pad_token_segment_id=0,
 ):
     """
     task: the name of one of the glue tasks, e.g., mrpc.

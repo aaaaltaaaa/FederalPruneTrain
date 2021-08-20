@@ -1,11 +1,9 @@
-from tqdm import tqdm
-from datasets import load_dataset
-from transformers import DistilBertTokenizer
-from torch.utils.data import Dataset
 import pytreebank
+from torch.utils.data import Dataset
+
 
 class SST(Dataset):
-    def __init__(self, split,max_length=128):
+    def __init__(self, split, max_length=128):
         self.tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased', mirror='tuna',
                                                              do_lower_case=True, add_special_tokens=True,
                                                              pad_to_max_length=True,

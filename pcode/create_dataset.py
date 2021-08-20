@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import torch
 
+import pcode.datasets.mixup_data as mixup
 from pcode.datasets.partition_data import DataPartitioner
 from pcode.datasets.prepare_data import get_dataset
-import pcode.datasets.mixup_data as mixup
-
 
 """create dataset and load the data_batch."""
 
@@ -188,9 +187,11 @@ def define_data_loader(
         data_to_load,
         batch_size=conf.batch_size,
         shuffle=shuffle,
+        # num_workers=conf.num_workers,
         pin_memory=conf.pin_memory,
         drop_last=False,
-        collate_fn = padding
+        collate_fn=padding,
+        # multiprocessing_context = 'fork'
     )
 
     # Some simple statistics.

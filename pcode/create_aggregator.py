@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
-import json
 import copy
+import json
+
 import torch
 
-import pcode.datasets.prepare_data as prepare_data
-import pcode.datasets.partition_data as partition_data
-
+import pcode.aggregation.attn_distill as attn_distill
 import pcode.aggregation.fedavg as fedavg
-import pcode.aggregation.swa_knowledge_transfer as swa_knowledge_transfer
+import pcode.aggregation.gan_kl as gan_distill
 import pcode.aggregation.noise_knowledge_transfer as noise_knowledge_transfer
 import pcode.aggregation.server_momentum as server_momentum
-import pcode.aggregation.attn_distill as attn_distill
-import pcode.aggregation.gan_kl as gan_distill
+import pcode.aggregation.swa_knowledge_transfer as swa_knowledge_transfer
+import pcode.datasets.partition_data as partition_data
+import pcode.datasets.prepare_data as prepare_data
+
 
 class Aggregator(object):
     def __init__(
-        self, conf, model, criterion, metrics, dataset, test_loaders, clientid2arch
+            self, conf, model, criterion, metrics, dataset, test_loaders, clientid2arch
     ):
         self.conf = conf
         self.logger = conf.logger
@@ -64,7 +65,8 @@ class Aggregator(object):
                 client_models=kwargs["client_models"],
                 criterion=self.criterion,
                 metrics=self.metrics,
-                val_data_loader=self.data_info["self_val_data_loader"],
+                val_data_loader=None,
+                # val_data_loader=self.data_info["test"],
             )
 
         return f

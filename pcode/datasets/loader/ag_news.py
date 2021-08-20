@@ -1,7 +1,6 @@
-from tqdm import tqdm
 from datasets import load_dataset
-from transformers import DistilBertTokenizer
 from torch.utils.data import Dataset
+from tqdm import tqdm
 
 
 def tokenize(sentences, tokenizer):

@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-import os
 import copy
+import os
 import time
+
 import numpy as np
 import torch
 import torch.distributed as dist
 
-import pcode.master_utils as master_utils
-import pcode.create_coordinator as create_coordinator
 import pcode.create_aggregator as create_aggregator
+import pcode.create_coordinator as create_coordinator
 import pcode.create_dataset as create_dataset
 import pcode.create_metrics as create_metrics
 import pcode.create_model as create_model
+import pcode.master_utils as master_utils
 import pcode.utils.checkpoint as checkpoint
-from pcode.utils.tensor_buffer import TensorBuffer
 import pcode.utils.cross_entropy as cross_entropy
-from pcode.utils.early_stopping import EarlyStoppingTracker
 from pcode.models.generator import Generator
-
+from pcode.utils.early_stopping import EarlyStoppingTracker
+from pcode.utils.tensor_buffer import TensorBuffer
 from pruned_rate_learning import PrunedRateLearning
 
 
@@ -61,6 +61,7 @@ class Master(object):
         conf.logger.log(
             f"Master initialize the clientid2arch mapping relations: {self.clientid2arch}."
         )
+
 
         # create dataset (as well as the potential data_partitioner) for training.
         dist.barrier()
@@ -154,6 +155,19 @@ class Master(object):
         self.heterogeneity = self.pruned_rate_learning.get_heterogeneity(self.conf.heterogeneity_ratio,
                                                                          self.conf.n_participated)
 
+        original_filters_number = 0
+        for m in self.master_model.modules():
+            if isinstance(m, torch.nn.BatchNorm2d):
+                original_filters_number += m.weight.shape[0]
+
+        for selected_client_id in range(1, self.conf.n_clients + 1):
+            if selected_client_id not in self.pruned_rate_learning.workers.keys():
+                self.pruned_rate_learning.workers[selected_client_id] = {'retention_ratio': [], 'update_time': [],
+                                                                         'idx': None, 'send_time': None,
+                                                                         'recv_time': None,
+                                                                         'retention_number': original_filters_number,
+                                                                         'prune_time': 0}
+
     def run(self):
         performance, to_send_history = 0, False
         for comm_round in range(1, 1 + self.conf.n_comm_rounds):
@@ -170,18 +184,17 @@ class Master(object):
 
             # random select clients from a pool.
 
-            if self.conf.random_select_clients:
-                selected_client_ids = self._random_select_clients()
+            if self.conf.random_select != None:
+                # import random
+                # selected_client_ids = self._random_select_clients()
+                # random.shuffle(selected_client_ids)
+                selected_client_ids = []
+                for i in range(10):
+                    selected_client_ids.append(np.random.randint(i * 10 + 1, (i + 1) * 10 + 1))
             else:
                 if comm_round == 1:
                     selected_client_ids = self._random_select_clients()
 
-
-            for selected_client_id in selected_client_ids:
-                if selected_client_id not in self.pruned_rate_learning.workers.keys():
-                    self.pruned_rate_learning.workers[selected_client_id] = {'retention_ratio': [], 'update_time': [],
-                                                                             'idx': None, 'send_time': None,
-                                                                             'recv_time': None}
             # detect early stopping.
             self._check_early_stopping()
 
@@ -360,18 +373,25 @@ class Master(object):
             flatten_model = TensorBuffer(list(self.master_model.state_dict().values()))
             self.pruned_rate_learning.workers[selected_client_id]['send_time'] = torch.tensor(time.time(), dtype=float)
 
+            dist.send(tensor=torch.tensor(self.pruned_rate_learning.workers[selected_client_id]['retention_number'],
+                                          dtype=int), dst=worker_rank)
+
             if not self.pruned_rate_learning.workers[selected_client_id]['recv_time']:
                 # comm_round==1
                 dist.send(tensor=flatten_model.buffer, dst=worker_rank)
-                dist.send(torch.tensor(0.0,dtype=float), dst=worker_rank)
+                dist.send(torch.tensor(0.0, dtype=float), dst=worker_rank)
             else:
                 # comm_round>1
                 dist.send(tensor=self.pruned_rate_learning.workers[selected_client_id]['idx_len'], dst=worker_rank)
-                buffer = torch.tensor(flatten_model.buffer[self.pruned_rate_learning.workers[selected_client_id]['idx']],)
-                dist.send(tensor=buffer,dst=worker_rank)
-                dist.send(tensor=torch.tensor(self.pruned_rate_learning.get_default_pruned_rate(selected_client_id), dtype=float),
+                buffer = torch.tensor(
+                    flatten_model.buffer[self.pruned_rate_learning.workers[selected_client_id]['idx']], )
+                dist.send(tensor=buffer, dst=worker_rank)
+                pruned_rate = self.pruned_rate_learning.get_default_pruned_rate(selected_client_id,
+                                                                                self.conf.random_select)
+                dist.send(tensor=torch.tensor(pruned_rate, dtype=float),
                           dst=worker_rank)
-                self.conf.logger.log(f'worker-{selected_client_id} pruned rate is {self.pruned_rate_learning.get_default_pruned_rate(selected_client_id)}')
+                self.conf.logger.log(
+                    f"worker-{worker_rank},clinet-{selected_client_id} pruned rate is {pruned_rate},retention ratio is {self.pruned_rate_learning.workers[selected_client_id]['retention_ratio'][-1].item()}")
                 if len(self.pruned_rate_learning.workers[selected_client_id]['update_time']) == 1:
                     # comm_round==2
                     bn, _ = self.pruned_rate_learning.get_bn_importance_order(self.master_model)
@@ -428,6 +448,10 @@ class Master(object):
             self.pruned_rate_learning.workers[client_id]['retention_ratio'].append(torch.tensor(0.0, dtype=float))
             reqs.append(
                 dist.irecv(tensor=self.pruned_rate_learning.workers[client_id]['retention_ratio'][-1], src=world_id))
+
+            self.pruned_rate_learning.workers[client_id]['retention_number'] = torch.tensor(0, dtype=int)
+            reqs.append(
+                dist.irecv(tensor=self.pruned_rate_learning.workers[client_id]['retention_number'], src=world_id))
 
         for req in reqs:
             req.wait()
@@ -588,6 +612,7 @@ class Master(object):
             # update self.master_model in place.
             if same_arch:
                 self.master_model.load_state_dict(fedavg_model.state_dict())
+
             # update self.client_models in place.
             for arch, _fedavg_model in fedavg_models.items():
                 self.client_models[arch].load_state_dict(_fedavg_model.state_dict())

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """define all global parameters here."""
-from os.path import join
 import argparse
+from os.path import join
 
 import pcode.models as models
 from pcode.utils.param_parser import str2bool
@@ -255,7 +255,7 @@ def get_args():
     parser.add_argument("--min_pruned", default=0.02, type=int)
     parser.add_argument("--max_pruned", default=0.5, type=int)
     parser.add_argument("--init_cofe", default=2, type=int)
-    parser.add_argument("--random_select_clients", default=False, action='store_true')
+    parser.add_argument("--random_select", default=None, type=str)
     parser.add_argument('--grp_lasso_coeff', type=float)
     # parse conf.
     conf = parser.parse_args()

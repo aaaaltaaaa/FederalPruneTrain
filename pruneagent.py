@@ -1,28 +1,30 @@
+import numpy as np
 import torch
 import torch.nn as nn
-from torch.nn.parameter import Parameter
-import numpy as np
 import torch.optim as optim
+from torch.nn.parameter import Parameter
+
 from pcode.utils.tensor_buffer import TensorBuffer
 
 
 class PruneAgent():
-    def __init__(self, num_classes, device,optimizer=False, minimal_ratio=0.1):
+    def __init__(self, num_classes, device, optimizer=False, minimal_ratio=0.1):
         self.num_classes = num_classes
         self.device = device
         self.optimizer = optimizer
-        self.minimal_filter=[]
+        self.minimal_filter = []
         self.minimal_ratio=minimal_ratio
 
     def change_fc(self, model):
         model.add_module('fc', nn.Linear(model.fc.in_features, self.num_classes).to(self.device))
 
-    def set_original_filters_number(self, model):
+    def get_original_filters_number(self, model):
         original_filters_number = 0
         for m in model.modules():
             if isinstance(m, nn.BatchNorm2d):
                 original_filters_number += m.weight.shape[0]
         self.original_filters_number = original_filters_number
+        self.retention_number = original_filters_number
 
     def get_score(self, model):
         self.status = {}
@@ -44,18 +46,22 @@ class PruneAgent():
                         self.status[block.bn2] = block.bn2.weight.abs()
 
                 elif layers[-1].__class__.__name__ == 'BasicBlock':
-                    score = torch.zeros(layers[-1].bn2.weight.shape[0]).to(self.device)
+                    # score = torch.zeros(layers[-1].bn2.weight.shape[0]).to(self.device)
+                    score = []
                     if layers == model.layer1:
                         masks.append(model.bn1)
-                        score += model.bn1.weight.abs()
+                        # score += model.bn1.weight.abs()
+                        score.append(model.bn1.weight.abs())
                     for block in layers:
                         if block.downsample:
                             masks.append(block.downsample._modules['1'])
-                            score += block.downsample._modules['1'].weight.abs()
+                            # score += block.downsample._modules['1'].weight.abs()
+                            score.append(block.downsample._modules['1'].weight.abs())
                         masks.append(block.bn2)
-                        score += block.bn2.weight.abs()
+                        # score += block.bn2.weight.abs()
+                        score.append(block.bn2.weight.abs())
                         self.status[block.bn1] = block.bn1.weight.abs()
-                score = score / len(masks)
+                score = torch.vstack(score).max(0).values
                 for bn in masks:
                     self.status[bn] = score
 
@@ -71,10 +77,10 @@ class PruneAgent():
             filtered_score_list.append(score.cpu().detach().numpy()[:-self.minimal_filter[i]])
         scores = np.concatenate(filtered_score_list)
 
-        threshold = np.sort(scores)[self.original_number-self.retention_number+num]
+        threshold = np.sort(scores)[self.original_filters_number - self.retention_number + num]
         to_prune = int((scores < threshold).sum())
-        self.retention_number = self.original_number-to_prune
-        self.retention_ratio = self.retention_number / self.original_number
+        self.retention_number = self.original_filters_number - to_prune
+        self.retention_ratio = self.retention_number / self.original_filters_number
         dense_chs = self.get_dense_chs(model, threshold)
         self.get_dense_model(dense_chs, model, optimizer)
         if self.optimizer:
@@ -115,68 +121,6 @@ class PruneAgent():
         model.add_module('classifier',
                          self.dense_model(model.classifier, optimizer, dense_chs['classifier.weight'], 'classifier'))
 
-    def dense_model_o(self, model, optimizer, dense_chs, name='unknow'):
-        # Get Momentum parameters to adjust
-        param = model.weight
-        mom_param = optimizer.state[param]['momentum_buffer']
-
-        dims = list(param.shape)
-        if len(dims) == 4:
-
-            dense_in_ch_idxs = dense_chs['in_chs']
-            dense_out_ch_idxs = dense_chs['out_chs']
-            num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
-
-            new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).to(self.device)
-            new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).to(self.device)
-
-            for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                    with torch.no_grad():
-                        new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                        new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-
-            new_model = nn.Conv2d(new_param.shape[0], new_param.shape[1], model.kernel_size, model.stride,
-                                  model.padding, bias=False).to(self.device)
-            new_model.weight.data = new_param
-
-            optimizer.state[new_model.weight]['momentum_buffer'] = new_mom_param
-
-            print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
-
-        # Generate a new dense tensor and replace (FC layer)
-        elif len(dims) == 2:
-            dense_in_ch_idxs = dense_chs
-            num_in_ch, num_out_ch = len(dense_in_ch_idxs), self.num_classes
-
-            new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).to(self.device)
-            new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).to(self.device)
-
-            for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                with torch.no_grad():
-                    new_param[:, in_idx] = param[:, in_ch]
-                    new_mom_param[:, in_idx] = mom_param[:, in_ch]
-
-            new_model = nn.Linear(len(dense_chs), self.num_classes).to(self.device)
-            new_model.weight.data = new_param
-            optimizer.state[new_model.weight]['momentum_buffer'] = new_mom_param
-            new_model.bias.data = model.bias
-
-            print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
-
-        # Change parameters of non-neural computing layers (BN, biases)
-        else:
-            new_model = nn.BatchNorm2d(len(dense_chs)).to(self.device)
-            new_model.weight.data = model.weight[dense_chs]
-            new_model.bias.data = model.bias[dense_chs].clone()
-            new_model.running_mean.data = model.running_mean[dense_chs].clone()
-            new_model.running_var.data = model.running_var[dense_chs].clone()
-            optimizer.state[new_model.weight]['momentum_buffer'] = optimizer.state[model.weight]['momentum_buffer'][
-                dense_chs]
-            optimizer.state[new_model.bias]['momentum_buffer'] = optimizer.state[model.bias]['momentum_buffer'][
-                dense_chs]
-
-        return new_model.to(self.device)
 
     def dense_model(self, model, optimizer, dense_chs, name='unknow'):
         dim = model.weight.dim()
@@ -193,7 +137,7 @@ class PruneAgent():
                 optimizer.state[new_model.weight]['momentum_buffer'] = Parameter(
                     optimizer.state[model.weight]['momentum_buffer'][out_chs][:, in_chs, :, :]).to(self.device)
 
-            print("[{}]: {} >> {}".format(name, list(model.weight.shape), list(new_model.weight.shape)))
+            # print("[{}]: {} >> {}".format(name, list(model.weight.shape), list(new_model.weight.shape)))
 
         # Generate a new dense tensor and replace (FC layer)
         elif dim == 2:
@@ -212,7 +156,7 @@ class PruneAgent():
             # del self.status[model.weight]
             # self.bn_idx_list[new_model.weight] = self.bn_idx_list[model.weight][dense_chs]
             # del self.bn_idx_list[model.weight]
-            print("[{}]: {} >> {}".format(name, list(model.weight.shape), list(new_model.weight.shape)))
+            # print("[{}]: {} >> {}".format(name, list(model.weight.shape), list(new_model.weight.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:

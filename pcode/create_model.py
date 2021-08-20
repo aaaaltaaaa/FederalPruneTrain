@@ -81,6 +81,8 @@ def define_cv_classification_model(conf, client_id, use_complex_arch, arch):
         model = models.__dict__["simple_cnn"](conf)
     elif "moderate_cnn" in arch:
         model = models.__dict__["moderate_cnn"](conf)
+    elif "ResNet" in arch:
+        model = models.__dict__["ResNet"](conf, arch=arch)
     else:
         model = models.__dict__[arch](conf)
     return arch, model

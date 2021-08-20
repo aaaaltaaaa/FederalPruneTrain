@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
-import numpy as np
+import os
 
+import numpy as np
 import torch
 import torch.distributed as dist
-import os
 import torch.multiprocessing as mp
-from parameters import get_args
-from pcode.master_new import Master
-from pcode.worker_new import Worker
-import pcode.utils.topology as topology
+
 import pcode.utils.checkpoint as checkpoint
 import pcode.utils.logging as logging
 import pcode.utils.param_parser as param_parser
+import pcode.utils.topology as topology
+from parameters import get_args
+from pcode.master_new import Master
+from pcode.worker_new import Worker
 
 
 def run(process):
     process.run()
 
+
 def init_process(rank, size, fn, conf, backend='gloo'):
     """ Initialize the distributed environment. """
     os.environ['MASTER_ADDR'] = '127.0.0.1'
-    os.environ['MASTER_PORT'] = '29501'
+    os.environ['MASTER_PORT'] = '29602'
     dist.init_process_group(backend, rank=rank, world_size=size)
 
     init_config(conf)

@@ -31,6 +31,13 @@ def define_optimizer(conf, model, optimizer_name, lr=None):
             betas=(conf.adam_beta_1, conf.adam_beta_2),
             eps=conf.adam_eps,
         )
+    elif optimizer_name == "adamW":
+        optimizer = torch.optim.AdamW(
+            params,
+            lr=conf.lr if lr is None else lr,
+            betas=(conf.adam_beta_1, conf.adam_beta_2),
+            eps=conf.adam_eps,
+        )
     else:
         raise NotImplementedError
     return optimizer

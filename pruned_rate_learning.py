@@ -7,12 +7,12 @@ class PrunedRateLearning():
         self.min_retention=min_retention
         self.min_pruned=min_pruned
         self.max_pruned=max_pruned
-        self.init_cofe=init_cofe
-        self.comm_round=0
-        self.default_pruned_rate_list=[[0.5, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.2, 0.2, 0.0],
-                                       [0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.2, 0.2, 0.2, 0.0],
-                                       [0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.1, 0.0, 0.1, 0.0],
-                                       [0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0]]
+        self.init_cofe = init_cofe
+        self.comm_round = 1
+        self.default_pruned_rate_list = [[0.5, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.2, 0.2, 0.0],
+                                         [0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.2, 0.2, 0.2, 0.0],
+                                         [0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.1, 0.0, 0.1, 0.0],
+                                         [0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0]]
 
     def get_bn_importance_order(self,model):
         total = 0
@@ -36,34 +36,40 @@ class PrunedRateLearning():
         worker=self.workers[worker]
         if len(worker['update_time'])>1:
             target_retention=self.newton_interpolate(worker['update_time'],worker['retention_ratio'], min_update_time)
-            if  abs(worker['retention_ratio'][-1] - max(target_retention,self.min_retention))>self.min_pruned:
-                pruned_ratio= (worker['retention_ratio'][-1] - target_retention)/ worker[
+            if abs(worker['retention_ratio'][-1] - max(target_retention, self.min_retention)) > self.min_pruned:
+                pruned_ratio = (worker['retention_ratio'][-1] - target_retention) / worker[
                     'retention_ratio'][-1]
             else:
-                pruned_ratio=0
+                pruned_ratio = 0
         else:
-            pruned_ratio=abs(worker['update_time'][-1]-min_update_time)/(self.init_cofe* worker['update_time'][-1])
-        self.pruned_rate=torch.tensor(max(min(pruned_ratio, self.max_pruned),0))
+            pruned_ratio = abs(worker['update_time'][-1] - min_update_time) / (
+                        self.init_cofe * worker['update_time'][-1])
+        self.pruned_rate = torch.tensor(max(min(pruned_ratio, self.max_pruned), 0))
         return self.pruned_rate
 
-    def get_default_pruned_rate(self, worker_rank):
-        if self.comm_round%10==0:
-            pruned_count=self.comm_round//10
-            if pruned_count<=4:
-                return self.default_pruned_rate_list[pruned_count-1][worker_rank-1]
-        return 0
+    def get_default_pruned_rate(self, worker_rank, random_select):
+        if random_select == None:
+            if self.comm_round % 10 == 0:
+                pruned_count = self.comm_round // 10
+                if pruned_count <= 4:
+                    return self.default_pruned_rate_list[pruned_count - 1][worker_rank - 1]
+            return 0
+        elif random_select == 'fix':
+            if self.workers[worker_rank]['prune_time'] < 4 and self.workers[worker_rank][
+                'prune_time'] < self.comm_round // 10:
+                self.workers[worker_rank]['prune_time'] += 1
+                return self.default_pruned_rate_list[self.workers[worker_rank]['prune_time'] - 1][
+                    (worker_rank - 1) // 10]
+            return 0
 
-
-
-    def get_mini_update_time(self,workers):
-        mini_update_time=self.workers[workers[0]]['update_time'][-1]
+    def get_mini_update_time(self, workers):
+        mini_update_time = self.workers[workers[0]]['update_time'][-1]
         for worker in workers:
             if self.workers[worker]['update_time'][-1] < mini_update_time:
-                mini_update_time= self.workers[worker]['update_time'][-1]
+                mini_update_time = self.workers[worker]['update_time'][-1]
         return mini_update_time
 
-
-    def newton_interpolate(self,x_list, y_list, x):
+    def newton_interpolate(self, x_list, y_list, x):
 
         def difference_quotient_list(y_list, x_list=[]):
             if x_list == []:

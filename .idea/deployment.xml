@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="wnpan@121.89.238.249:22" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ttliu@148.70.159.42:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
       <paths name="ttliu@148.70.159.42:22 password">
         <serverdata>
           <mappings>
-            <mapping deploy="/pythonProject/AdaptCL" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="pythonProject/AdaptCL_Random_Select" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
