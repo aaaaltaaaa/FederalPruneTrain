@@ -68,7 +68,7 @@ class PruneAgent():
         for name, m in model.named_modules():
             if isinstance(m, nn.BatchNorm2d):
                 self.score[name] = self.status[m]
-                self.minimal_filter.append(int(self.minimal_ratio*len(self.score[name])))
+                self.minimal_filter.append(max(int(self.minimal_ratio * len(self.score[name])), 1))
 
     def prune(self, model, optimizer, num):
         # self.get_score(model)
@@ -223,6 +223,7 @@ class PruneAgent():
         return chs.tolist()
 
     def get_idx(self):
+        self.master_model.to(self.device)
         with torch.no_grad():
             for name, m in self.master_model.named_modules():
                 name += '.weight'
@@ -230,9 +231,7 @@ class PruneAgent():
                     param = torch.zeros_like(m.weight, dtype=bool)
                     out_chs = self.dense_chs_idx[name]['out_chs']
                     in_chs = self.dense_chs_idx[name]['in_chs']
-                    for i in in_chs:
-                        for o in out_chs:
-                            param[o, i, :, :] = True
+                    param[torch.meshgrid(torch.tensor(out_chs, dtype=int), torch.tensor(in_chs, dtype=int))] = True
                     m.weight.data = param
                 elif 'classifier' in name:
                     param = torch.zeros_like(m.weight, dtype=bool)
@@ -255,7 +254,6 @@ class PruneAgent():
 
         flatten_model = TensorBuffer(list(self.master_model.state_dict().values()))
         self.idx = torch.tensor(np.squeeze(np.argwhere(np.asarray(flatten_model.buffer.cpu().numpy()))), dtype=int)
-
 
 if __name__ == '__main__':
     import torchvision.models as models

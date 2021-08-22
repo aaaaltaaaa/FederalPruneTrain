@@ -3,14 +3,14 @@ import copy
 
 import torch
 
-from pcode.utils.module_state import ModuleState
-import pcode.master_utils as master_utils
 import pcode.aggregation.utils as agg_utils
+import pcode.master_utils as master_utils
+from pcode.utils.module_state import ModuleState
 
 
 def _fedavg(clientid2arch, n_selected_clients, flatten_local_models, client_models):
     weights = [
-        torch.tensor([1.0 / n_selected_clients],dtype=float) for _ in range(n_selected_clients)
+        torch.tensor([1.0 / n_selected_clients], dtype=torch.float32) for _ in range(n_selected_clients)
     ]
 
     # NOTE: the arch for different local models needs to be the same as the master model.

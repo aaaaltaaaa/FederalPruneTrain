@@ -317,8 +317,8 @@ class Worker(object):
             dataset=self.dataset["train"],
             # localdata_id start from 0 to the # of clients - 1.
             # client_id starts from 1 to the # of clients.
-            localdata_id=self.conf.graph.client_id - 1,
-            # localdata_id=np.random.randint(100),
+            # localdata_id=self.conf.graph.client_id - 1,
+            localdata_id=np.random.randint(100),
             is_train=True,
             data_partitioner=self.data_partitioner,
         )
@@ -395,6 +395,12 @@ class Worker(object):
 
                 with self.timer("backward_pass", epoch=self.scheduler.epoch_):
                     loss.backward()
+
+                    # if self.global_comm_round<50:
+                    #     for m in self.model.modules():
+                    #         if isinstance(m, nn.BatchNorm2d):
+                    #             m.weight.grad.data.add_(0.00005 * torch.sign(m.weight.data))
+
                     # self._add_grad_from_prox_regularized_loss()
                     self.optimizer.step()
                     self.scheduler.step()
@@ -728,12 +734,13 @@ class Worker(object):
 
     def _send_model_to_master(self):
         dist.barrier()
-        self.conf.logger.log(
-            f"Worker-{self.conf.graph.worker_id} (client-{self.conf.graph.client_id}) sending the model ({self.arch}) back to Master."
-        )
+
         flatten_model = TensorBuffer(list(self.model.state_dict().values()))
         self.prune_agent.get_idx()
         idx_len = torch.tensor(len(self.prune_agent.idx))
+        self.conf.logger.log(
+            f"Worker-{self.conf.graph.worker_id} (client-{self.conf.graph.client_id}) sending the model ({self.arch}) back to Master."
+        )
         dist.send(tensor=idx_len, dst=0)
         dist.send(tensor=flatten_model.buffer.cpu(), dst=0)
         dist.send(tensor=self.prune_agent.idx, dst=0)

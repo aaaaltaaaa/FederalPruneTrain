@@ -186,11 +186,11 @@ class Master(object):
 
             if self.conf.random_select != None:
                 # import random
-                # selected_client_ids = self._random_select_clients()
+                selected_client_ids = self._random_select_clients()
                 # random.shuffle(selected_client_ids)
-                selected_client_ids = []
-                for i in range(10):
-                    selected_client_ids.append(np.random.randint(i * 10 + 1, (i + 1) * 10 + 1))
+                # selected_client_ids = []
+                # for i in range(10):
+                #     selected_client_ids.append(np.random.randint(i * 10 + 1, (i + 1) * 10 + 1))
             else:
                 if comm_round == 1:
                     selected_client_ids = self._random_select_clients()
@@ -455,14 +455,13 @@ class Master(object):
 
         for req in reqs:
             req.wait()
+
+        self.conf.logger.log(f"Master received all local models.")
+
         for client_id, world_id in zip(selected_client_ids, self.world_ids):
-            # print(self.pruned_rate_learning.workers[client_id]['idx_len'])
-            # print(self.pruned_rate_learning.workers[client_id]['buffer'])
-            # print(self.pruned_rate_learning.workers[client_id]['idx'])
-            # print(self.pruned_rate_learning.workers[client_id]['recv_time'])
             idx_len = self.pruned_rate_learning.workers[client_id]['idx_len']
             idx = self.pruned_rate_learning.workers[client_id]['idx'][:idx_len]
-            self.pruned_rate_learning.workers[client_id]['idx']=idx
+            self.pruned_rate_learning.workers[client_id]['idx'] = idx
             buffer = self.pruned_rate_learning.workers[client_id]['buffer'][:idx_len]
             flatten_local_models[client_id].buffer[idx] = buffer
             # self.pruned_rate_learning.workers[client_id]['retention_ratio'].append(idx_len/buffer_len)
@@ -471,7 +470,7 @@ class Master(object):
                 self.pruned_rate_learning.workers[client_id]['send_time'])
         self.pruned_rate_learning.comm_round+=1
         dist.barrier()
-        self.conf.logger.log(f"Master received all local models.")
+
         return flatten_local_models
 
     def _receive_label_counts_from_selected_clients(self, selected_client_ids):
@@ -559,6 +558,12 @@ class Master(object):
             fedavg_model = list(fedavg_models.values())[0]
         else:
             fedavg_model = None
+
+        master_state_dict = self.master_model.state_dict()
+        fedavg_state_dict = fedavg_model.state_dict()
+        for ((k, master_v), (_, fedavg_v)) in zip(master_state_dict.items(), fedavg_state_dict.items()):
+            fedavg_state_dict[k] = torch.where(fedavg_v != 0, fedavg_v, master_v)
+        fedavg_model.load_state_dict(fedavg_state_dict)
 
         # (smarter) aggregate the model from clients.
         # note that: if conf.fl_aggregate["scheme"] == "federated_average",
