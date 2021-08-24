@@ -86,6 +86,13 @@ class Worker(object):
         self.prune_agent = PruneAgent(10, self.device)
         self.clients_comm_round = np.zeros(self.conf.n_clients)
         self.prune_agent.original_filters_number = 0
+        self.prune_agent.sum_flops = 0
+        self.prune_agent.sum_params = 0
+        self.prune_agent.top1 = 0
+        test_loader, _ = create_dataset.define_data_loader(
+            conf, self.dataset["test"], is_train=False
+        )
+        self.test_loaders = [test_loader]
 
     def run(self):
         while True:
@@ -101,9 +108,9 @@ class Worker(object):
                 self._recv_generator_from_master()
             self._recv_model_from_master()
 
-            # self._getFLOPs()
-
             self._train()
+
+            self._getFLOPs()
 
             self._prune()
 
@@ -128,14 +135,29 @@ class Worker(object):
     def _getFLOPs(self):
         from thop import profile
         from thop import clever_format
+
         filename = './FLOPs/worker' + str(self.conf.graph.worker_id) + '.log'
-        model = copy.deepcopy(self.model)
+        model = copy.deepcopy(self.model).to(self.device)
         with open(filename, 'a') as f:
-            input = torch.randn(1, 3, 32, 32)
-            flops, params = profile(model, inputs=(input,))
+            input = torch.randn(1, 3, 32, 32).to(self.device)
+            flops, params = profile(model, inputs=(input,), verbose=False)
+            self.prune_agent.sum_flops += flops
+            self.prune_agent.sum_params += params
             flops, params = clever_format([flops, params], "%.3f")
             print(flops, params)
-            f.write(f'comm: ' + str(self.comm_round) + ' FLOPs: ' + flops + ' params: ' + params)
+            f.write(f'comm_round: {self.global_comm_round}, FLOPs: {flops}, params: {params}\n')
+            self.conf.logger.log(
+                f'comm_round: ' + str(self.global_comm_round) + ' FLOPs: ' + flops + ' params: ' + params)
+            if self.global_comm_round == 1:
+                self.prune_agent.original_params = params
+                self.prune_agent.original_flops = flops
+            if self.global_comm_round == 200:
+                f.write(f'summary: FLOPs: {self.prune_agent.sum_flops}, Params: {self.prune_agent.sum_params}')
+                flops_ratio = self.prune_agent.sum_params / (self.prune_agent.original_flops * 200)
+                params_ratio = self.prune_agent.sum_params / (self.prune_agent.original_params * 200)
+                self.conf.logger.log(f'summary: FLOPs: {self.prune_agent.sum_flops}, '
+                                     f'FLOPs ratio: {flops_ratio}, Params: {self.prune_agent.sum_params}, params ratio: {params_ratio}')
+
         del model
 
     def _listen_to_master(self):
@@ -318,7 +340,7 @@ class Worker(object):
             # localdata_id start from 0 to the # of clients - 1.
             # client_id starts from 1 to the # of clients.
             # localdata_id=self.conf.graph.client_id - 1,
-            localdata_id=np.random.randint(100),
+            localdata_id=np.random.randint(self.conf.n_clients),
             is_train=True,
             data_partitioner=self.data_partitioner,
         )

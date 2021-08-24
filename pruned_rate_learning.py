@@ -3,17 +3,20 @@ import torch
 import torch.nn as nn
 class PrunedRateLearning():
     def __init__(self, min_retention, min_pruned, max_pruned, init_cofe):
-        self.workers={}
-        self.min_retention=min_retention
-        self.min_pruned=min_pruned
-        self.max_pruned=max_pruned
+        self.workers = {}
+        self.min_retention = min_retention
+        self.min_pruned = min_pruned
+        self.max_pruned = max_pruned
         self.init_cofe = init_cofe
         self.comm_round = 1
+        # self.default_pruned_rate_list = [[0.5, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.2, 0.2, 0.0],
+        #                                  [0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.2, 0.2, 0.2, 0.0],
+        #                                  [0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.1, 0.0, 0.1, 0.0],
+        #                                  [0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0]]
         self.default_pruned_rate_list = [[0.5, 0.3, 0.2, 0.3, 0.3, 0.2, 0.3, 0.2, 0.2, 0.0],
                                          [0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.2, 0.2, 0.2, 0.0],
                                          [0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.1, 0.0, 0.1, 0.0],
                                          [0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0]]
-
     def get_bn_importance_order(self,model):
         total = 0
 

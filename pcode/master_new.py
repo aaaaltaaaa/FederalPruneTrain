@@ -240,11 +240,27 @@ class Master(object):
                 selected_client_ids
             )
 
+            if self.conf.graph.comm_round == 10:
+                from pruneagent import PruneAgent
+                self.device = 'cuda:0'
+                self.pruneagent = PruneAgent(10, self.device)
+                self.pruneagent.get_original_filters_number(self.master_model)
+                self.pruneagent.get_score(self.master_model)
+                self.performance = 0
+
             if self.conf.generator:
                 self.train_generator(selected_client_ids, label_weights, qualified_labels, flatten_local_models)
 
             # aggregate the local models and evaluate on the validation dataset.
             performance = self._aggregate_model_and_evaluate(flatten_local_models, selected_client_ids)
+            if self.conf.graph.comm_round > 150 and performance > self.performance:
+                self.performance = performance
+                retention_number = []
+                for i in range(100):
+                    retention_number.append(self.pruned_rate_learning.workers[i + 1]['retention_number'])
+                checkpoint = {'model': self.master_model, 'score': self.pruneagent.score,
+                              'retention_number': retention_number}
+                torch.save(checkpoint, 'checkpoint')
 
             # evaluate the aggregated model.
             self.conf.logger.log(f"Master finished one round of federated learning.\n")
