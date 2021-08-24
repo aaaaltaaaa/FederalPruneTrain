@@ -128,9 +128,9 @@ class Worker(object):
 
         if self.prune_agent.pruned_ratio.item() != 0:
             self.conf.logger.log(
-                f'worker-{self.conf.graph.worker_id} pruned {int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number)} filer')
+                f'worker-{self.conf.graph.worker_id} pruned {int(self.prune_agent.pruned_ratio * self.prune_agent.original_filters_number)} filer')
             self.optimizer = self.prune_agent.prune(self.model, self.optimizer,
-                                                    int(self.prune_agent.pruned_ratio * self.prune_agent.retention_number))
+                                                    int(self.prune_agent.pruned_ratio * self.prune_agent.original_filters_number))
 
     def _getFLOPs(self):
         from thop import profile
@@ -143,14 +143,15 @@ class Worker(object):
             flops, params = profile(model, inputs=(input,), verbose=False)
             self.prune_agent.sum_flops += flops
             self.prune_agent.sum_params += params
-            flops, params = clever_format([flops, params], "%.3f")
-            print(flops, params)
-            f.write(f'comm_round: {self.global_comm_round}, FLOPs: {flops}, params: {params}\n')
-            self.conf.logger.log(
-                f'comm_round: ' + str(self.global_comm_round) + ' FLOPs: ' + flops + ' params: ' + params)
             if self.global_comm_round == 1:
                 self.prune_agent.original_params = params
                 self.prune_agent.original_flops = flops
+            flops, params = clever_format([flops, params], "%.3f")
+            f.write(
+                f'worker-{self.conf.graph.worker_id}, client-{self.conf.graph.client_id}, comm_round: {self.global_comm_round}, FLOPs: {flops}, params: {params}\n')
+            self.conf.logger.log(
+                f'worker-{self.conf.graph.worker_id}, client-{self.conf.graph.client_id}, comm_round: {self.global_comm_round}, FLOPs: {flops}, params: {params}')
+
             if self.global_comm_round == 200:
                 f.write(f'summary: FLOPs: {self.prune_agent.sum_flops}, Params: {self.prune_agent.sum_params}')
                 flops_ratio = self.prune_agent.sum_params / (self.prune_agent.original_flops * 200)
@@ -230,6 +231,7 @@ class Worker(object):
         dist.recv(retention_number, src=0)
         self.prune_agent.retention_number = int(retention_number)
         self.prune_agent.original_idx_len = len(self.model_tb.buffer)
+        self.prune_agent.retention_ratio = self.prune_agent.retention_number / self.prune_agent.original_filters_number
         self.prune_agent.dense_chs_idx = {}
         for name, param in self.prune_agent.master_model.named_parameters():
             if 'weight' in name:

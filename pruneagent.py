@@ -8,12 +8,12 @@ from pcode.utils.tensor_buffer import TensorBuffer
 
 
 class PruneAgent():
-    def __init__(self, num_classes, device, optimizer=False, minimal_ratio=0.1):
+    def __init__(self, num_classes, device, optimizer=False, minimal_ratio=0.05):
         self.num_classes = num_classes
         self.device = device
         self.optimizer = optimizer
         self.minimal_filter = []
-        self.minimal_ratio=minimal_ratio
+        self.minimal_ratio = minimal_ratio
 
     def change_fc(self, model):
         model.add_module('fc', nn.Linear(model.fc.in_features, self.num_classes).to(self.device))

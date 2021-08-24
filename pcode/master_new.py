@@ -165,7 +165,8 @@ class Master(object):
                 self.pruned_rate_learning.workers[selected_client_id] = {'retention_ratio': [], 'update_time': [],
                                                                          'idx': None, 'send_time': None,
                                                                          'recv_time': None,
-                                                                         'retention_number': original_filters_number,
+                                                                         'retention_number': torch.tensor(
+                                                                             original_filters_number, dtype=int),
                                                                          'prune_time': 0}
 
     def run(self):
@@ -240,12 +241,12 @@ class Master(object):
                 selected_client_ids
             )
 
-            if self.conf.graph.comm_round == 10:
+            if self.conf.graph.comm_round == 2:
                 from pruneagent import PruneAgent
                 self.device = 'cuda:0'
-                self.pruneagent = PruneAgent(10, self.device)
-                self.pruneagent.get_original_filters_number(self.master_model)
-                self.pruneagent.get_score(self.master_model)
+                self.prune_agent = PruneAgent(10, self.device)
+                self.prune_agent.get_original_filters_number(self.master_model)
+                self.prune_agent.get_score(self.master_model)
                 self.performance = 0
 
             if self.conf.generator:
@@ -253,12 +254,13 @@ class Master(object):
 
             # aggregate the local models and evaluate on the validation dataset.
             performance = self._aggregate_model_and_evaluate(flatten_local_models, selected_client_ids)
-            if self.conf.graph.comm_round > 150 and performance > self.performance:
+
+            if self.conf.graph.comm_round >= 150 and performance > self.performance:
                 self.performance = performance
                 retention_number = []
                 for i in range(100):
                     retention_number.append(self.pruned_rate_learning.workers[i + 1]['retention_number'])
-                checkpoint = {'model': self.master_model, 'score': self.pruneagent.score,
+                checkpoint = {'model': self.master_model, 'score': self.prune_agent.score,
                               'retention_number': retention_number}
                 torch.save(checkpoint, 'checkpoint')
 
@@ -268,6 +270,59 @@ class Master(object):
         # formally stop the training (the master has finished all communication rounds).
         dist.barrier()
         self._finishing()
+
+        self._getFLOPs(retention_number)
+
+    def _getFLOPs(self, retention_number):
+        from thop import profile
+        from thop import clever_format
+        self.prune_agent.sum_flops = 0
+        self.prune_agent.sum_params = 0
+        self.master_model = torch.load('checkpoint')['model']
+        for i in range(10):
+
+            self.prune_agent.master_model = copy.deepcopy(self.master_model).to(self.device)
+            self.prune_agent.retention_number = retention_number[i * 10]
+            self.prune_agent.dense_chs_idx = {}
+            self.prune_agent.metrics = create_metrics.Metrics(self.prune_agent.master_model, task="classification")
+            self.prune_agent.coordinator = create_coordinator.Coordinator(self.conf, self.metrics)
+            for name, param in self.prune_agent.master_model.named_parameters():
+                if 'weight' in name:
+                    if param.ndim == 1:
+                        self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[0])
+                    if param.ndim == 2:
+                        self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[1])
+                    if param.ndim == 4:
+                        self.prune_agent.dense_chs_idx[name] = {'in_chs': np.arange(param.shape[1]),
+                                                                'out_chs': np.arange(param.shape[0])}
+            self.prune_agent.prune(self.prune_agent.master_model,
+                                   torch.optim.SGD(self.master_model.parameters(), lr=0.1), 0)
+            input = torch.randn(1, 3, 32, 32).to(self.device)
+            flops, params = profile(self.prune_agent.master_model, inputs=(input,), verbose=False)
+            self.prune_agent.sum_params += params
+            self.prune_agent.sum_flops += flops
+            if self.prune_agent.original_filters_number == self.prune_agent.retention_number:
+                self.prune_agent.original_flops = flops
+                self.prune_agent.original_params = params
+            flops, params = clever_format([flops, params], "%.3f")
+            performance = master_utils.do_validation(
+                self.conf,
+                self.prune_agent.coordinator,
+                self.prune_agent.master_model,
+                self.criterion,
+                self.prune_agent.metrics,
+                self.test_loaders,
+                label=f"test_fedavg-{i}",
+            )
+            performance = performance.dictionary['top1']
+            self.conf.logger.log(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}')
+            with open('result.log', 'a+') as f:
+                f.write(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}\n')
+        avgflops = self.prune_agent.sum_flops / (self.prune_agent.original_flops * 10)
+        avgparams = self.prune_agent.sum_params / (self.prune_agent.original_params * 10)
+        self.conf.logger.log(f'avg flops: {avgflops}, avg params: {avgparams}')
+        with open('result.log', 'a+') as f:
+            f.write(f'avg flops: {avgflops}, avg params: {avgparams}')
 
     def aggregate_logits(self, selected_client_ids):
 
