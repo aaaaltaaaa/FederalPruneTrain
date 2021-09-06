@@ -212,6 +212,17 @@ class Master(object):
                 selected_client_ids, self.conf.graph.comm_round, list_of_local_n_epochs, to_send_history
             )
 
+            with torch.no_grad():
+                if self.conf.graph.comm_round == 10:
+                    self.conf.logger.log('Master get score.')
+                    from pruneagent import PruneAgent
+                    self.device = 'cuda:0'
+                    self.prune_agent = PruneAgent(10, self.device)
+                    self.prune_agent.get_original_filters_number(self.master_model)
+                    self.prune_agent.get_score(self.master_model)
+                    checkpoint = {'score': self.prune_agent.score}
+                    self.performance = 0
+
             # will decide to send the model or stop the training.
             if not self.conf.is_finished:
                 if self.conf.global_logits:
@@ -241,28 +252,23 @@ class Master(object):
                 selected_client_ids
             )
 
-            if self.conf.graph.comm_round == 2:
-                from pruneagent import PruneAgent
-                self.device = 'cuda:0'
-                self.prune_agent = PruneAgent(10, self.device)
-                self.prune_agent.get_original_filters_number(self.master_model)
-                self.prune_agent.get_score(self.master_model)
-                self.performance = 0
-
             if self.conf.generator:
                 self.train_generator(selected_client_ids, label_weights, qualified_labels, flatten_local_models)
 
             # aggregate the local models and evaluate on the validation dataset.
             performance = self._aggregate_model_and_evaluate(flatten_local_models, selected_client_ids)
-
-            if self.conf.graph.comm_round >= 150 and performance > self.performance:
-                self.performance = performance
-                retention_number = []
-                for i in range(100):
-                    retention_number.append(self.pruned_rate_learning.workers[i + 1]['retention_number'])
-                checkpoint = {'model': self.master_model, 'score': self.prune_agent.score,
-                              'retention_number': retention_number}
-                torch.save(checkpoint, 'checkpoint')
+            with torch.no_grad():
+                if self.conf.graph.comm_round >= 100 and performance > self.performance:
+                    self.performance = performance
+                    retention_number = []
+                    idx = []
+                    for i in range(100):
+                        retention_number.append(self.pruned_rate_learning.workers[i + 1]['retention_number'])
+                        if i % 20 == 0:
+                            idx.append(self.pruned_rate_learning.workers[i + 1]['idx'])
+                    checkpoint.update({'model': self.master_model,
+                                       'retention_number': retention_number, 'idx': idx})
+                    torch.save(checkpoint, 'checkpoint')
 
             # evaluate the aggregated model.
             self.conf.logger.log(f"Master finished one round of federated learning.\n")
@@ -270,59 +276,69 @@ class Master(object):
         # formally stop the training (the master has finished all communication rounds).
         dist.barrier()
         self._finishing()
-
         self._getFLOPs(retention_number)
 
     def _getFLOPs(self, retention_number):
-        from thop import profile
-        from thop import clever_format
-        self.prune_agent.sum_flops = 0
-        self.prune_agent.sum_params = 0
-        self.master_model = torch.load('checkpoint')['model']
-        for i in range(10):
+        with torch.no_grad():
+            from thop import profile
+            from thop import clever_format
+            self.prune_agent.sum_flops = 0
+            self.prune_agent.sum_params = 0
+            self.master_model = torch.load('checkpoint')['model']
+            for i in range(10):
 
-            self.prune_agent.master_model = copy.deepcopy(self.master_model).to(self.device)
-            self.prune_agent.retention_number = retention_number[i * 10]
-            self.prune_agent.dense_chs_idx = {}
-            self.prune_agent.metrics = create_metrics.Metrics(self.prune_agent.master_model, task="classification")
-            self.prune_agent.coordinator = create_coordinator.Coordinator(self.conf, self.metrics)
-            for name, param in self.prune_agent.master_model.named_parameters():
-                if 'weight' in name:
-                    if param.ndim == 1:
-                        self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[0])
-                    if param.ndim == 2:
-                        self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[1])
-                    if param.ndim == 4:
-                        self.prune_agent.dense_chs_idx[name] = {'in_chs': np.arange(param.shape[1]),
-                                                                'out_chs': np.arange(param.shape[0])}
-            self.prune_agent.prune(self.prune_agent.master_model,
-                                   torch.optim.SGD(self.master_model.parameters(), lr=0.1), 0)
-            input = torch.randn(1, 3, 32, 32).to(self.device)
-            flops, params = profile(self.prune_agent.master_model, inputs=(input,), verbose=False)
-            self.prune_agent.sum_params += params
-            self.prune_agent.sum_flops += flops
-            if self.prune_agent.original_filters_number == self.prune_agent.retention_number:
-                self.prune_agent.original_flops = flops
-                self.prune_agent.original_params = params
-            flops, params = clever_format([flops, params], "%.3f")
-            performance = master_utils.do_validation(
-                self.conf,
-                self.prune_agent.coordinator,
-                self.prune_agent.master_model,
-                self.criterion,
-                self.prune_agent.metrics,
-                self.test_loaders,
-                label=f"test_fedavg-{i}",
-            )
-            performance = performance.dictionary['top1']
-            self.conf.logger.log(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}')
+                self.prune_agent.master_model = copy.deepcopy(self.master_model).to(self.device)
+                self.prune_agent.retention_number = retention_number[i * 10]
+                self.prune_agent.dense_chs_idx = {}
+                self.prune_agent.metrics = create_metrics.Metrics(self.prune_agent.master_model, task="classification")
+                self.prune_agent.coordinator = create_coordinator.Coordinator(self.conf, self.metrics)
+                for name, param in self.prune_agent.master_model.named_parameters():
+                    if 'weight' in name:
+                        if param.ndim == 1:
+                            self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[0])
+                        if param.ndim == 2:
+                            self.prune_agent.dense_chs_idx[name] = np.arange(param.shape[1])
+                        if param.ndim == 4:
+                            self.prune_agent.dense_chs_idx[name] = {'in_chs': np.arange(param.shape[1]),
+                                                                    'out_chs': np.arange(param.shape[0])}
+                self.prune_agent.prune(self.prune_agent.master_model,
+                                       torch.optim.SGD(self.master_model.parameters(), lr=0.1), 0)
+
+                self.prune_agent.master_model.to(self.device)
+                if self.conf.freeze_bn:
+                    self.prune_agent.master_model.unfreeze_bn()
+                    trainloader = torch.utils.data.DataLoader(self.dataset['train'], batch_size=10, shuffle=True)
+                    with torch.no_grad():
+                        for images, labels in trainloader:
+                            self.prune_agent.master_model(images.to(self.device))
+                performance = master_utils.do_validation(
+                    self.conf,
+                    self.prune_agent.coordinator,
+                    self.prune_agent.master_model,
+                    self.criterion,
+                    self.prune_agent.metrics,
+                    self.test_loaders,
+                    label=f"test_fedavg-{i}",
+                )
+                input = torch.randn(1, 3, 32, 32).to(self.device)
+                self.prune_agent.master_model.to(self.device)
+                flops, params = profile(self.prune_agent.master_model, inputs=(input,), verbose=False)
+                self.prune_agent.sum_params += params
+                self.prune_agent.sum_flops += flops
+                if self.prune_agent.original_filters_number == self.prune_agent.retention_number:
+                    self.prune_agent.original_flops = flops
+                    self.prune_agent.original_params = params
+                flops, params = clever_format([flops, params], "%.3f")
+
+                performance = performance.dictionary['top1']
+                self.conf.logger.log(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}')
+                with open('result.log', 'a+') as f:
+                    f.write(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}\n')
+            avgflops = self.prune_agent.sum_flops / (self.prune_agent.original_flops * 10)
+            avgparams = self.prune_agent.sum_params / (self.prune_agent.original_params * 10)
+            self.conf.logger.log(f'avg flops: {avgflops}, avg params: {avgparams}')
             with open('result.log', 'a+') as f:
-                f.write(f'model-{i}: flops: {flops}, params: {params}, top 1 performance: {performance}\n')
-        avgflops = self.prune_agent.sum_flops / (self.prune_agent.original_flops * 10)
-        avgparams = self.prune_agent.sum_params / (self.prune_agent.original_params * 10)
-        self.conf.logger.log(f'avg flops: {avgflops}, avg params: {avgparams}')
-        with open('result.log', 'a+') as f:
-            f.write(f'avg flops: {avgflops}, avg params: {avgparams}')
+                f.write(f'avg flops: {avgflops}, avg params: {avgparams}')
 
     def aggregate_logits(self, selected_client_ids):
 
@@ -539,8 +555,21 @@ class Master(object):
             self.pruned_rate_learning.workers[client_id]['update_time'].append(
                 self.pruned_rate_learning.workers[client_id]['recv_time'] -
                 self.pruned_rate_learning.workers[client_id]['send_time'])
-        self.pruned_rate_learning.comm_round+=1
+        self.pruned_rate_learning.comm_round += 1
         dist.barrier()
+
+        buffer = None
+        for flatten_local_model in flatten_local_models.values():
+            if buffer is None:
+                buffer = flatten_local_model.buffer
+                non_zero = torch.where(buffer != 0, 1, 0)
+            else:
+                buffer += flatten_local_model.buffer
+                non_zero += torch.where(buffer != 0, 1, 0)
+        non_zero_idx = non_zero != 0
+        buffer[non_zero_idx] /= non_zero[non_zero_idx]
+        for flatten_local_model in flatten_local_models.values():
+            flatten_local_model.buffer = buffer
 
         return flatten_local_models
 
@@ -695,15 +724,25 @@ class Master(object):
 
         # evaluate the aggregated model on the test data.
         if same_arch:
+            if self.conf.freeze_bn:
+                fedavg_model.cuda()
+                fedavg_model.unfreeze_bn()
+                fedavg_model.train()
+                trainloader = torch.utils.data.DataLoader(self.dataset['train'], batch_size=10, shuffle=True)
+                with torch.no_grad():
+                    for images, labels in trainloader:
+                        fedavg_model(images.cuda())
+
             performance = master_utils.do_validation(
                 self.conf,
                 self.coordinator,
-                self.master_model,
+                fedavg_model,
                 self.criterion,
                 self.metrics,
                 self.test_loaders,
                 label=f"aggregated_test_loader",
             )
+            fedavg_model.freeze_bn()
 
         else:
             for arch, _client_model in self.client_models.items():

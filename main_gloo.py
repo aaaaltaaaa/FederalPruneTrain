@@ -53,7 +53,8 @@ def init_config(conf):
         torch.cuda.manual_seed(conf.manual_seed)
         torch.cuda.set_device(conf.graph.primary_device)
         torch.backends.cudnn.enabled = True
-        torch.backends.cudnn.benchmark = True
+        torch.cuda.manual_seed_all(conf.manual_seed)
+        torch.backends.cudnn.benchmark = False
         torch.backends.cudnn.deterministic = True if conf.train_fast else False
 
     # init the model arch info.

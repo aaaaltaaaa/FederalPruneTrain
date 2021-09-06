@@ -208,6 +208,22 @@ class ResNetCifar10(nn.Module):
     def forward(self, x):
         return self._forward_impl(x)
 
+    def freeze_bn(self):
+        for m in self.modules():
+            if isinstance(m, nn.BatchNorm2d):
+                m.track_running_stats = True
+                m.reset_running_stats()
+                m.num_batches_tracked.data = torch.tensor(10)
+                m.track_running_stats = False
+                # m.running_mean = None
+                # m.running_var = None
+
+    def unfreeze_bn(self):
+        for m in self.modules():
+            if isinstance(m, nn.BatchNorm2d):
+                m.track_running_stats = True
+                m.reset_running_stats()
+
 
 def ResNet18_cifar10(**kwargs):
     r"""ResNet-18 model from
@@ -243,7 +259,9 @@ def ResNet(conf, arch=None):
         #     group_norm_num_groups=conf.group_norm_num_groups,
         # )
         if resnet_size == 18:
-            model = ResNet18_cifar10()
+            model = ResNet18_cifar10(num_classes=10)
+            model.freeze_bn()
+
             # model = CifarResNet(
             #     dataset=dataset,
             #     resnet_size=resnet_size,

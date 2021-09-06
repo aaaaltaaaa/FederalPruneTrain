@@ -108,9 +108,9 @@ class Worker(object):
                 self._recv_generator_from_master()
             self._recv_model_from_master()
 
-            self._train()
-
             self._getFLOPs()
+
+            self._train()
 
             self._prune()
 
@@ -158,6 +158,27 @@ class Worker(object):
                 params_ratio = self.prune_agent.sum_params / (self.prune_agent.original_params * 200)
                 self.conf.logger.log(f'summary: FLOPs: {self.prune_agent.sum_flops}, '
                                      f'FLOPs ratio: {flops_ratio}, Params: {self.prune_agent.sum_params}, params ratio: {params_ratio}')
+
+            if self.conf.freeze_bn:
+                model.unfreeze_bn()
+                with torch.no_grad():
+                    for images, labels in self.test_loaders[0]:
+                        model(images.to(self.device))
+            model.eval()
+            with torch.no_grad():
+                total = 0
+                correct = 0
+                for data in self.test_loaders[0]:
+                    images, labels = data
+                    # 将输入和目标在每一步都送入GPU
+                    images, labels = images.to(self.device), labels.to(self.device)
+                    outputs = model(images)
+                    _, predicted = torch.max(outputs[1], 1)
+                    total += labels.size(0)
+                    correct += (predicted == labels).sum().item()
+            self.conf.logger.log(
+                f'Worker-{self.conf.graph.worker_id}, client-{self.conf.graph.client_id},Accuracy of the network on the 10000 test images: {100 * correct / total}%')
+            self.test_loaders[0]
 
         del model
 
@@ -275,6 +296,7 @@ class Worker(object):
             self.prune_agent.retention_ratio = 1
 
         self.model.load_state_dict(self.model_state_dict)
+        self.model.freeze_bn()
 
         if self.comm_round == 2:
             original_number = torch.tensor(0, dtype=int)

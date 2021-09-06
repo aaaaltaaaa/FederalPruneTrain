@@ -8,7 +8,7 @@ from pcode.utils.tensor_buffer import TensorBuffer
 
 
 class PruneAgent():
-    def __init__(self, num_classes, device, optimizer=False, minimal_ratio=0.05):
+    def __init__(self, num_classes, device, optimizer=False, minimal_ratio=0.0625):
         self.num_classes = num_classes
         self.device = device
         self.optimizer = optimizer
@@ -69,6 +69,7 @@ class PruneAgent():
             if isinstance(m, nn.BatchNorm2d):
                 self.score[name] = self.status[m]
                 self.minimal_filter.append(max(int(self.minimal_ratio * len(self.score[name])), 1))
+        self.minimal_filter.append(sum(self.minimal_filter))
 
     def prune(self, model, optimizer, num):
         # self.get_score(model)
@@ -76,8 +77,10 @@ class PruneAgent():
         for i, score in enumerate(self.score.values()):
             filtered_score_list.append(score.cpu().detach().numpy()[:-self.minimal_filter[i]])
         scores = np.concatenate(filtered_score_list)
-
-        threshold = np.sort(scores)[self.original_filters_number - self.retention_number + num]
+        if self.retention_number - num > self.minimal_filter[-1]:
+            threshold = np.sort(scores)[self.original_filters_number - self.retention_number + num]
+        else:
+            threshold = max(scores) + 1
         to_prune = int((scores < threshold).sum())
         self.retention_number = self.original_filters_number - to_prune
         self.retention_ratio = self.retention_number / self.original_filters_number
@@ -239,16 +242,16 @@ class PruneAgent():
                     m.weight.data = param
                     m.bias.data = torch.ones_like(m.bias, dtype=bool)
                 elif 'bn' in name or 'downsample.1' in name:
-                    param = torch.zeros(m.weight.shape[0])
+                    param = torch.zeros(m.weight.shape[0], dtype=bool)
                     param[self.dense_chs_idx[name]] = True
                     m.weight.data = param
-                    param = torch.zeros(m.weight.shape[0])
+                    param = torch.zeros(m.weight.shape[0], dtype=bool)
                     param[self.dense_chs_idx[name]] = True
                     m.bias.data = param
-                    param = torch.zeros(m.weight.shape[0])
+                    param = torch.zeros(m.weight.shape[0], dtype=bool)
                     param[self.dense_chs_idx[name]] = True
                     m.running_mean.data = param
-                    param = torch.zeros(m.weight.shape[0])
+                    param = torch.zeros(m.weight.shape[0], dtype=bool)
                     param[self.dense_chs_idx[name]] = True
                     m.running_var.data = param
 

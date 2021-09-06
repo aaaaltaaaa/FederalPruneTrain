@@ -5,23 +5,26 @@ import torchvision
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 
-
 import pcode.datasets.loader.imagenet_folder as imagenet_folder
 import pcode.datasets.loader.pseudo_imagenet_folder as pseudo_imagenet_folder
-from pcode.datasets.loader.svhn_folder import define_svhn_folder
-from pcode.datasets.loader.femnist import define_femnist_folder
 import pcode.utils.op_paths as op_paths
 from pcode.datasets.loader.ag_news import AG_news
 from pcode.datasets.loader.dbpedia import dbpedia_14
-from pcode.datasets.loader.sst import SST
 from pcode.datasets.loader.entity_datasets import EntityDataset
+from pcode.datasets.loader.femnist import define_femnist_folder
+from pcode.datasets.loader.sst import SST
+from pcode.datasets.loader.svhn_folder import define_svhn_folder
+
 """the entry for classification tasks."""
 
-def _get_ag_news(conf,split):
-    dataset = AG_news(split,conf.max_seq_len)
+
+def _get_ag_news(conf, split):
+    dataset = AG_news(split, conf.max_seq_len)
     return dataset
-def _get_dbpedia(conf,split):
-    dataset = dbpedia_14(split,conf.max_seq_len)
+
+
+def _get_dbpedia(conf, split):
+    dataset = dbpedia_14(split, conf.max_seq_len)
     return dataset
 
 def _get_sst(conf,split):
@@ -41,6 +44,7 @@ def _get_cifar(conf, name, root, split, transform, target_transform, download):
         dataset_loader = datasets.CIFAR10
         normalize = (
             transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+            # transforms.Normalize((0.4914, 0.4822, 0.4465), (0.24703233, 0.24348505, 0.26158768))
             if not conf.use_fake_centering
             else transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         )
